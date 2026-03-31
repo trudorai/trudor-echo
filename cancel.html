@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Trudor Echo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff5f5 0%, #fef7ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .cancel-icon {
+            font-size: 80px;
+            color: #ef4444;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .button {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .button-primary {
+            background: #6366f1;
+            color: white;
+            border: none;
+        }
+        
+        .button-primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .button-secondary {
+            background: #f9fafb;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .button-secondary:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+        }
+        
+        .free-note {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cancel-icon">❌</div>
+        <h1>Payment Cancelled</h1>
+        <p>Your payment was not completed. No charges have been made to your account.</p>
+        
+        <p>Want to try Trudor Echo before purchasing? We offer a free demo with one full repurposing job included.</p>
+        
+        <div class="buttons">
+            <a href="/" class="button button-primary">Try Free Demo</a>
+            <a href="/#pricing" class="button button-secondary">View Pricing Again</a>
+        </div>
+        
+        <div class="free-note">
+            <p><strong>Free Demo Includes:</strong><br>
+            • 1 full repurposing job<br>
+            • All 8 platforms<br>
+            • No credit card required<br>
+            • Instant results</p>
+        </div>
+    </div>
+</body>
+</html>

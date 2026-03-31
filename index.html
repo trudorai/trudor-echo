@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trudor Echo - One piece of content. Many platform-ready posts.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fef7ff 100%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Input Section */
+        .input-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .content-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 30px;
+            transition: border 0.3s;
+        }
+        
+        .content-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .platform-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .platform-checkbox:hover {
+            background: var(--gray-light);
+        }
+        
+        .platform-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .platform-checkbox label {
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .process-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .process-button:hover {
+            background: #0da271;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .pricing-features li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .platform-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-broadcast-tower"></i>
+                    Trudor Echo
+                </a>
+                <div class="nav-links">
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href="#pricing" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>One piece of content.<br>Many platform-ready posts.</h1>
+            <p>Paste your blog, video, or podcast. Get 8-12 optimized versions for TikTok, LinkedIn, Instagram, X, newsletters, and more. AI-powered, instant, professional.</p>
+            <a href="#input" class="cta-button" style="font-size: 1.1rem; padding: 16px 32px;">
+                <i class="fas fa-bolt"></i> Try Free Demo
+            </a>
+        </div>
+    </section>
+
+    <!-- Input Section -->
+    <section class="container" id="input">
+        <div class="input-section">
+            <h2 class="section-title">Paste your content below</h2>
+            
+            <textarea class="content-input" placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here... (Minimum 200 words for best results)"></textarea>
+            
+            <h3 class="section-title">Select target platforms:</h3>
+            
+            <div class="platform-grid">
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="tiktok" checked>
+                    <label for="tiktok"><i class="fab fa-tiktok"></i> TikTok/Shorts</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="youtube" checked>
+                    <label for="youtube"><i class="fab fa-youtube"></i> YouTube Shorts</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="linkedin" checked>
+                    <label for="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="instagram" checked>
+                    <label for="instagram"><i class="fab fa-instagram"></i> Instagram</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="twitter" checked>
+                    <label for="twitter"><i class="fab fa-twitter"></i> X (Twitter)</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="newsletter" checked>
+                    <label for="newsletter"><i class="fas fa-newspaper"></i> Newsletter</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="email" checked>
+                    <label for="email"><i class="fas fa-envelope"></i> Email Sequence</label>
+                </div>
+                <div class="platform-checkbox">
+                    <input type="checkbox" id="threads" checked>
+                    <label for="threads"><i class="fas fa-comments"></i> Threads/Carousels</label>
+                </div>
+            </div>
+            
+            <button class="process-button" id="echoButton">
+                <i class="fas fa-magic"></i> Echo It Now
+                <span id="processing" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i> Processing...
+                </span>
+            </button>
+            
+            <div id="output" style="display: none; margin-top: 40px; padding: 30px; background: var(--light); border-radius: 12px;">
+                <h3 style="margin-bottom: 20px;">Your Repurposed Content</h3>
+                <div id="outputContent"></div>
+                <button class="cta-button" style="margin-top: 20px;">
+                    <i class="fas fa-download"></i> Download All as ZIP
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Simple, Transparent Pricing</h2>
+            <p style="text-align: center; color: var(--gray); max-width: 600px; margin: 0 auto 40px;">Start free, pay only when you need more.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free Demo</h3>
+                    <div class="price">$0</div>
+                    <p>Try Trudor Echo with one full repurposing job</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 1 full repurposing job</li>
+                        <li><i class="fas fa-check"></i> All 8 platforms</li>
+                        <li><i class="fas fa-check"></i> Instant download</li>
+                        <li><i class="fas fa-times"></i> No custom brand voice</li>
+                        <li><i class="fas fa-times"></i> No priority processing</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%;">Try Free Demo</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; font-size: 0.9rem;">MOST POPULAR</div>
+                    <h3>Pay-Per-Use</h3>
+                    <div class="price">$12<span>/job</span></div>
+                    <p>Perfect for occasional creators</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Full repurposing job</li>
+                        <li><i class="fas fa-check"></i> All 8 platforms</li>
+                        <li><i class="fas fa-check"></i> Instant download</li>
+                        <li><i class="fas fa-check"></i> Basic brand voice</li>
+                        <li><i class="fas fa-times"></i> No monthly commitment</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%; background: var(--primary);">Buy Now - $12</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Pro Monthly</h3>
+                    <div class="price">$29<span>/month</span></div>
+                    <p>For serious content creators</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited jobs</li>
+                        <li><i class="fas fa-check"></i> All 8 platforms</li>
+                        <li><i class="fas fa-check"></i> Custom brand voice</li>
+                        <li><i class="fas fa-check"></i> Priority processing</li>
+                        <li><i class="fas fa-check"></i> Bulk uploads</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%;">Start Pro Trial</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-broadcast-tower"></i>
+                        Trudor Echo
+                    </a>
+                    <p>AI-powered content repurposing for modern creators. Part of the Trudor AI family.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px;">Product</h4>
+                    <p><a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">How It Works</a></p>
+                    <p><a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Pricing</a></p>
+                    <p><a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Examples</a></p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px;">Company</h4>
+                    <p><a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">About</a></p>
+                    <p><a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Blog</a></p>
+                    <p><a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;">Contact</a></p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px;">Connect</h4>
+                    <p><a href="https://twitter.com/Trudor_AI" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;"><i class="fab fa-twitter"></i> Twitter</a></p>
+                    <p><a href="https://linkedin.com/company/trudor-ai" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+                    <p><a href="https://instagram.com/trudor.ai" style="color: white; text-decoration: none; display: block; margin-bottom: 10px;"><i class="fab fa-instagram"></i> Instagram</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Trudor AI. All rights reserved. <a href="#" style="color: var(--gray); text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: var(--gray); text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
