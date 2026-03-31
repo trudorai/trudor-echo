@@ -1,322 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trudor Echo - WORKING VERSION</title>
-    <style>
-        :root {
-            --primary: #ff3366;
-            --secondary: #3366ff;
-            --accent: #ff9933;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-        
-        body {
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .nav-links a {
-            margin: 0 15px;
-            color: #666;
-            text-decoration: none;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .cta-button {
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .cta-button:hover {
-            background: var(--accent);
-        }
-        
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #ff3366, #3366ff);
-            color: white;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .pricing {
-            padding: 80px 20px;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .pricing-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .pricing-card.featured {
-            border: 3px solid var(--primary);
-            transform: scale(1.05);
-        }
-        
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 20px 0;
-        }
-        
-        section {
-            padding: 60px 20px;
-            margin: 40px 0;
-            background: white;
-            border-radius: 12px;
-        }
-        
-        h2 {
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">Trudor Echo 🚀</a>
-                <div class="nav-links">
-                    <a href="#how-it-works">How It Works</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#examples">Examples</a>
-                    <a href="#faq">FAQ</a>
-                </div>
-                <a href="#pricing" class="cta-button">Get Started</a>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>One piece of content.<br>Many platform-ready posts.</h1>
-            <p style="font-size: 1.2rem; margin: 20px 0 30px;">AI-powered content repurposing in seconds.</p>
-            <a href="#input" class="cta-button" style="font-size: 1.1rem;">Try Free Demo</a>
-        </div>
-    </section>
-
-    <section id="input" style="background: #f0f8ff; padding: 80px 0;">
-        <div class="container">
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 10px;">Paste Your Content</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Or drag and drop files (PDF, DOC, TXT, images) directly into the box below
-            </p>
-            
-            <div style="position: relative; max-width: 800px; margin: 0 auto;">
-                <!-- File upload area -->
-                <div id="fileDropZone" style="border: 3px dashed var(--primary); border-radius: 16px; padding: 60px 40px; text-align: center; background: white; transition: all 0.3s; position: relative; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <div id="dropZoneContent" style="transition: opacity 0.3s;">
-                        <div style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <h3 style="margin-bottom: 15px; color: var(--dark);">Drag & Drop Files Here</h3>
-                        <p style="color: var(--gray); margin-bottom: 25px;">
-                            PDF, DOC, TXT, JPG, PNG, or paste text below
-                        </p>
-                        <label for="fileUpload" class="cta-button" style="cursor: pointer; display: inline-block;">
-                            <i class="fas fa-folder-open"></i> Browse Files
-                        </label>
-                        <input type="file" id="fileUpload" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.md" style="display: none;">
-                        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--gray-light);">
-                            Maximum file size: 10MB
-                        </p>
-                    </div>
-                    
-                    <!-- Uploaded files preview -->
-                    <div id="uploadedFiles" style="display: none; width: 100%;">
-                        <h4 style="margin-bottom: 20px; color: var(--secondary);">
-                            <i class="fas fa-check-circle"></i> Files Ready for Processing
-                        </h4>
-                        <div id="fileList" style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 20px; max-height: 200px; overflow-y: auto;">
-                            <!-- Files will appear here -->
-                        </div>
-                        <button id="clearFiles" class="cta-button" style="background: var(--gray);">
-                            <i class="fas fa-trash"></i> Clear All Files
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Text input area -->
-                <div style="margin-top: 40px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <h3 style="color: var(--dark);">Or Paste Text Directly:</h3>
-                        <div style="font-size: 0.9rem; color: var(--gray);">
-                            <i class="fas fa-text-height"></i> <span id="charCount">0</span> characters
-                        </div>
-                    </div>
-                    
-                    <div style="position: relative;">
-                        <textarea id="contentInput" 
-                                  style="width: 100%; height: 250px; padding: 25px; border: 2px solid var(--gray-light); border-radius: 12px; font-size: 16px; line-height: 1.6; resize: vertical; transition: all 0.3s; font-family: 'Courier New', monospace;"
-                                  placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here...&#10;&#10;Or simply start typing. Minimum 200 words for best results."
-                                  onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(255, 107, 53, 0.1)';"
-                                  onblur="this.style.borderColor='var(--gray-light)'; this.style.boxShadow='none';"></textarea>
-                        
-                        <div id="placeholderOverlay" style="position: absolute; top: 25px; left: 25px; right: 25px; color: var(--gray); pointer-events: none; opacity: 0.7; transition: opacity 0.3s; font-family: 'Courier New', monospace; line-height: 1.6;">
-                            Paste your blog post, video transcript, podcast script, or any long-form content here...<br><br>
-                            Or simply start typing. Minimum 200 words for best results.
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-                        <div style="font-size: 0.9rem; color: var(--gray);">
-                            <i class="fas fa-lightbulb"></i> Tip: Longer content (500+ words) produces better results
-                        </div>
-                        <div>
-                            <button id="clearText" class="cta-button" style="background: var(--gray); margin-right: 10px;">
-                                <i class="fas fa-eraser"></i> Clear Text
-                            </button>
-                            <button id="generateButton" class="cta-button" style="background: linear-gradient(90deg, var(--primary), var(--accent)); font-size: 1.1rem; padding: 15px 40px;">
-                                <i class="fas fa-magic"></i> Generate Content
-                                <span id="processingSpinner" style="display: none; margin-left: 10px;">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Platform selection -->
-                <div style="margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--light);">
-                    <h3 style="text-align: center; margin-bottom: 30px; color: var(--dark);">
-                        <i class="fas fa-share-alt"></i> Select Target Platforms
-                    </h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;">
-                        <div class="platform-option" data-platform="tiktok">
-                            <input type="checkbox" id="platform-tiktok" checked hidden>
-                            <label for="platform-tiktok">
-                                <i class="fab fa-tiktok"></i> TikTok/Reels
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="youtube">
-                            <input type="checkbox" id="platform-youtube" checked hidden>
-                            <label for="platform-youtube">
-                                <i class="fab fa-youtube"></i> YouTube Shorts
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="linkedin">
-                            <input type="checkbox" id="platform-linkedin" checked hidden>
-                            <label for="platform-linkedin">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="instagram">
-                            <input type="checkbox" id="platform-instagram" checked hidden>
-                            <label for="platform-instagram">
-                                <i class="fab fa-instagram"></i> Instagram
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="twitter">
-                            <input type="checkbox" id="platform-twitter" checked hidden>
-                            <label for="platform-twitter">
-                                <i class="fab fa-twitter"></i> X (Twitter)
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="newsletter">
-                            <input type="checkbox" id="platform-newsletter" checked hidden>
-                            <label for="platform-newsletter">
-                                <i class="fas fa-newspaper"></i> Newsletter
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="email">
-                            <input type="checkbox" id="platform-email" checked hidden>
-                            <label for="platform-email">
-                                <i class="fas fa-envelope"></i> Email Sequence
-                            </label>
-                        </div>
-                        <div class="platform-option" data-platform="threads">
-                            <input type="checkbox" id="platform-threads" checked hidden>
-                            <label for="platform-threads">
-                                <i class="fas fa-comments"></i> Threads/Carousels
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 30px;">
-                        <button id="selectAllPlatforms" class="cta-button" style="background: var(--secondary);">
-                            <i class="fas fa-check-double"></i> Select All Platforms
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing">
-        <div class="container">
-            <h2>Pricing</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Free Demo</h3>
-                    <div class="price">$0</div>
-                    <p>Try it once for free</p>
-                    <button class="cta-button" onclick="scrollToInput()">Try Free Demo</button>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <h3>Pay-Per-Use</h3>
-                    <div class="price">$12</div>
-                    <p>One-time payment</p>
+One-time payment</p>
                     <button class="cta-button" id="pay12" style="background: var(--primary);">Buy Now - $12</button>
                 </div>
                 
@@ -351,23 +33,226 @@
         </div>
     </section>
 
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
-        // SIMPLE, GUARANTEED TO WORK
-        console.log('=== SIMPLE WORKING VERSION LOADED ===');
+        // ============================================
+        // ITERATION 1 - ENHANCED INPUT FUNCTIONALITY
+        // ============================================
+        console.log('=== ITERATION 1 LOADED - Drag & Drop Input ===');
+        
+        // Set refresh time
+        document.getElementById('refreshTime').textContent = new Date().toLocaleTimeString();
+        
+        // File upload functionality
+        const fileDropZone = document.getElementById('fileDropZone');
+        const fileUpload = document.getElementById('fileUpload');
+        const uploadedFiles = document.getElementById('uploadedFiles');
+        const fileList = document.getElementById('fileList');
+        const clearFilesBtn = document.getElementById('clearFiles');
+        const dropZoneContent = document.getElementById('dropZoneContent');
+        
+        let uploadedFileList = [];
+        
+        // Drag and drop events
+        fileDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.add('drag-over');
+        });
+        
+        fileDropZone.addEventListener('dragleave', () => {
+            fileDropZone.classList.remove('drag-over');
+        });
+        
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('drag-over');
+            
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+        
+        // File input change
+        fileUpload.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+        
+        // Handle uploaded files
+        function handleFiles(files) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Check file size (10MB max)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+                    continue;
+                }
+                
+                // Add to list
+                uploadedFileList.push({
+                    name: file.name,
+                    size: formatFileSize(file.size),
+                    type: file.type
+                });
+            }
+            
+            updateFileDisplay();
+        }
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Update file display
+        function updateFileDisplay() {
+            if (uploadedFileList.length > 0) {
+                // Show uploaded files section
+                dropZoneContent.style.display = 'none';
+                uploadedFiles.style.display = 'block';
+                fileDropZone.classList.add('has-files');
+                
+                // Update file list
+                fileList.innerHTML = '';
+                uploadedFileList.forEach((file, index) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <div>
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${file.size} • ${file.type || 'Unknown type'}</div>
+                        </div>
+                        <button class="file-remove" data-index="${index}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    fileList.appendChild(fileItem);
+                });
+                
+                // Add remove event listeners
+                document.querySelectorAll('.file-remove').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = parseInt(e.target.closest('.file-remove').dataset.index);
+                        uploadedFileList.splice(index, 1);
+                        updateFileDisplay();
+                    });
+                });
+            } else {
+                // Show empty drop zone
+                dropZoneContent.style.display = 'block';
+                uploadedFiles.style.display = 'none';
+                fileDropZone.classList.remove('has-files');
+            }
+        }
+        
+        // Clear all files
+        clearFilesBtn.addEventListener('click', () => {
+            uploadedFileList = [];
+            updateFileDisplay();
+        });
+        
+        // Text input functionality
+        const contentInput = document.getElementById('contentInput');
+        const placeholderOverlay = document.getElementById('placeholderOverlay');
+        const charCount = document.getElementById('charCount');
+        const clearTextBtn = document.getElementById('clearText');
+        const generateButton = document.getElementById('generateButton');
+        const processingSpinner = document.getElementById('processingSpinner');
+        
+        // Fade out placeholder when typing
+        contentInput.addEventListener('input', () => {
+            const text = contentInput.value;
+            charCount.textContent = text.length;
+            
+            if (text.length > 0) {
+                placeholderOverlay.classList.add('fade-out');
+            } else {
+                placeholderOverlay.classList.remove('fade-out');
+            }
+        });
+        
+        // Clear text
+        clearTextBtn.addEventListener('click', () => {
+            contentInput.value = '';
+            charCount.textContent = '0';
+            placeholderOverlay.classList.remove('fade-out');
+            contentInput.focus();
+        });
+        
+        // Generate content button
+        generateButton.addEventListener('click', () => {
+            const text = contentInput.value.trim();
+            const hasFiles = uploadedFileList.length > 0;
+            
+            if (!text && !hasFiles) {
+                alert('Please add some content! Either paste text or upload files.');
+                return;
+            }
+            
+            if (text.length < 50 && !hasFiles) {
+                alert('Please add more content (minimum 50 characters) or upload files.');
+                return;
+            }
+            
+            // Show processing
+            generateButton.disabled = true;
+            processingSpinner.style.display = 'inline-block';
+            
+            // Simulate processing
+            setTimeout(() => {
+                generateButton.disabled = false;
+                processingSpinner.style.display = 'none';
+                
+                if (hasFiles) {
+                    alert(`✅ Processing complete!\n\nProcessed ${uploadedFileList.length} file(s) and ${text.length} characters of text.\n\nThis would generate content for all selected platforms.`);
+                } else {
+                    alert(`✅ Processing complete!\n\nProcessed ${text.length} characters of text.\n\nThis would generate content for all selected platforms.`);
+                }
+            }, 2000);
+        });
+        
+        // Platform selection
+        const platformOptions = document.querySelectorAll('.platform-option');
+        const selectAllPlatformsBtn = document.getElementById('selectAllPlatforms');
+        
+        platformOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('selected');
+            });
+        });
+        
+        selectAllPlatformsBtn.addEventListener('click', () => {
+            platformOptions.forEach(option => {
+                option.classList.add('selected');
+            });
+        });
+        
+        // Initialize all platforms as selected
+        platformOptions.forEach(option => {
+            option.classList.add('selected');
+        });
+        
+        // ============================================
+        // EXISTING BUTTON FUNCTIONALITY
+        // ============================================
         
         // Function to scroll to input
         function scrollToInput() {
             document.getElementById('input').scrollIntoView({ behavior: 'smooth' });
-            alert('Scrolling to input section!');
         }
         
         // Payment buttons
         document.getElementById('pay12').onclick = function() {
-            alert('$12 PAYMENT BUTTON WORKS!\n\nThis would integrate with Stripe.\n\nTo set up:\n1. Go to stripe.com\n2. Create $12 product\n3. Add your API key');
+            alert('$12 PAYMENT BUTTON WORKS!\n\nITERATION 1 - Drag & Drop added\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $12 product\n3. Add your API key');
         };
         
         document.getElementById('pay29').onclick = function() {
-            alert('$29/month BUTTON WORKS!\n\nThis would integrate with Stripe.\n\nTo set up:\n1. Go to stripe.com\n2. Create $29/month product\n3. Add your API key');
+            alert('$29/month BUTTON WORKS!\n\nITERATION 1 - Drag & Drop added\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $29/month product\n3. Add your API key');
         };
         
         // Navigation links
@@ -398,8 +283,18 @@
             return false;
         };
         
-        console.log('=== ALL BUTTONS SET UP ===');
-        alert('NEW WORKING VERSION LOADED!\nAll buttons should work now.');
+        console.log('=== ITERATION 1 SETUP COMPLETE ===');
+        console.log('Features added:');
+        console.log('1. Drag & drop file upload');
+        console.log('2. File preview with animations');
+        console.log('3. Fading placeholder text');
+        console.log('4. Character counter');
+        console.log('5. Visual platform selection');
+        
+        // Show iteration notice
+        setTimeout(() => {
+            console.log('🔄 Page refreshed at:', new Date().toLocaleTimeString());
+        }, 1000);
     </script>
 </body>
 </html>
