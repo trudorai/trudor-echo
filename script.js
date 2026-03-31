@@ -48,22 +48,45 @@ The most successful creators aren't those who work hardest, but those who work s
             return;
         }
         
-        // Simulate processing delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Generate outputs
-        const outputs = generateOutputs(content, selectedPlatforms);
-        
-        // Display outputs
-        displayOutputs(outputs);
-        
-        // Hide processing, show output
-        echoButton.disabled = false;
-        processingSpan.style.display = 'none';
-        outputDiv.style.display = 'block';
-        
-        // Scroll to output
-        outputDiv.scrollIntoView({ behavior: 'smooth' });
+        try {
+            // Call real AI API
+            const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev'; // Cloudflare Worker URL
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: content,
+                    platforms: selectedPlatforms
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+            
+            const outputs = await response.json();
+            
+            // Display outputs
+            displayOutputs(outputs);
+            
+        } catch (error) {
+            console.error('Error:', error);
+            // Fallback to simulation if API fails
+            alert('AI service temporarily unavailable. Showing demo version.');
+            const outputs = generateOutputs(content, selectedPlatforms);
+            displayOutputs(outputs);
+        } finally {
+            // Hide processing, show output
+            echoButton.disabled = false;
+            processingSpan.style.display = 'none';
+            outputDiv.style.display = 'block';
+            
+            // Scroll to output
+            outputDiv.scrollIntoView({ behavior: 'smooth' });
+        }
     });
     
     // Generate platform-specific outputs
@@ -542,7 +565,7 @@ They work smarter with AI as their co-pilot.
                     <div class="output-content">
                         <pre>${content}</pre>
                     </div>
-                    <button class="copy-button" onclick="copyToClipboard('${platform}')">
+                    <button class="copy-button" onclick="copyToClipboard(this)">
                         <i class="fas fa-copy"></i> Copy
                     </button>
                 </div>
@@ -551,102 +574,116 @@ They work smarter with AI as their co-pilot.
         
         html += '</div>';
         
-        // Add CSS for output
-        const style = document.createElement('style');
-        style.textContent = `
-            .output-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 20px;
-                margin-bottom: 30px;
-            }
-            
-            .output-card {
-                background: white;
-                border-radius: 12px;
-                padding: 20px;
-                border: 1px solid var(--gray-light);
-                transition: transform 0.3s;
-            }
-            
-            .output-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            }
-            
-            .output-header {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-bottom: 15px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid var(--gray-light);
-            }
-            
-            .output-header i {
-                font-size: 1.2rem;
-                color: var(--primary);
-            }
-            
-            .output-header h4 {
-                margin: 0;
-                font-size: 1.1rem;
-            }
-            
-            .output-content pre {
-                white-space: pre-wrap;
-                font-family: 'Courier New', monospace;
-                font-size: 0.9rem;
-                line-height: 1.5;
-                background: var(--light);
-                padding: 15px;
-                border-radius: 8px;
-                max-height: 300px;
-                overflow-y: auto;
-                margin: 0 0 15px 0;
-            }
-            
-            .copy-button {
-                background: var(--primary);
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 6px;
-                font-size: 0.9rem;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                margin: 0 auto;
-            }
-            
-            .copy-button:hover {
-                background: var(--primary-dark);
-            }
-            
-            @media (max-width: 768px) {
+        // Add CSS for output if not already added
+        if (!document.querySelector('#output-styles')) {
+            const style = document.createElement('style');
+            style.id = 'output-styles';
+            style.textContent = `
                 .output-grid {
-                    grid-template-columns: 1fr;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                    gap: 20px;
+                    margin-bottom: 30px;
                 }
-            }
-        `;
-        document.head.appendChild(style);
+                
+                .output-card {
+                    background: white;
+                    border-radius: 12px;
+                    padding: 20px;
+                    border: 1px solid var(--gray-light);
+                    transition: transform 0.3s;
+                }
+                
+                .output-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                }
+                
+                .output-header {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-bottom: 15px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid var(--gray-light);
+                }
+                
+                .output-header i {
+                    font-size: 1.2rem;
+                    color: var(--primary);
+                }
+                
+                .output-header h4 {
+                    margin: 0;
+                    font-size: 1.1rem;
+                }
+                
+                .output-content pre {
+                    white-space: pre-wrap;
+                    font-family: 'Courier New', monospace;
+                    font-size: 0.9rem;
+                    line-height: 1.5;
+                    background: var(--light);
+                    padding: 15px;
+                    border-radius: 8px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    margin: 0 0 15px 0;
+                }
+                
+                .copy-button {
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin: 0 auto;
+                    transition: background 0.3s;
+                }
+                
+                .copy-button:hover {
+                    background: var(--primary-dark);
+                }
+                
+                .copy-button.copied {
+                    background: var(--secondary);
+                }
+                
+                @media (max-width: 768px) {
+                    .output-grid {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
         
         outputContent.innerHTML = html;
     }
     
     // Copy to clipboard function
-    window.copyToClipboard = function(platform) {
-        const content = document.querySelector(`[data-platform="${platform}"]`);
-        if (content) {
-            navigator.clipboard.writeText(content.textContent)
-                .then(() => {
-                    alert('Copied to clipboard!');
-                })
-                .catch(err => {
-                    console.error('Failed to copy: ', err);
-                });
-        }
+    window.copyToClipboard = function(button) {
+        const content = button.parentElement.querySelector('pre').textContent;
+        navigator.clipboard.writeText(content)
+            .then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            })
+            .catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy to clipboard. Please try again.');
+            });
     };
     
     // Helper function to escape HTML
