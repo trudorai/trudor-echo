@@ -13,12 +13,13 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f0f9ff 0%, #fef7ff 100%);
+            background: linear-gradient(135deg, #fff8f5 0%, #f5faff 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         .container {
@@ -29,29 +30,42 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             max-width: 500px;
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #6c5ce7);
         }
         
         .success-icon {
             font-size: 80px;
-            color: #10b981;
+            color: #00b894;
             margin-bottom: 30px;
         }
         
         h1 {
             font-size: 2.5rem;
-            color: #1f2937;
+            color: #2d3436;
             margin-bottom: 20px;
+            font-weight: 800;
         }
         
         p {
-            color: #6b7280;
+            color: #636e72;
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 30px;
         }
         
         .button {
-            background: #6366f1;
+            background: linear-gradient(90deg, #ff6b35, #6c5ce7);
             color: white;
             border: none;
             padding: 16px 32px;
@@ -62,20 +76,44 @@
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #ff6b35);
+            transition: left 0.5s;
+            z-index: 1;
+        }
+        
+        .button:hover::before {
+            left: 0;
+        }
+        
+        .button span {
+            position: relative;
+            z-index: 2;
         }
         
         .button:hover {
-            background: #4f46e5;
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
         }
         
         .email-note {
-            background: #f9fafb;
+            background: #f8f9fa;
             padding: 20px;
             border-radius: 12px;
             margin-top: 30px;
             font-size: 0.9rem;
-            color: #6b7280;
+            color: #636e72;
+            border-left: 4px solid #00a8cc;
         }
     </style>
 </head>
@@ -90,7 +128,7 @@
            2. A receipt has been sent to your email<br>
            3. Your first month of Pro features is now active</p>
         
-        <a href="/" class="button">Start Repurposing Now</a>
+        <a href="/" class="button"><span>Start Repurposing Now</span></a>
         
         <div class="email-note">
             <p><strong>Note:</strong> If you don't see the confirmation email within 5 minutes, please check your spam folder. For any issues, contact support@trudor.ai</p>

@@ -13,12 +13,13 @@
         }
         
         body {
-            background: linear-gradient(135deg, #fff5f5 0%, #fef7ff 100%);
+            background: linear-gradient(135deg, #fff8f5 0%, #f5faff 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         .container {
@@ -29,22 +30,35 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             max-width: 500px;
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #6c5ce7);
         }
         
         .cancel-icon {
             font-size: 80px;
-            color: #ef4444;
+            color: #ff7675;
             margin-bottom: 30px;
         }
         
         h1 {
             font-size: 2.5rem;
-            color: #1f2937;
+            color: #2d3436;
             margin-bottom: 20px;
+            font-weight: 800;
         }
         
         p {
-            color: #6b7280;
+            color: #636e72;
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 30px;
@@ -66,28 +80,52 @@
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
         
         .button-primary {
-            background: #6366f1;
+            background: linear-gradient(90deg, #ff6b35, #6c5ce7);
             color: white;
             border: none;
         }
         
+        .button-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #ff6b35);
+            transition: left 0.5s;
+            z-index: 1;
+        }
+        
+        .button-primary:hover::before {
+            left: 0;
+        }
+        
+        .button-primary span {
+            position: relative;
+            z-index: 2;
+        }
+        
         .button-primary:hover {
-            background: #4f46e5;
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
         }
         
         .button-secondary {
-            background: #f9fafb;
-            color: #6b7280;
-            border: 2px solid #e5e7eb;
+            background: #f8f9fa;
+            color: #636e72;
+            border: 2px solid #dfe6e9;
         }
         
         .button-secondary:hover {
-            background: #f3f4f6;
+            background: #f1f2f6;
             transform: translateY(-2px);
+            border-color: #00a8cc;
         }
         
         .free-note {
@@ -96,7 +134,8 @@
             border-radius: 12px;
             margin-top: 30px;
             font-size: 0.9rem;
-            color: #6b7280;
+            color: #636e72;
+            border-left: 4px solid #00a8cc;
         }
     </style>
 </head>
@@ -109,7 +148,7 @@
         <p>Want to try Trudor Echo before purchasing? We offer a free demo with one full repurposing job included.</p>
         
         <div class="buttons">
-            <a href="/" class="button button-primary">Try Free Demo</a>
+            <a href="/" class="button button-primary"><span>Try Free Demo</span></a>
             <a href="/#pricing" class="button button-secondary">View Pricing Again</a>
         </div>
         
