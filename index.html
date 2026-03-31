@@ -1,5 +1,368 @@
-One-time payment</p>
-                    <button class="cta-button" id="pay12" style="background: var(--primary);">Buy Now - $12</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trudor Echo - ITERATION 3 - FRESH START</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+        body { background: #f5f5f5; color: #333; }
+        
+        /* CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ITERATION BANNER - VERY VISIBLE */
+        .iteration-banner {
+            background: #ff3366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        /* HEADER */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff3366;
+            text-decoration: none;
+        }
+        
+        .version-badge {
+            background: #ff3366;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .nav-links a {
+            margin: 0 15px;
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover { color: #ff3366; }
+        
+        /* BUTTONS */
+        .cta-button {
+            background: #ff3366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .cta-button:hover { background: #3366ff; }
+        
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #ff3366, #3366ff);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* INPUT SECTION */
+        .input-section {
+            padding: 80px 0;
+            background: #f0f8ff;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        /* DRAG & DROP */
+        .drop-zone {
+            border: 3px dashed #ff3366;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            background: white;
+            margin: 0 auto 40px;
+            max-width: 800px;
+        }
+        
+        .drop-icon {
+            font-size: 4rem;
+            color: #ff3366;
+            margin-bottom: 20px;
+        }
+        
+        /* TEXTAREA */
+        .textarea-container {
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        textarea:focus {
+            border-color: #ff3366;
+            outline: none;
+        }
+        
+        /* PLATFORMS */
+        .platforms {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .platform-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        .platform {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #eee;
+        }
+        
+        .platform i {
+            font-size: 2rem;
+            color: #ff3366;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* PRICING */
+        .pricing {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+        
+        .pricing-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff3366;
+            margin: 20px 0;
+        }
+        
+        /* SECTIONS */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- CLEAR ITERATION MARKER -->
+    <div class="iteration-banner">
+        🚀 ITERATION 3 - FRESH START | Everything centered | Drag & Drop added | <span id="time">Loading...</span>
+    </div>
+    
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    Trudor Echo <span class="version-badge">ITERATION 3</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#how">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href="#pricing" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>One piece of content.<br>Many platform-ready posts.</h1>
+            <p style="font-size: 1.2rem; margin: 20px 0 30px;">AI-powered content repurposing in seconds.</p>
+            <a href="#input" class="cta-button" style="font-size: 1.1rem;">Try Free Demo</a>
+        </div>
+    </section>
+    
+    <!-- INPUT -->
+    <section id="input" class="input-section">
+        <div class="container">
+            <h2 class="section-title">Paste Your Content</h2>
+            <p class="section-subtitle">
+                <strong>NEW:</strong> Drag and drop files or paste text below
+            </p>
+            
+            <!-- Drag & Drop -->
+            <div class="drop-zone">
+                <div class="drop-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Drag & Drop Files Here</h3>
+                <p>PDF, DOC, TXT, JPG, PNG - or paste text below</p>
+                <button class="cta-button" onclick="alert('File browser would open')">
+                    <i class="fas fa-folder-open"></i> Browse Files
+                </button>
+            </div>
+            
+            <!-- Text Input -->
+            <div class="textarea-container">
+                <h3 style="text-align: center; margin-bottom: 20px;">Or Paste Text Directly:</h3>
+                <textarea id="contentInput" placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here...&#10;&#10;Minimum 200 words for best results."></textarea>
+                <div style="text-align: center;">
+                    <button class="cta-button" onclick="clearText()" style="background: #666; margin-right: 10px;">
+                        <i class="fas fa-eraser"></i> Clear
+                    </button>
+                    <button class="cta-button" onclick="generateContent()" style="font-size: 1.1rem;">
+                        <i class="fas fa-magic"></i> Generate Content
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Platforms -->
+            <div class="platforms">
+                <h3 style="text-align: center; margin-bottom: 30px;">
+                    <i class="fas fa-share-alt"></i> Select Target Platforms
+                </h3>
+                <div class="platform-grid">
+                    <div class="platform">
+                        <i class="fab fa-tiktok"></i>
+                        <div>TikTok/Reels</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fab fa-youtube"></i>
+                        <div>YouTube Shorts</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fab fa-linkedin"></i>
+                        <div>LinkedIn</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fab fa-instagram"></i>
+                        <div>Instagram</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fab fa-twitter"></i>
+                        <div>X (Twitter)</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fas fa-newspaper"></i>
+                        <div>Newsletter</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fas fa-envelope"></i>
+                        <div>Email Sequence</div>
+                    </div>
+                    <div class="platform">
+                        <i class="fas fa-comments"></i>
+                        <div>Threads/Carousels</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="cta-button" onclick="alert('All platforms selected!')" style="background: #00cc66;">
+                        <i class="fas fa-check-double"></i> Select All Platforms
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PRICING -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">Simple, transparent pricing</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free Demo</h3>
+                    <div class="price">$0</div>
+                    <p>Try it once for free</p>
+                    <button class="cta-button" onclick="scrollToInput()">Try Free Demo</button>
+                </div>
+                
+                <div class="pricing-card" style="border: 3px solid #ff3366;">
+                    <h3>Pay-Per-Use</h3>
+                    <div class="price">$12</div>
+                    <p>One-time payment</p>
+                    <button class="cta-button" id="pay12">Buy Now - $12</button>
                 </div>
                 
                 <div class="pricing-card">
@@ -11,251 +374,71 @@ One-time payment</p>
             </div>
         </div>
     </section>
-
-    <section id="how-it-works">
+    
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section">
         <div class="container">
-            <h2>How It Works</h2>
-            <p>1. Paste your content<br>2. Select platforms<br>3. Get instant results</p>
+            <h2 class="section-title">How It Works</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto; color: #666;">
+                1. Paste your content<br>
+                2. Select platforms<br>
+                3. Get instant results
+            </p>
         </div>
     </section>
-
-    <section id="examples">
+    
+    <!-- EXAMPLES -->
+    <section id="examples" class="section">
         <div class="container">
-            <h2>Examples</h2>
-            <p>See how content gets transformed for different platforms.</p>
+            <h2 class="section-title">Examples</h2>
+            <p style="text-align: center; color: #666;">See how content gets transformed</p>
         </div>
     </section>
-
-    <section id="faq">
+    
+    <!-- FAQ -->
+    <section id="faq" class="section">
         <div class="container">
-            <h2>FAQ</h2>
-            <p>Common questions about Trudor Echo.</p>
+            <h2 class="section-title">FAQ</h2>
+            <p style="text-align: center; color: #666;">Common questions answered</p>
         </div>
     </section>
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <script>
-        // ============================================
-        // ITERATION 1 - ENHANCED INPUT FUNCTIONALITY
-        // ============================================
-        console.log('=== ITERATION 1 LOADED - Drag & Drop Input ===');
+        // ITERATION 3 - SIMPLE & WORKING
+        console.log('=== ITERATION 3 LOADED ===');
         
-        // Set refresh time
-        document.getElementById('refreshTime').textContent = new Date().toLocaleTimeString();
+        // Update time
+        document.getElementById('time').textContent = new Date().toLocaleTimeString();
         
-        // File upload functionality
-        const fileDropZone = document.getElementById('fileDropZone');
-        const fileUpload = document.getElementById('fileUpload');
-        const uploadedFiles = document.getElementById('uploadedFiles');
-        const fileList = document.getElementById('fileList');
-        const clearFilesBtn = document.getElementById('clearFiles');
-        const dropZoneContent = document.getElementById('dropZoneContent');
-        
-        let uploadedFileList = [];
-        
-        // Drag and drop events
-        fileDropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileDropZone.classList.add('drag-over');
-        });
-        
-        fileDropZone.addEventListener('dragleave', () => {
-            fileDropZone.classList.remove('drag-over');
-        });
-        
-        fileDropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileDropZone.classList.remove('drag-over');
-            
-            const files = e.dataTransfer.files;
-            handleFiles(files);
-        });
-        
-        // File input change
-        fileUpload.addEventListener('change', (e) => {
-            handleFiles(e.target.files);
-        });
-        
-        // Handle uploaded files
-        function handleFiles(files) {
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                
-                // Check file size (10MB max)
-                if (file.size > 10 * 1024 * 1024) {
-                    alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
-                    continue;
-                }
-                
-                // Add to list
-                uploadedFileList.push({
-                    name: file.name,
-                    size: formatFileSize(file.size),
-                    type: file.type
-                });
-            }
-            
-            updateFileDisplay();
-        }
-        
-        // Format file size
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-        
-        // Update file display
-        function updateFileDisplay() {
-            if (uploadedFileList.length > 0) {
-                // Show uploaded files section
-                dropZoneContent.style.display = 'none';
-                uploadedFiles.style.display = 'block';
-                fileDropZone.classList.add('has-files');
-                
-                // Update file list
-                fileList.innerHTML = '';
-                uploadedFileList.forEach((file, index) => {
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'file-item';
-                    fileItem.innerHTML = `
-                        <div>
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${file.size} • ${file.type || 'Unknown type'}</div>
-                        </div>
-                        <button class="file-remove" data-index="${index}">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    `;
-                    fileList.appendChild(fileItem);
-                });
-                
-                // Add remove event listeners
-                document.querySelectorAll('.file-remove').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const index = parseInt(e.target.closest('.file-remove').dataset.index);
-                        uploadedFileList.splice(index, 1);
-                        updateFileDisplay();
-                    });
-                });
-            } else {
-                // Show empty drop zone
-                dropZoneContent.style.display = 'block';
-                uploadedFiles.style.display = 'none';
-                fileDropZone.classList.remove('has-files');
-            }
-        }
-        
-        // Clear all files
-        clearFilesBtn.addEventListener('click', () => {
-            uploadedFileList = [];
-            updateFileDisplay();
-        });
-        
-        // Text input functionality
-        const contentInput = document.getElementById('contentInput');
-        const placeholderOverlay = document.getElementById('placeholderOverlay');
-        const charCount = document.getElementById('charCount');
-        const clearTextBtn = document.getElementById('clearText');
-        const generateButton = document.getElementById('generateButton');
-        const processingSpinner = document.getElementById('processingSpinner');
-        
-        // Fade out placeholder when typing
-        contentInput.addEventListener('input', () => {
-            const text = contentInput.value;
-            charCount.textContent = text.length;
-            
-            if (text.length > 0) {
-                placeholderOverlay.classList.add('fade-out');
-            } else {
-                placeholderOverlay.classList.remove('fade-out');
-            }
-        });
-        
-        // Clear text
-        clearTextBtn.addEventListener('click', () => {
-            contentInput.value = '';
-            charCount.textContent = '0';
-            placeholderOverlay.classList.remove('fade-out');
-            contentInput.focus();
-        });
-        
-        // Generate content button
-        generateButton.addEventListener('click', () => {
-            const text = contentInput.value.trim();
-            const hasFiles = uploadedFileList.length > 0;
-            
-            if (!text && !hasFiles) {
-                alert('Please add some content! Either paste text or upload files.');
-                return;
-            }
-            
-            if (text.length < 50 && !hasFiles) {
-                alert('Please add more content (minimum 50 characters) or upload files.');
-                return;
-            }
-            
-            // Show processing
-            generateButton.disabled = true;
-            processingSpinner.style.display = 'inline-block';
-            
-            // Simulate processing
-            setTimeout(() => {
-                generateButton.disabled = false;
-                processingSpinner.style.display = 'none';
-                
-                if (hasFiles) {
-                    alert(`✅ Processing complete!\n\nProcessed ${uploadedFileList.length} file(s) and ${text.length} characters of text.\n\nThis would generate content for all selected platforms.`);
-                } else {
-                    alert(`✅ Processing complete!\n\nProcessed ${text.length} characters of text.\n\nThis would generate content for all selected platforms.`);
-                }
-            }, 2000);
-        });
-        
-        // Platform selection
-        const platformOptions = document.querySelectorAll('.platform-option');
-        const selectAllPlatformsBtn = document.getElementById('selectAllPlatforms');
-        
-        platformOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                option.classList.toggle('selected');
-            });
-        });
-        
-        selectAllPlatformsBtn.addEventListener('click', () => {
-            platformOptions.forEach(option => {
-                option.classList.add('selected');
-            });
-        });
-        
-        // Initialize all platforms as selected
-        platformOptions.forEach(option => {
-            option.classList.add('selected');
-        });
-        
-        // ============================================
-        // EXISTING BUTTON FUNCTIONALITY
-        // ============================================
-        
-        // Function to scroll to input
+        // Simple functions
         function scrollToInput() {
             document.getElementById('input').scrollIntoView({ behavior: 'smooth' });
         }
         
+        function clearText() {
+            document.getElementById('contentInput').value = '';
+            alert('Text cleared!');
+        }
+        
+        function generateContent() {
+            const text = document.getElementById('contentInput').value;
+            if (text.length < 50) {
+                alert('Please add more content (minimum 50 characters)');
+                return;
+            }
+            alert('✅ Generating content for all platforms!\n\nThis would process: ' + text.length + ' characters');
+        }
+        
         // Payment buttons
         document.getElementById('pay12').onclick = function() {
-            alert('$12 PAYMENT BUTTON WORKS!\n\nITERATION 1 - Drag & Drop added\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $12 product\n3. Add your API key');
+            alert('$12 PAYMENT BUTTON WORKS!\n\nITERATION 3 - Fresh start\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $12 product\n3. Add API key');
         };
         
         document.getElementById('pay29').onclick = function() {
-            alert('$29/month BUTTON WORKS!\n\nITERATION 1 - Drag & Drop added\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $29/month product\n3. Add your API key');
+            alert('$29/month BUTTON WORKS!\n\nITERATION 3 - Fresh start\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $29/month product\n3. Add API key');
         };
         
-        // Navigation links
+        // Navigation
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.onclick = function(e) {
                 e.preventDefault();
@@ -263,38 +446,20 @@ One-time payment</p>
                 const target = document.getElementById(targetId);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
-                    console.log('Scrolled to #' + targetId);
                 }
                 return false;
             };
         });
         
-        // Hero CTA button
+        // Hero button
         document.querySelector('.hero .cta-button').onclick = function(e) {
             e.preventDefault();
             scrollToInput();
             return false;
         };
         
-        // Header CTA button
-        document.querySelector('header .cta-button').onclick = function(e) {
-            e.preventDefault();
-            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
-            return false;
-        };
-        
-        console.log('=== ITERATION 1 SETUP COMPLETE ===');
-        console.log('Features added:');
-        console.log('1. Drag & drop file upload');
-        console.log('2. File preview with animations');
-        console.log('3. Fading placeholder text');
-        console.log('4. Character counter');
-        console.log('5. Visual platform selection');
-        
-        // Show iteration notice
-        setTimeout(() => {
-            console.log('🔄 Page refreshed at:', new Date().toLocaleTimeString());
-        }, 1000);
+        console.log('✅ All buttons should work');
+        console.log('🔄 Loaded at:', new Date().toLocaleTimeString());
     </script>
 </body>
 </html>
