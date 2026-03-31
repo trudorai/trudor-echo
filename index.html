@@ -154,11 +154,151 @@
         </div>
     </section>
 
-    <section id="input" style="background: #f0f8ff;">
+    <section id="input" style="background: #f0f8ff; padding: 80px 0;">
         <div class="container">
-            <h2>Paste Your Content</h2>
-            <textarea style="width: 100%; height: 200px; padding: 20px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; margin: 20px 0;">Sample content about AI transforming content creation...</textarea>
-            <button class="cta-button" style="font-size: 1.1rem; padding: 15px 30px;">Generate Content</button>
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 10px;">Paste Your Content</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Or drag and drop files (PDF, DOC, TXT, images) directly into the box below
+            </p>
+            
+            <div style="position: relative; max-width: 800px; margin: 0 auto;">
+                <!-- File upload area -->
+                <div id="fileDropZone" style="border: 3px dashed var(--primary); border-radius: 16px; padding: 60px 40px; text-align: center; background: white; transition: all 0.3s; position: relative; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div id="dropZoneContent" style="transition: opacity 0.3s;">
+                        <div style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3 style="margin-bottom: 15px; color: var(--dark);">Drag & Drop Files Here</h3>
+                        <p style="color: var(--gray); margin-bottom: 25px;">
+                            PDF, DOC, TXT, JPG, PNG, or paste text below
+                        </p>
+                        <label for="fileUpload" class="cta-button" style="cursor: pointer; display: inline-block;">
+                            <i class="fas fa-folder-open"></i> Browse Files
+                        </label>
+                        <input type="file" id="fileUpload" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.md" style="display: none;">
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--gray-light);">
+                            Maximum file size: 10MB
+                        </p>
+                    </div>
+                    
+                    <!-- Uploaded files preview -->
+                    <div id="uploadedFiles" style="display: none; width: 100%;">
+                        <h4 style="margin-bottom: 20px; color: var(--secondary);">
+                            <i class="fas fa-check-circle"></i> Files Ready for Processing
+                        </h4>
+                        <div id="fileList" style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 20px; max-height: 200px; overflow-y: auto;">
+                            <!-- Files will appear here -->
+                        </div>
+                        <button id="clearFiles" class="cta-button" style="background: var(--gray);">
+                            <i class="fas fa-trash"></i> Clear All Files
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Text input area -->
+                <div style="margin-top: 40px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="color: var(--dark);">Or Paste Text Directly:</h3>
+                        <div style="font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-text-height"></i> <span id="charCount">0</span> characters
+                        </div>
+                    </div>
+                    
+                    <div style="position: relative;">
+                        <textarea id="contentInput" 
+                                  style="width: 100%; height: 250px; padding: 25px; border: 2px solid var(--gray-light); border-radius: 12px; font-size: 16px; line-height: 1.6; resize: vertical; transition: all 0.3s; font-family: 'Courier New', monospace;"
+                                  placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here...&#10;&#10;Or simply start typing. Minimum 200 words for best results."
+                                  onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(255, 107, 53, 0.1)';"
+                                  onblur="this.style.borderColor='var(--gray-light)'; this.style.boxShadow='none';"></textarea>
+                        
+                        <div id="placeholderOverlay" style="position: absolute; top: 25px; left: 25px; right: 25px; color: var(--gray); pointer-events: none; opacity: 0.7; transition: opacity 0.3s; font-family: 'Courier New', monospace; line-height: 1.6;">
+                            Paste your blog post, video transcript, podcast script, or any long-form content here...<br><br>
+                            Or simply start typing. Minimum 200 words for best results.
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                        <div style="font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-lightbulb"></i> Tip: Longer content (500+ words) produces better results
+                        </div>
+                        <div>
+                            <button id="clearText" class="cta-button" style="background: var(--gray); margin-right: 10px;">
+                                <i class="fas fa-eraser"></i> Clear Text
+                            </button>
+                            <button id="generateButton" class="cta-button" style="background: linear-gradient(90deg, var(--primary), var(--accent)); font-size: 1.1rem; padding: 15px 40px;">
+                                <i class="fas fa-magic"></i> Generate Content
+                                <span id="processingSpinner" style="display: none; margin-left: 10px;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Platform selection -->
+                <div style="margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--light);">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: var(--dark);">
+                        <i class="fas fa-share-alt"></i> Select Target Platforms
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;">
+                        <div class="platform-option" data-platform="tiktok">
+                            <input type="checkbox" id="platform-tiktok" checked hidden>
+                            <label for="platform-tiktok">
+                                <i class="fab fa-tiktok"></i> TikTok/Reels
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="youtube">
+                            <input type="checkbox" id="platform-youtube" checked hidden>
+                            <label for="platform-youtube">
+                                <i class="fab fa-youtube"></i> YouTube Shorts
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="linkedin">
+                            <input type="checkbox" id="platform-linkedin" checked hidden>
+                            <label for="platform-linkedin">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="instagram">
+                            <input type="checkbox" id="platform-instagram" checked hidden>
+                            <label for="platform-instagram">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="twitter">
+                            <input type="checkbox" id="platform-twitter" checked hidden>
+                            <label for="platform-twitter">
+                                <i class="fab fa-twitter"></i> X (Twitter)
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="newsletter">
+                            <input type="checkbox" id="platform-newsletter" checked hidden>
+                            <label for="platform-newsletter">
+                                <i class="fas fa-newspaper"></i> Newsletter
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="email">
+                            <input type="checkbox" id="platform-email" checked hidden>
+                            <label for="platform-email">
+                                <i class="fas fa-envelope"></i> Email Sequence
+                            </label>
+                        </div>
+                        <div class="platform-option" data-platform="threads">
+                            <input type="checkbox" id="platform-threads" checked hidden>
+                            <label for="platform-threads">
+                                <i class="fas fa-comments"></i> Threads/Carousels
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button id="selectAllPlatforms" class="cta-button" style="background: var(--secondary);">
+                            <i class="fas fa-check-double"></i> Select All Platforms
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
