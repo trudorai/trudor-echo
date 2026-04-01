@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trudor Echo - Iteration 6 - ENHANCED PLATFORM SELECTION</title>
+    <title>Trudor Echo - Iteration 7 - REAL AI INTEGRATION</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET */
@@ -87,14 +87,49 @@
         /* HERO */
         .hero {
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #ff3366, #3366ff);
+            padding: 140px 20px 100px;
+            background: linear-gradient(135deg, #ff3366 0%, #e91e63 50%, #9c27b0 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.4rem;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.35rem;
+            max-width: 720px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+        
+        .hero .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
         }
         
         /* INPUT SECTION */
@@ -1194,9 +1229,32 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <h1>One piece of content.<br>Many platform-ready posts.</h1>
-            <p style="font-size: 1.2rem; margin: 20px 0 30px;">AI-powered content repurposing in seconds.</p>
-            <a href="#input" class="cta-button" style="font-size: 1.1rem;">Try Free Demo</a>
+            <div class="hero-content">
+                <div class="tagline">
+                    <span>🚀 Iteration 7 In Progress</span>
+                    <span style="opacity:0.7;">•</span>
+                    <span>Now using xAI Grok 4.20</span>
+                </div>
+                
+                <h1>Turn One Piece of Content<br>Into <span style="color:#fff;">8+ Platform-Optimized Versions</span></h1>
+                
+                <p class="subtitle">
+                    Stop spending hours manually repurposing content.<br>
+                    Our AI instantly transforms your ideas into scroll-stopping posts, videos, threads, emails, and more — perfectly optimized for each platform.
+                </p>
+                
+                <div style="margin: 50px 0 30px;">
+                    <a href="#input" class="cta-button" style="font-size: 1.25rem; padding: 18px 42px; font-weight: 700; box-shadow: 0 10px 30px rgba(255,51,102,0.3);">
+                        <i class="fas fa-magic"></i> Start Repurposing Now
+                    </a>
+                </div>
+                
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-size: 0.95rem; opacity: 0.9;">
+                    <div><i class="fas fa-check"></i> Format Detection</div>
+                    <div><i class="fas fa-check"></i> Smart Platform Optimization</div>
+                    <div><i class="fas fa-check"></i> Real AI (xAI Grok)</div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -2469,7 +2527,7 @@ class PlatformSelectionManager {
         
         // Update iteration banner
         document.querySelector('.iteration-banner').textContent = 
-            '🚀 Iteration 6 - ENHANCED PLATFORM SELECTION | Format detection | Tier limits | Smart toggles | ' + new Date().toLocaleTimeString();
+            '🚀 Iteration 7 - REAL AI INTEGRATION | xAI Grok 4.20 | Format Detection | Smart Platform Optimization | ' + new Date().toLocaleTimeString();
     </script>
 </body>
 </html>
