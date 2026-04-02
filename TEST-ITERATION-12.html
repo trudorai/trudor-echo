@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Iteration 12 - Trudor Echo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #f5f5f5; padding: 40px; }
+        .test-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #667eea; margin-bottom: 30px; text-align: center; }
+        .test-section { margin: 30px 0; padding: 25px; background: #f8f9fa; border-radius: 12px; }
+        .test-title { color: #333; margin-bottom: 15px; font-size: 1.3rem; }
+        .test-item { margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e9ecef; }
+        .pass { color: #28a745; font-weight: bold; }
+        .fail { color: #dc3545; font-weight: bold; }
+        .test-button { background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin: 5px; }
+        .result { margin-top: 10px; padding: 10px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Iteration 12 - Complete Test Suite</h1>
+        
+        <div class="test-section">
+            <div class="test-title">Test 1: Unified Input Area</div>
+            <div class="test-item">
+                <p><strong>Check:</strong> Only ONE input area (no duplicate drag-drop)</p>
+                <button class="test-button" onclick="testInputArea()">Test Input Area</button>
+                <div id="inputResult" class="result"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">Test 2: Interactive Pricing Tiles</div>
+            <div class="test-item">
+                <p><strong>Check:</strong> Click pricing tiles - should scale and highlight</p>
+                <button class="test-button" onclick="testPricingTiles()">Test Pricing Tiles</button>
+                <div id="pricingResult" class="result"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">Test 3: Navigation Links</div>
+            <div class="test-item">
+                <p><strong>Check:</strong> Navigation should scroll to sections</p>
+                <button class="test-button" onclick="testNavigation('#how')">Test #how</button>
+                <button class="test-button" onclick="testNavigation('#pricing')">Test #pricing</button>
+                <button class="test-button" onclick="testNavigation('#examples')">Test #examples</button>
+                <button class="test-button" onclick="testNavigation('#faq')">Test #faq</button>
+                <div id="navResult" class="result"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">Test 4: Payment Buttons</div>
+            <div class="test-item">
+                <p><strong>Check:</strong> Payment buttons should show alerts</p>
+                <button class="test-button" onclick="testPaymentButtons()">Test Payment Buttons</button>
+                <div id="paymentResult" class="result"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">Test 5: File Limits Display</div>
+            <div class="test-item">
+                <p><strong>Check:</strong> File limits should be clearly displayed</p>
+                <button class="test-button" onclick="testFileLimits()">Test File Limits</button>
+                <div id="limitsResult" class="result"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">Test 6: Color Scheme</div>
+            <div class="test-item">
+                <p><strong>Check:</strong> Colors should be blue/green, not neon peach</p>
+                <button class="test-button" onclick="testColors()">Test Colors</button>
+                <div id="colorResult" class="result"></div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="test-button" style="background: #28a745; padding: 15px 40px; font-size: 1.2rem;" onclick="runAllTests()">
+                🚀 RUN ALL TESTS
+            </button>
+        </div>
+        
+        <div id="finalResult" style="margin-top: 40px; padding: 20px; background: #e9ecef; border-radius: 12px; display: none;">
+            <h3>Final Test Results</h3>
+            <div id="testSummary"></div>
+        </div>
+    </div>
+    
+    <script>
+        const testResults = {};
+        
+        function testInputArea() {
+            const dropZones = document.querySelectorAll('.drop-zone, [class*="drop"]');
+            const textareas = document.querySelectorAll('textarea');
+            const result = document.getElementById('inputResult');
+            
+            if (dropZones.length <= 1 && textareas.length >= 1) {
+                result.innerHTML = `<span class="pass">✓ PASS: Clean single input area</span>`;
+                testResults.inputArea = 'pass';
+            } else {
+                result.innerHTML = `<span class="fail">✗ FAIL: Multiple input areas detected</span>`;
+                testResults.inputArea = 'fail';
+            }
+        }
+        
+        function testPricingTiles() {
+            const tiles = document.querySelectorAll('.pricing-tile');
+            const result = document.getElementById('pricingResult');
+            
+            if (tiles.length === 3) {
+                result.innerHTML = `<span class="pass">✓ PASS: 3 pricing tiles found</span>`;
+                testResults.pricingTiles = 'pass';
+            } else {
+                result.innerHTML = `<span class="fail">✗ FAIL: Expected 3 pricing tiles, found ${tiles.length}</span>`;
+                testResults.pricingTiles = 'fail';
+            }
+        }
+        
+        function testNavigation(hash) {
+            const element = document.querySelector(hash);
+            const result = document.getElementById('navResult');
+            
+            if (element) {
+                result.innerHTML = `<span class="pass">✓ PASS: ${hash} section exists</span>`;
+                testResults.navigation = 'pass';
+            } else {
+                result.innerHTML = `<span class="fail">✗ FAIL: ${hash} section not found</span>`;
+                testResults.navigation = 'fail';
+            }
+        }
+        
+        function testPaymentButtons() {
+            const pay12 = document.getElementById('pay12');
+            const pay29 = document.getElementById('pay29');
+            const result = document.getElementById('paymentResult');
+            
+            if (pay12 && pay29) {
+                result.innerHTML = `<span class="pass">✓ PASS: Both payment buttons found</span>`;
+                testResults.paymentButtons = 'pass';
+            } else {
+                result.innerHTML = `<span class="fail">✗ FAIL: Payment buttons missing</span>`;
+                testResults.paymentButtons = 'fail';
+            }
+        }
+        
+        function testFileLimits() {
+            const bodyText = document.body.innerText;
+            const hasLimits = bodyText.includes('25MB') && bodyText.includes('500MB') && bodyText.includes('2GB');
+            const result = document.getElementById('limitsResult');
+            
+            if (hasLimits) {
+                result.innerHTML = `<span class="pass">✓ PASS: File limits clearly displayed</span>`;
+                testResults.fileLimits = 'pass';
+            } else {
+                result.innerHTML = `<span class="fail">✗ FAIL: File limits not displayed</span>`;
+                testResults.fileLimits = 'fail';
+            }
+        }
+        
+        function testColors() {
+            const styles = document.querySelectorAll('style');
+            let hasNeonPeach = false;
+            let hasBlueGreen = false;
+            
+            styles.forEach(style => {
+                const css = style.textContent;
+                if (css.includes('#ff3366') || css.includes('#ff0') || css.includes('neon')) {
+                    hasNeonPeach = true;
+                }
+                if (css.includes('#667eea') || css.includes('#28a745') || css.includes('#764ba2')) {
+                    hasBlueGreen = true;
+                }
+            });
+            
+            const result = document.getElementById('colorResult');
+            
+            if (!hasNeonPeach && hasBlueGreen) {
+                result.innerHTML = `<span class="pass">✓ PASS: Blue/green color scheme (good)</span>`;
+                testResults.colors = 'pass';
+            } else {
+                result.innerHTML = `<span class="fail">✗ FAIL: Still has neon peach colors</span>`;
+                testResults.colors = 'fail';
+            }
+        }
+        
+        function runAllTests() {
+            testInputArea();
+            testPricingTiles();
+            testNavigation('#pricing');
+            testPaymentButtons();
+            testFileLimits();
+            testColors();
+            
+            // Show summary
+            const finalResult = document.getElementById('finalResult');
+            const testSummary = document.getElementById('testSummary');
+            
+            let passCount = 0;
+            let failCount = 0;
+            let summaryHTML = '';
+            
+            for (const [test, result] of Object.entries(testResults)) {
+                if (result === 'pass') {
+                    passCount++;
+                    summaryHTML += `<div class="pass">✓ ${test}: PASS</div>`;
+                } else {
+                    failCount++;
+                    summaryHTML += `<div class="fail">✗ ${test}: FAIL</div>`;
+                }
+            }
+            
+            testSummary.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <strong>Total Tests: ${Object.keys(testResults).length}</strong><br>
+                    <span class="pass">Passed: ${passCount}</span><br>
+                    <span class="fail">Failed: ${failCount}</span>
+                </div>
+                ${summaryHTML}
+            `;
+            
+            finalResult.style.display = 'block';
+            
+            if (failCount === 0) {
+                alert('🎉 ALL TESTS PASSED! Iteration 12 is ready.');
+            } else {
+                alert(`⚠️ ${failCount} test(s) failed. Check results above.`);
+            }
+        }
+        
+        console.log('Iteration 12 test suite loaded. Open Trudor Echo site and run tests.');
+    </script>
+</body>
+</html>

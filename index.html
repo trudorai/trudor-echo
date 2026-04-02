@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trudor Echo - Iteration 11 - COLOR & NAVIGATION FIX</title>
+    <title>Trudor Echo - Iteration 12 - UNIFIED INPUT & INTERACTIVE PRICING</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET */
@@ -1326,7 +1326,7 @@
 <body>
     <!-- CLEAR ITERATION MARKER -->
     <div class="iteration-banner">
-        🚀 ITERATION 11 - COLOR & NAVIGATION FIX | Primary Blues & Greens | Working Buttons | Clear File Limits | Pricing Integration | <span id="time">Loading...</span>
+        🚀 ITERATION 12 - UNIFIED INPUT & INTERACTIVE PRICING | Clean Single Input | Interactive Pricing Tiles | Fixed Navigation | <span id="time">Loading...</span>
     </div>
     
     <!-- HEADER -->
@@ -1334,7 +1334,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    Trudor Echo <span class="version-badge">Iteration 11</span>
+                    Trudor Echo <span class="version-badge">Iteration 12</span>
                 </a>
                 <div class="nav-links">
                     <a href="#how">How It Works</a>
@@ -1387,46 +1387,62 @@
                 <strong>NEW:</strong> Drag and drop files or paste text below
             </p>
             
-            <!-- Drag & Drop -->
-            <div class="drop-zone">
-                <div class="drop-icon">
-                    <i class="fas fa-cloud-upload-alt"></i>
+        <div class="format-card" data-format="raw-text">
+            <!-- Unified Input Area -->
+            <div class="unified-input" style="background: white; border-radius: 16px; padding: 40px; border: 2px solid #e9ecef; margin-bottom: 40px;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 10px; color: #333;">Add Your Content</h3>
+                    <p style="color: #666; max-width: 600px; margin: 0 auto;">
+                        Paste text below or upload files. Our AI will analyze and optimize for your selected platforms.
+                    </p>
                 </div>
-                <h3>Drag & Drop Files Here</h3>
-                <p>PDF, DOC, TXT, JPG, PNG - or paste text below</p>
-                <button class="cta-button" onclick="alert('File browser would open')">
-                    <i class="fas fa-folder-open"></i> Browse Files
-                </button>
-            </div>
-            
-            <!-- Text Input -->
-            <div class="textarea-container">
-                <h3 style="text-align: center; margin-bottom: 20px;">Or Paste Text Directly:</h3>
-                <textarea id="contentInput" placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here...&#10;&#10;Minimum 200 words for best results."></textarea>
                 
-                <div style="margin-top: 15px; font-size: 0.9rem; color: #666; display: flex; flex-wrap: wrap; gap: 20px;">
-                  <div>
-                    <strong>File Limits:</strong>
-                    <div style="font-size: 0.85rem; margin-top: 5px;">
-                      <div>• Free: 25MB max • 5 files/month</div>
-                      <div>• Pro: 500MB max • Unlimited files</div>
-                      <div>• Business: 2GB max • Team uploads</div>
+                <!-- Text Input -->
+                <textarea id="contentInput" placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here...&#10;&#10;Minimum 200 words for best results." style="width: 100%; min-height: 200px; padding: 20px; border: 2px solid #e9ecef; border-radius: 12px; font-size: 1rem; margin-bottom: 20px;"></textarea>
+                
+                <!-- File Upload Option -->
+                <div style="text-align: center; margin: 30px 0;">
+                    <div style="display: inline-flex; align-items: center; gap: 15px; background: #f8f9fa; padding: 15px 30px; border-radius: 12px; border: 2px dashed #dee2e6;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 1.5rem; color: #667eea;"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">Upload Files</div>
+                            <div style="font-size: 0.9rem; color: #666;">Click to browse or drag & drop</div>
+                        </div>
+                        <input type="file" id="fileInput" multiple style="display: none;">
+                        <button class="cta-button" onclick="document.getElementById('fileInput').click()" style="background: #667eea;">
+                            <i class="fas fa-folder-open"></i> Browse
+                        </button>
                     </div>
-                  </div>
-                  <div>
-                    <strong>Supported Formats:</strong>
-                    <div style="font-size: 0.85rem; margin-top: 5px;">
-                      <div>• Text: .txt, .docx, .pdf</div>
-                      <div>• Audio: .mp3, .wav, .m4a</div>
-                      <div>• Video: .mp4, .mov, .avi</div>
-                    </div>
-                  </div>
                 </div>
-                <div style="text-align: center;">
-                    <button class="cta-button" onclick="clearText()" style="background: #666; margin-right: 10px;">
-                        <i class="fas fa-eraser"></i> Clear
+                
+                <!-- Limits Info -->
+                <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin-top: 30px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #333;">📁 File Limits</div>
+                            <div style="font-size: 0.9rem; color: #666;">
+                                <div>• Free: 25MB max • 5 files/month</div>
+                                <div>• Pro: 500MB max • Unlimited files</div>
+                                <div>• Business: 2GB max • Team uploads</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #333;">🎯 Supported Formats</div>
+                            <div style="font-size: 0.9rem; color: #666;">
+                                <div>• Text: .txt, .docx, .pdf</div>
+                                <div>• Audio: .mp3, .wav, .m4a</div>
+                                <div>• Video: .mp4, .mov, .avi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="cta-button" onclick="clearText()" style="background: #666; margin-right: 15px;">
+                        <i class="fas fa-eraser"></i> Clear All
                     </button>
-                    <button class="cta-button" onclick="generateContent()" style="font-size: 1.1rem;">
+                    <button class="cta-button" onclick="generateContent()" style="font-size: 1.1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                         <i class="fas fa-magic"></i> Generate Content
                     </button>
                 </div>
@@ -1480,26 +1496,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- PLATFORM SELECTION REDESIGN -->
-<!-- Replaces current platform selector with toggle buttons and format detection -->
-
-<section class="platform-selection-section">
-  <div class="container">
-    <div class="selection-header">
-      <h2>What are you working with?</h2>
-      <p class="subtitle">Tell us your input format and desired outputs for faster, better results</p>
-    </div>
-    
-    <!-- Step 1: Input Format Selection -->
-    <div class="input-format-step">
-      <h3>Step 1: What's your source format?</h3>
-      <p class="step-description">Select the format of your original content so we can optimize accordingly</p>
-      
-      <div class="format-grid">
-        <div class="format-card" data-format="raw-text">
-          <div class="format-icon">📝</div>
+            </div>          <div class="format-icon">📝</div>
           <h4>Raw Text/Transcript</h4>
           <p>Paste or upload plain text</p>
           <div class="format-tip">Best for: Articles, scripts, notes</div>
@@ -1758,17 +1755,19 @@
       </div>
     </div>
     
-    <!-- Pricing Integration CTA -->
+          <!-- Will be populated with uploaded files -->
+<!-- Interactive Pricing Tiles -->
     <div class="pricing-cta-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 0; margin: 60px 0; border-radius: 20px;">
       <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Scale Your Content?</h2>
+        <div style="text-align: center; max-width: 1000px; margin: 0 auto;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Choose Your Plan</h2>
           <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">
-            Unlock higher limits, faster processing, and team collaboration with our Pro plans
+            Select a plan to see details. Click any tile to focus it.
           </p>
           
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 50px;">
-            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; backdrop-filter: blur(10px);">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 50px;" id="pricingTiles">
+            <!-- Free Plan -->
+            <div class="pricing-tile" data-plan="free" onclick="selectPricingTile('free')" style="background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s ease; transform: scale(1);">
               <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Free</h3>
               <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;">$0</div>
               <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
@@ -1785,12 +1784,13 @@
                   <span style="position: absolute; left: 0;">✓</span> 3 URLs/day
                 </li>
               </ul>
-              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: white; color: #667eea; width: 100%;">
+              <button class="cta-button" onclick="window.location.href='#pricing'; event.stopPropagation();" style="background: white; color: #667eea; width: 100%;">
                 Start Free
               </button>
             </div>
             
-            <div style="background: rgba(255, 255, 255, 0.2); border: 3px solid white; border-radius: 16px; padding: 30px; backdrop-filter: blur(10px); transform: scale(1.05);">
+            <!-- Pro Plan (Default Selected) -->
+            <div class="pricing-tile selected" data-plan="pro" onclick="selectPricingTile('pro')" style="background: rgba(255, 255, 255, 0.2); border: 3px solid white; border-radius: 16px; padding: 40px; backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s ease; transform: scale(1.1); box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
               <div style="background: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; display: inline-block; margin-bottom: 15px;">MOST POPULAR</div>
               <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Pro</h3>
               <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;">$29<span style="font-size: 1rem;">/month</span></div>
@@ -1811,12 +1811,13 @@
                   <span style="position: absolute; left: 0;">✓</span> Priority processing
                 </li>
               </ul>
-              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: #28a745; color: white; width: 100%;">
+              <button class="cta-button" onclick="window.location.href='#pricing'; event.stopPropagation();" style="background: #28a745; color: white; width: 100%;">
                 Try Pro Free for 14 Days
               </button>
             </div>
             
-            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; backdrop-filter: blur(10px);">
+            <!-- Business Plan -->
+            <div class="pricing-tile" data-plan="business" onclick="selectPricingTile('business')" style="background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s ease; transform: scale(1);">
               <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Business</h3>
               <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;">$99<span style="font-size: 1rem;">/month</span></div>
               <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
@@ -1836,28 +1837,123 @@
                   <span style="position: absolute; left: 0;">✓</span> Dedicated support
                 </li>
               </ul>
-              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: white; color: #667eea; width: 100%;">
+              <button class="cta-button" onclick="window.location.href='#pricing'; event.stopPropagation();" style="background: white; color: #667eea; width: 100%;">
                 Contact Sales
               </button>
             </div>
           </div>
           
-          <p style="font-size: 0.9rem; opacity: 0.8;">
+          <div style="background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 25px; margin-top: 40px; display: none;" id="selectedPlanDetails">
+            <h3 style="margin-bottom: 15px; font-size: 1.3rem;">Selected: <span id="selectedPlanName">Pro</span></h3>
+            <p style="margin-bottom: 20px; opacity: 0.9;" id="selectedPlanDescription">
+              Perfect for serious content creators who need higher limits and faster processing.
+            </p>
+            <div style="display: flex; gap: 20px; align-items: center;">
+              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: #28a745; color: white; padding: 12px 30px;">
+                Get Started with <span id="selectedPlanButton">Pro</span>
+              </button>
+              <button onclick="deselectPricingTile()" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                View All Plans
+              </button>
+            </div>
+          </div>
+          
+          <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 30px;">
             All plans include our AI-powered platform selection and content optimization. No credit card required for free trial.
           </p>
         </div>
       </div>
     </div>
-          <p class="url-hint">Supports: YouTube, TikTok, podcasts, blogs, articles</p>
-        </div>
-      </div>
-      
-      <!-- Current Uploads -->
-      <div class="current-uploads">
-        <h4>Your Uploads</h4>
-        <div class="uploads-list">
-          <!-- Will be populated with uploaded files -->
-          <div class="empty-state">
+    
+    <script>
+    let selectedPlan = 'pro';
+    
+    function selectPricingTile(plan) {
+        selectedPlan = plan;
+        
+        // Update all tiles
+        document.querySelectorAll('.pricing-tile').forEach(tile => {
+            const isSelected = tile.dataset.plan === plan;
+            tile.style.transform = isSelected ? 'scale(1.1)' : 'scale(1)';
+            tile.style.background = isSelected ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)';
+            tile.style.border = isSelected ? '3px solid white' : 'none';
+            tile.style.padding = isSelected ? '40px' : '30px';
+            tile.style.boxShadow = isSelected ? '0 20px 40px rgba(0,0,0,0.2)' : 'none';
+        });
+        
+        // Update details panel
+        const details = document.getElementById('selectedPlanDetails');
+        details.style.display = 'block';
+        
+        const planNames = {
+            'free': 'Free',
+            'pro': 'Pro',
+            'business': 'Business'
+        };
+        
+        const planDescriptions = {
+            'free': 'Perfect for trying out the platform with basic limits.',
+            'pro': 'Ideal for serious content creators who need higher limits and faster processing.',
+            'business': 'Best for teams and agencies needing collaboration and dedicated support.'
+        };
+        
+        document.getElementById('selectedPlanName').textContent = planNames[plan];
+        document.getElementById('selectedPlanDescription').textContent = planDescriptions[plan];
+        document.getElementById('selectedPlanButton').textContent = planNames[plan];
+    }
+    
+    function deselectPricingTile() {
+        document.querySelectorAll('.pricing-tile').forEach(tile => {
+            tile.style.transform = 'scale(1)';
+            tile.style.background = 'rgba(255, 255, 255, 0.1)';
+            tile.style.border = 'none';
+            tile.style.padding = '30px';
+            tile.style.boxShadow = 'none';
+        });
+        
+        // Select Pro by default
+        const proTile = document.querySelector('.pricing-tile[data-plan="pro"]');
+        proTile.style.transform = 'scale(1.1)';
+        proTile.style.background = 'rgba(255, 255, 255, 0.2)';
+        proTile.style.border = '3px solid white';
+        proTile.style.padding = '40px';
+        proTile.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+        
+        document.getElementById('selectedPlanDetails').style.display = 'none';
+        selectedPlan = 'pro';
+    }
+    
+    // Initialize with Pro selected
+    document.addEventListener('DOMContentLoaded', () => {
+        selectPricingTile('pro');
+        
+        // Add smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Make payment buttons work
+        document.getElementById('pay12')?.addEventListener('click', function() {
+            alert('$12 PAYMENT BUTTON WORKS!\n\nIteration 12 - Interactive Pricing\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $12 product\n3. Add API key');
+        });
+        
+        document.getElementById('pay29')?.addEventListener('click', function() {
+            alert('$29/month BUTTON WORKS!\n\nIteration 12 - Interactive Pricing\n\nTo set up Stripe:\n1. Go to stripe.com\n2. Create $29/month product\n3. Add API key');
+        });
+    });
+    </script>          <div class="empty-state">
             <div class="empty-icon">📁</div>
             <p>No files uploaded yet</p>
           </div>
