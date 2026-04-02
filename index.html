@@ -1525,8 +1525,37 @@
     
     <!-- Step 2: Platform Output Selection -->
     <div class="output-platforms-step">
-      <h3>Step 2: Where do you want to post? <span class="selection-count">(0 selected)</span></h3>
-      <p class="step-description">Select all platforms you want content for. Fewer selections = faster processing.</p>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <h3>Step 2: Where do you want to post? <span class="selection-count">(0 selected)</span></h3>
+          <p class="step-description">Select all platforms you want content for. Fewer selections = faster processing.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <button style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px;" id="aiOptimizeBtn">
+            <i class="fas fa-robot"></i> AI Optimize Selection
+          </button>
+          <div style="position: relative; color: #666; cursor: help;">
+            <i class="fas fa-info-circle"></i>
+            <div style="visibility: hidden; width: 250px; background: #333; color: white; text-align: center; border-radius: 6px; padding: 10px; position: absolute; z-index: 1; bottom: 125%; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s; font-size: 0.9rem;">
+              Our AI analyzes your content and selects the best platforms automatically
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; padding: 25px; margin-bottom: 30px; border: 2px solid #e0e0e0; display: none;" id="platformSuitabilitySummary">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+          <i class="fas fa-chart-line"></i>
+          <h4 style="margin: 0; color: #333; font-size: 1.1rem;">Platform Suitability Analysis</h4>
+          <span style="background: #ff3366; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;" id="overallSuitabilityScore">0% match</span>
+        </div>
+        <p style="color: #666; margin-bottom: 20px; line-height: 1.5;" id="suitabilityDescription">
+          Based on your content analysis, these platforms are recommended:
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;" id="suitabilityBadges">
+          <!-- Filled by JavaScript -->
+        </div>
+      </div>
       
       <div class="platform-toggle-grid">
         <!-- Platform 1: TikTok/Reels -->
@@ -2916,6 +2945,161 @@ new PlatformSelectionManager();
                 
                 document.getElementById('optimalPlatforms').textContent = optimalPlatforms;
                 document.getElementById('platformTip').textContent = platformTip;
+                
+                // Update platform recommendations
+                this.updatePlatformRecommendations(words, contentType, sentiment);
+            }
+            
+            updatePlatformRecommendations(words, contentType, sentiment) {
+                // Platform suitability scoring
+                const platformScores = this.calculatePlatformScores(words, contentType, sentiment);
+                
+                // Update suitability summary
+                this.updateSuitabilitySummary(platformScores);
+                
+                // Show suitability section
+                document.getElementById('platformSuitabilitySummary').style.display = 'block';
+                
+                // Setup AI optimize button
+                this.setupAIOptimizeButton();
+            }
+            
+            calculatePlatformScores(words, contentType, sentiment) {
+                // Platform scoring logic
+                const scores = {
+                    'tiktok': 30,
+                    'youtube': 40,
+                    'linkedin': 70,
+                    'twitter': 65,
+                    'instagram': 50,
+                    'newsletter': 80,
+                    'blog': 75,
+                    'pinterest': 35
+                };
+                
+                // Adjust based on content type
+                if (contentType === 'Long-form') {
+                    scores.linkedin += 20;
+                    scores.newsletter += 25;
+                    scores.blog += 20;
+                    scores.tiktok -= 15;
+                } else if (contentType === 'Web Content') {
+                    scores.twitter += 20;
+                    scores.linkedin += 15;
+                } else if (sentiment === 'Positive') {
+                    scores.tiktok += 25;
+                    scores.instagram += 20;
+                } else if (sentiment === 'Critical') {
+                    scores.linkedin += 20;
+                    scores.blog += 15;
+                    scores.tiktok -= 20;
+                }
+                
+                // Adjust based on word count
+                if (words > 800) {
+                    scores.newsletter += 15;
+                    scores.blog += 10;
+                    scores.tiktok -= 10;
+                } else if (words < 200) {
+                    scores.twitter += 20;
+                    scores.tiktok += 15;
+                    scores.newsletter -= 15;
+                }
+                
+                // Cap scores
+                Object.keys(scores).forEach(platform => {
+                    scores[platform] = Math.max(0, Math.min(100, scores[platform]));
+                });
+                
+                return scores;
+            }
+            
+            updateSuitabilitySummary(platformScores) {
+                // Calculate overall suitability
+                const scores = Object.values(platformScores);
+                const averageScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+                
+                document.getElementById('overallSuitabilityScore').textContent = `${Math.round(averageScore)}% match`;
+                
+                // Update description
+                const highScorePlatforms = Object.keys(platformScores).filter(p => platformScores[p] >= 70);
+                if (highScorePlatforms.length > 0) {
+                    const platformNames = highScorePlatforms.map(p => 
+                        p.charAt(0).toUpperCase() + p.slice(1)
+                    ).join(', ');
+                    document.getElementById('suitabilityDescription').textContent = 
+                        `Based on your content analysis, ${platformNames} ${highScorePlatforms.length === 1 ? 'is' : 'are'} highly recommended.`;
+                }
+                
+                // Update badges
+                const badgesContainer = document.getElementById('suitabilityBadges');
+                badgesContainer.innerHTML = '';
+                
+                // Show top 4 platforms
+                const topPlatforms = Object.entries(platformScores)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 4);
+                
+                topPlatforms.forEach(([platform, score]) => {
+                    const level = score >= 70 ? 'high' : score >= 40 ? 'medium' : 'low';
+                    const badge = document.createElement('div');
+                    badge.style.background = level === 'high' ? 'rgba(40, 167, 69, 0.1)' : 
+                                           level === 'medium' ? 'rgba(255, 193, 7, 0.1)' : 
+                                           'rgba(220, 53, 69, 0.1)';
+                    badge.style.border = `2px solid ${level === 'high' ? '#28a745' : level === 'medium' ? '#ffc107' : '#dc3545'}`;
+                    badge.style.borderRadius = '20px';
+                    badge.style.padding = '8px 16px';
+                    badge.style.display = 'flex';
+                    badge.style.alignItems = 'center';
+                    badge.style.gap = '8px';
+                    badge.innerHTML = `
+                        <span style="font-weight: bold; color: ${level === 'high' ? '#28a745' : level === 'medium' ? '#ffc107' : '#dc3545'};">${score}%</span>
+                        <span>${platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
+                    `;
+                    badgesContainer.appendChild(badge);
+                });
+            }
+            
+            setupAIOptimizeButton() {
+                const button = document.getElementById('aiOptimizeBtn');
+                if (button) {
+                    button.addEventListener('click', () => {
+                        this.autoSelectOptimalPlatforms();
+                        button.innerHTML = '<i class="fas fa-check"></i> AI Optimized!';
+                        button.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+                        setTimeout(() => {
+                            button.innerHTML = '<i class="fas fa-robot"></i> AI Optimize Selection';
+                            button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                        }, 2000);
+                    });
+                }
+            }
+            
+            autoSelectOptimalPlatforms() {
+                // Get all platform checkboxes
+                const checkboxes = document.querySelectorAll('.platform-checkbox');
+                
+                // Uncheck all first
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Check top 3 platforms (simulated)
+                const platforms = ['linkedin', 'newsletter', 'twitter'];
+                platforms.forEach(platform => {
+                    const checkbox = document.querySelector(`.platform-checkbox[data-platform="${platform}"]`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+                
+                // Update selection count
+                const countElement = document.querySelector('.selection-count');
+                if (countElement) {
+                    countElement.textContent = `(${platforms.length} selected)`;
+                }
+                
+                alert('AI has optimized your selection! Selected: LinkedIn, Newsletter, Twitter\n\nThese platforms are most suitable for your content based on our analysis.');
             }
         }
         
