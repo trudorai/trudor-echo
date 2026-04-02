@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Trudor Echo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #f5f5f5; color: #333; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* FAQ */
+        .faq-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 30px;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        .toggle-icon {
+            color: #667eea;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-icon.rotated {
+            transform: rotate(45deg);
+        }
+        
+        /* Contact */
+        .contact-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .contact-method {
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Trudor Echo
+                </a>
+                
+                <nav>
+                    <div class="nav-links">
+                        <a href="how.html">How It Works</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="examples.html">Examples</a>
+                        <a href="faq.html" style="color: #667eea;">FAQ</a>
+                    </div>
+                </nav>
+                
+                <a href="index.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
+                Find answers to common questions about Trudor Echo
+            </p>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-container">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(1)">
+                        What types of content can I upload?
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>Trudor Echo supports a wide range of content formats:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li><strong>Text files:</strong> .txt, .docx, .pdf (up to 200,000 characters)</li>
+                            <li><strong>Audio files:</strong> .mp3, .wav, .m4a (up to 2GB for Business plan)</li>
+                            <li><strong>Video files:</strong> .mp4, .mov, .avi (up to 2GB for Business plan)</li>
+                            <li><strong>URL imports:</strong> YouTube videos, blog posts, articles</li>
+                            <li><strong>Direct paste:</strong> Copy and paste any text directly</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(2)">
+                        How does the AI platform selection work?
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>Our AI analyzes your content to determine which platforms are most suitable:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li><strong>Content length:</strong> Short content works better for TikTok/Reels, long content for LinkedIn/articles</li>
+                            <li><strong>Tone & sentiment:</strong> Professional tone for LinkedIn, casual for Instagram/TikTok</li>
+                            <li><strong>Keywords & topics:</strong> Business topics for LinkedIn, entertainment for TikTok/YouTube</li>
+                            <li><strong>Visual elements:</strong> Content with visual references gets video/platform recommendations</li>
+                        </ul>
+                        <p>You can always override the AI's suggestions and choose your own platforms.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(3)">
+                        What's included in the free plan?
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>The free plan includes:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li>5,000 characters per upload (about 1,000 words)</li>
+                            <li>25MB maximum file size</li>
+                            <li>5 files per month</li>
+                            <li>3 URL imports per day</li>
+                            <li>Basic AI analysis and platform recommendations</li>
+                            <li>All core features (just with limits)</li>
+                        </ul>
+                        <p>No credit card required. You can upgrade anytime.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(4)">
+                        How long does processing take?
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Processing time depends on:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li><strong>File size:</strong> Text files process in seconds, large videos take longer</li>
+                            <li><strong>Number of platforms:</strong> More platforms = more processing time</li>
+                            <li><strong>Your plan:</strong> Free users get standard processing, Pro/Business get priority</li>
+                        </ul>
+                        <p>Typical processing times:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li>Text files: 10-30 seconds</li>
+                            <li>Audio files (transcription): 1-5 minutes</li>
+                            <li>Video files: 2-10 minutes</li>
+                            <li>Complex multi-platform requests: 3-15 minutes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(5)">
+                        Can I edit the AI-generated content?
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>Yes! All AI-generated content is fully editable. You can:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li>Edit text directly in our editor</li>
+                            <li>Regenerate specific sections</li>
+                            <li>Adjust tone (professional, casual, enthusiastic, etc.)</li>
+                            <li>Add your own branding and CTAs</li>
+                            <li>Save templates for future use</li>
+                        </ul>
+                        <p>Think of our AI as a starting point - you have full control over the final output.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(6)">
+                        What happens if I exceed my plan limits?
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-6">
+                        <p>If you exceed your plan limits:</p>
+                        <ul style="margin: 15px 0 15px 20px; color: #666;">
+                            <li><strong>Free plan:</strong> You'll need to wait until the next month or upgrade to continue</li>
+                            <li><strong>Pro plan:</strong> Unlimited files, but character/URL limits reset daily</li>
+                            <li><strong>Business plan:</strong> All limits are very high (practically unlimited for most users)</li>
+                        </ul>
+                        <p>We'll always notify you before you hit your limits and offer upgrade options. No surprise charges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-box">
+                <h2 style="margin-bottom: 20px;">Still Have Questions?</h2>
+                <p style="color: #666; margin-bottom: 40px;">
+                    Can't find what you're looking for? Get in touch with our team.
+                </p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p style="color: #666;">support@trudor.ai</p>
+                        <p style="font-size: 0.9rem; color: #999;">Typically replies within 24 hours</p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p style="color: #666;">Available in-app</p>
+                        <p style="font-size: 0.9rem; color: #999;">Mon-Fri, 9am-6pm EST</p>
+                    </div>
+                </div>
+                
+                <a href="index.html" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</div>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                AI-powered content repurposing for creators, marketers, and businesses.
+            </p>
+            
+            <div class="footer-links">
+                <a href="how.html">How It Works</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="examples.html">Examples</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                © 2026 Trudor Echo. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleFAQ(number) {
+            const answer = document.getElementById(`faq-answer-${number}`);
+            const icon = answer.previousElementSibling.querySelector('.toggle-icon');
+            
+            if (answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                icon.classList.remove('rotated');
+                icon.textContent = '+';
+            } else {
+                answer.classList.add('show');
+                icon.classList.add('rotated');
+                icon.textContent = '×';
+            }
+        }
+        
+        // Open first FAQ by default
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleFAQ(1);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Trudor Echo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #f5f5f5; color: #333; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Steps */
+        .steps-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .step-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .step-card h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Trudor Echo
+                </a>
+                
+                <nav>
+                    <div class="nav-links">
+                        <a href="how.html" style="color: #667eea;">How It Works</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="examples.html">Examples</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </nav>
+                
+                <a href="index.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>How Trudor Echo Works</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
+                Simple three-step process to transform your content
+            </p>
+        </div>
+    </section>
+    
+    <!-- Steps -->
+    <section class="steps-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Three Simple Steps</h2>
+                <p style="color: #666; max-width: 700px; margin: 0 auto;">
+                    From upload to platform-ready content in minutes
+                </p>
+            </div>
+            
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Upload Your Content</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Drag and drop any file: blog posts, videos, podcasts, presentations, or paste text directly.
+                        Our AI analyzes your content to understand its core message and structure.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Analysis & Optimization</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Our AI identifies key points, tone, and optimal platforms. It creates platform-specific
+                        versions that match each channel's algorithm and audience expectations.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Get Platform-Ready Content</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Receive optimized content for TikTok, YouTube, LinkedIn, Twitter, Instagram, newsletters,
+                        and more. Copy, edit, or schedule directly from our platform.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section style="padding: 80px 0; text-align: center; background: #f8f9fa;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Get Started?</h2>
+            <p style="color: #666; max-width: 600px; margin: 0 auto 40px;">
+                Join thousands of creators who save hours every week with AI-powered repurposing.
+            </p>
+            <a href="index.html" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">
+                Start Free Trial
+            </a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</div>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                AI-powered content repurposing for creators, marketers, and businesses.
+            </p>
+            
+            <div class="footer-links">
+                <a href="how.html">How It Works</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="examples.html">Examples</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                © 2026 Trudor Echo. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Trudor Echo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #f5f5f5; color: #333; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Pricing */
+        .pricing-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .pricing-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .pricing-tiles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-tile {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        
+        .pricing-tile.popular {
+            border-color: #28a745;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(40, 167, 69, 0.1);
+        }
+        
+        .popular-badge {
+            background: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .features li.disabled {
+            color: #999;
+        }
+        
+        .features li.disabled:before {
+            content: "–";
+            color: #999;
+        }
+        
+        /* Comparison */
+        .comparison-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .check {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .x {
+            color: #dc3545;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Trudor Echo
+                </a>
+                
+                <nav>
+                    <div class="nav-links">
+                        <a href="how.html">How It Works</a>
+                        <a href="pricing.html" style="color: #667eea;">Pricing</a>
+                        <a href="examples.html">Examples</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </nav>
+                
+                <a href="index.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
+                Choose the plan that's right for you. All plans include our core AI features.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-title">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Choose Your Plan</h2>
+                <p style="color: #666; max-width: 600px; margin: 0 auto;">
+                    Start free, upgrade anytime. No hidden fees.
+                </p>
+            </div>
+            
+            <div class="pricing-tiles">
+                <!-- Free Plan -->
+                <div class="pricing-tile">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p style="color: #666; margin-bottom: 30px;">Perfect for trying out the platform</p>
+                    
+                    <ul class="features">
+                        <li>5,000 characters per upload</li>
+                        <li>25MB max file size</li>
+                        <li>5 files per month</li>
+                        <li>3 URL imports per day</li>
+                        <li>Basic AI analysis</li>
+                        <li class="disabled">Priority processing</li>
+                        <li class="disabled">Team collaboration</li>
+                        <li class="disabled">Dedicated support</li>
+                    </ul>
+                    
+                    <a href="index.html" class="cta-button" style="background: #666; width: 100%; display: block; text-align: center;">
+                        Start Free
+                    </a>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-tile popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3>Pro</h3>
+                    <div class="price">$29<span>/month</span></div>
+                    <p style="color: #666; margin-bottom: 30px;">Perfect for serious creators</p>
+                    
+                    <ul class="features">
+                        <li>50,000 characters per upload</li>
+                        <li>500MB max file size</li>
+                        <li>Unlimited files</li>
+                        <li>50 URL imports per day</li>
+                        <li>Advanced AI analysis</li>
+                        <li>Priority processing</li>
+                        <li>Email support</li>
+                        <li class="disabled">Team collaboration</li>
+                    </ul>
+                    
+                    <a href="index.html" class="cta-button" style="background: #28a745; width: 100%; display: block; text-align: center;">
+                        Try Pro Free for 14 Days
+                    </a>
+                </div>
+                
+                <!-- Business Plan -->
+                <div class="pricing-tile">
+                    <h3>Business</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <p style="color: #666; margin-bottom: 30px;">For teams and agencies</p>
+                    
+                    <ul class="features">
+                        <li>200,000 characters per upload</li>
+                        <li>2GB max file size</li>
+                        <li>Unlimited everything</li>
+                        <li>200 URL imports per day</li>
+                        <li>Enterprise AI analysis</li>
+                        <li>Highest priority processing</li>
+                        <li>Team collaboration (up to 5 users)</li>
+                        <li>Dedicated support & onboarding</li>
+                    </ul>
+                    
+                    <a href="index.html" class="cta-button" style="width: 100%; display: block; text-align: center;">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Feature Comparison</h2>
+                <p style="color: #666; max-width: 700px; margin: 0 auto;">
+                    See how our plans compare across all features
+                </p>
+            </div>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Free</th>
+                            <th>Pro</th>
+                            <th>Business</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly Uploads</td>
+                            <td>5 files</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Max File Size</td>
+                            <td>25MB</td>
+                            <td>500MB</td>
+                            <td>2GB</td>
+                        </tr>
+                        <tr>
+                            <td>Character Limit</td>
+                            <td>5,000</td>
+                            <td>50,000</td>
+                            <td>200,000</td>
+                        </tr>
+                        <tr>
+                            <td>URL Imports/Day</td>
+                            <td>3</td>
+                            <td>50</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>AI Platform Selection</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Content Intelligence</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Priority Processing</td>
+                            <td class="x">–</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Team Collaboration</td>
+                            <td class="x">–</td>
+                            <td class="x">–</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Dedicated Support</td>
+                            <td class="x">–</td>
+                            <td>Email</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Workflows</td>
+                            <td class="x">–</td>
+                            <td class="x">–</td>
+                            <td class="check">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section style="padding: 80px 0; background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Frequently Asked Questions</h2>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 10px; color: #333;">Can I switch plans anytime?</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 10px; color: #333;">Is there a free trial for paid plans?</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Yes! The Pro plan includes a 14-day free trial. No credit card required to start the trial.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 10px; color: #333;">What payment methods do you accept?</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        We accept all major credit cards (Visa, Mastercard, American Express) via Stripe. We also support Google and GitHub authentication.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 10px; color: #333;">Can I cancel anytime?</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Absolutely. You can cancel your subscription at any time. You'll continue to have access until the end of your billing period.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section style="padding: 80px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Get Started?</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; opacity: 0.9;">
+                Join thousands of creators who save hours every week with AI-powered repurposing.
+            </p>
+            <a href="index.html" class="cta-button" style="background: white; color: #667eea; padding: 15px 40px; font-size: 1.1rem;">
+                Start Free Trial
+            </a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</div>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                AI-powered content repurposing for creators, marketers, and businesses.
+            </p>
+            
+            <div class="footer-links">
+                <a href="how.html">How It Works</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="examples.html">Examples</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                © 2026 Trudor Echo. All rights

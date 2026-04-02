@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Trudor Echo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #f5f5f5; color: #333; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Examples */
+        .examples-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .example-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .example-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .example-icon {
+            font-size: 2rem;
+            color: #667eea;
+        }
+        
+        .example-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .platform-tag {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Trudor Echo
+                </a>
+                
+                <nav>
+                    <div class="nav-links">
+                        <a href="how.html">How It Works</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="examples.html" style="color: #667eea;">Examples</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </nav>
+                
+                <a href="index.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Real Examples & Results</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
+                See how creators transform one piece of content into multiple platform-ready versions
+            </p>
+        </div>
+    </section>
+    
+    <!-- Examples -->
+    <section class="examples-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Example Workflows</h2>
+                <p style="color: #666; max-width: 700px; margin: 0 auto;">
+                    These are real examples of how Trudor Echo transforms content across platforms
+                </p>
+            </div>
+            
+            <div class="examples-grid">
+                <!-- Example 1 -->
+                <div class="example-card">
+                    <div class="example-header">
+                        <div class="example-icon">📝</div>
+                        <div>
+                            <h3 style="margin: 0;">Blog Post to Social Media</h3>
+                            <p style="color: #666; font-size: 0.9rem;">1,200-word article → 6 platform versions</p>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                        A marketing agency uploaded a blog post about "10 SEO Tips for 2026." Trudor Echo created:
+                    </p>
+                    
+                    <div class="platforms">
+                        <span class="platform-tag">LinkedIn Post</span>
+                        <span class="platform-tag">Twitter Thread</span>
+                        <span class="platform-tag">Instagram Carousel</span>
+                        <span class="platform-tag">TikTok Script</span>
+                        <span class="platform-tag">Email Newsletter</span>
+                        <span class="platform-tag">YouTube Shorts</span>
+                    </div>
+                    
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 20px;">
+                        <strong>Time saved:</strong> 4 hours of manual work
+                    </p>
+                </div>
+                
+                <!-- Example 2 -->
+                <div class="example-card">
+                    <div class="example-header">
+                        <div class="example-icon">🎙️</div>
+                        <div>
+                            <h3 style="margin: 0;">Podcast to Content Hub</h3>
+                            <p style="color: #666; font-size: 0.9rem;">45-minute interview → 8 content pieces</p>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                        A podcast host uploaded an interview with an industry expert. Trudor Echo generated:
+                    </p>
+                    
+                    <div class="platforms">
+                        <span class="platform-tag">Show Notes</span>
+                        <span class="platform-tag">Blog Summary</span>
+                        <span class="platform-tag">Key Quotes (Twitter)</span>
+                        <span class="platform-tag">LinkedIn Article</span>
+                        <span class="platform-tag">Instagram Reels</span>
+                        <span class="platform-tag">Newsletter Excerpt</span>
+                        <span class="platform-tag">YouTube Chapters</span>
+                        <span class="platform-tag">TikTok Clips</span>
+                    </div>
+                    
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 20px;">
+                        <strong>Time saved:</strong> 6+ hours of transcription & editing
+                    </p>
+                </div>
+                
+                <!-- Example 3 -->
+                <div class="example-card">
+                    <div class="example-header">
+                        <div class="example-icon">📊</div>
+                        <div>
+                            <h3 style="margin: 0;">Presentation to Campaign</h3>
+                            <p style="color: #666; font-size: 0.9rem;">30-slide deck → multi-platform campaign</p>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+                        A startup uploaded their investor pitch deck. Trudor Echo created a launch campaign:
+                    </p>
+                    
+                    <div class="platforms">
+                        <span class="platform-tag">Launch Announcement</span>
+                        <span class="platform-tag">Product Thread</span>
+                        <span class="platform-tag">Demo Video Script</span>
+                        <span class="platform-tag">Feature Carousel</span>
+                        <span class="platform-tag">Press Release</span>
+                        <span class="platform-tag">Email Sequence</span>
+                        <span class="platform-tag">LinkedIn Updates</span>
+                    </div>
+                    
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 20px;">
+                        <strong>Time saved:</strong> 8+ hours of campaign planning
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section style="padding: 80px 0; text-align: center; background: #f8f9fa;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">See It In Action</h2>
+            <p style="color: #666; max-width: 600px; margin: 0 auto 40px;">
+                Upload your own content and see what Trudor Echo can create for you.
+            </p>
+            <a href="index.html" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">
+                Try Free Demo
+            </a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</div>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                AI-powered content repurposing for creators, marketers, and businesses.
+            </p>
+            
+            <div class="footer-links">
+                <a href="how.html">How It Works</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="examples.html">Examples</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                © 2026 Trudor Echo. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
