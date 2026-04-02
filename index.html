@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trudor Echo - Iteration 7 - REAL AI INTEGRATION</title>
+    <title>Trudor Echo - Iteration 8 - PRICING & POLISH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET */
@@ -1326,7 +1326,7 @@
 <body>
     <!-- CLEAR ITERATION MARKER -->
     <div class="iteration-banner">
-        🚀 Iteration 7 - REAL AI INTEGRATION | DeepSeek AI | Format Detection | Smart Optimization | <span id="time">Loading...</span>
+        🚀 Iteration 8 - PRICING & POLISH | AI-Powered Repurposing | Format Detection | Smart Optimization | <span id="time">Loading...</span>
     </div>
     
     <!-- HEADER -->
@@ -1334,7 +1334,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    Trudor Echo <span class="version-badge">Iteration 7</span>
+                    Trudor Echo <span class="version-badge">Iteration 8</span>
                 </a>
                 <div class="nav-links">
                     <a href="#how">How It Works</a>
@@ -1352,9 +1352,9 @@
         <div class="container">
             <div class="hero-content">
                 <div class="tagline">
-                    <span>🚀 Iteration 7 In Progress</span>
+                    <span>🚀 Iteration 8 In Progress</span>
                     <span style="opacity:0.7;">•</span>
-                    <span>Now using DeepSeek AI</span>
+                    <span>AI-Powered Content Repurposing</span>
                 </div>
                 
                 <h1>Turn One Piece of Content<br>Into <span style="color:#fff;">8+ Platform-Optimized Versions</span></h1>
@@ -1373,7 +1373,7 @@
                 <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-size: 0.95rem; opacity: 0.9;">
                     <div><i class="fas fa-check"></i> Format Detection</div>
                     <div><i class="fas fa-check"></i> Smart Platform Optimization</div>
-                    <div><i class="fas fa-check"></i> Real AI (DeepSeek)</div>
+                    <div><i class="fas fa-check"></i> AI-Powered Optimization</div>
                 </div>
             </div>
         </div>
@@ -1839,7 +1839,75 @@ class PlatformSelectionManager {
     });
 
     // Clear All
-    document.querySelector('.clear-all-btn')?.addEventListener('click',<!-- PRICING -->
+    document.querySelector('.clear-all-btn')?.addEventListener('click', () => {
+      document.querySelectorAll('.platform-checkbox').forEach(cb => {
+        cb.checked = false;
+        this.selectedPlatforms.clear();
+      });
+      this.updateUI();
+      this.updateProcessingTime();
+    });
+  }
+
+  setupUploadLimits() {
+    // Character counter for textarea
+    const textarea = document.querySelector('.paste-textarea');
+    if (textarea) {
+      textarea.addEventListener('input', (e) => {
+        const chars = e.target.value.length;
+        const counter = document.querySelector('.current-chars');
+        if (counter) {
+          counter.textContent = chars;
+        }
+      });
+    }
+  }
+
+  updateUI() {
+    const count = this.selectedPlatforms.size;
+    const countElement = document.querySelector('.selection-count');
+    if (countElement) {
+      countElement.textContent = `(${count} selected)`;
+    }
+
+    // Enable/disable generate button
+    const generateBtn = document.querySelector('.generate-btn');
+    if (generateBtn) {
+      generateBtn.disabled = count === 0 || !this.selectedFormat;
+    }
+  }
+
+  updateProcessingTime() {
+    // Calculate time based on format and platforms
+    let baseTime = 15; // seconds
+    
+    if (this.selectedFormat === 'video' || this.selectedFormat === 'audio') {
+      baseTime = 45;
+    } else if (this.selectedFormat === 'presentation') {
+      baseTime = 30;
+    }
+    
+    const platformTime = this.selectedPlatforms.size * 5;
+    const totalTime = baseTime + platformTime;
+    
+    // Update time displays
+    document.querySelectorAll('.time-value').forEach(el => {
+      el.textContent = `${totalTime}s`;
+    });
+    
+    document.getElementById('final-time').textContent = `${totalTime}s`;
+  }
+
+  showFormatTips(format) {
+    // Could show format-specific tips
+    console.log(`Selected format: ${format}`);
+  }
+}
+
+// Initialize platform selection
+new PlatformSelectionManager();
+
+<!-- PRICING -->
     <section id="pricing" class="pricing">
         <div class="container">
             <h2 class="section-title">Pricing</h2>
@@ -2710,13 +2778,13 @@ class PlatformSelectionManager {
             return false;
         };
         
-        console.log('✅ Iteration 7: Real AI integration ready');
+        console.log('✅ Iteration 8: Pricing & Polish complete');
         console.log('🔄 Loaded at:', new Date().toLocaleTimeString());
         console.log('📡 API endpoint:', API_URL);
         
         // Update iteration banner
         document.querySelector('.iteration-banner').textContent = 
-            '🚀 Iteration 7 - REAL AI INTEGRATION | DeepSeek AI | Format Detection | Smart Platform Optimization | ' + new Date().toLocaleTimeString();
+            '🚀 Iteration 8 - PRICING & POLISH | AI-Powered Repurposing | Format Detection | Smart Optimization | ' + new Date().toLocaleTimeString();
     </script>
     
     <!-- FOOTER -->
@@ -2760,8 +2828,8 @@ class PlatformSelectionManager {
             </div>
             
             <div style="border-top: 1px solid #444; padding-top: 30px; text-align: center; color: #888;">
-                <p>© 2026 Trudor Echo. All rights reserved. | Iteration 7 - REAL AI INTEGRATION</p>
-                <p style="font-size: 0.9rem; margin-top: 10px;">Powered by DeepSeek AI • Made with ❤️ for creators</p>
+                <p>© 2026 Trudor Echo. All rights reserved. | Iteration 8 - PRICING & POLISH</p>
+                <p style="font-size: 0.9rem; margin-top: 10px;">AI-Powered Content Repurposing • Made with ❤️ for creators</p>
             </div>
         </div>
     </footer>
