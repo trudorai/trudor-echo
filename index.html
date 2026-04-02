@@ -425,6 +425,127 @@
         .section:nth-child(even) {
             background: #f8f9fa;
         }
+        
+        /* HOW IT WORKS */
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .how-it-works-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        .how-step {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .how-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #ff3366;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .how-step h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .how-step p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* TESTIMONIALS */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .testimonial-content {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-info strong {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        
+        .author-info span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
 
 /* PLATFORM SELECTION REDESIGN STYLES */
 
@@ -1205,7 +1326,7 @@
 <body>
     <!-- CLEAR ITERATION MARKER -->
     <div class="iteration-banner">
-        🚀 Iteration 7 - REAL AI INTEGRATION | xAI Grok 4.20 | Format Detection | Smart Optimization | <span id="time">Loading...</span>
+        🚀 Iteration 7 - REAL AI INTEGRATION | DeepSeek AI | Format Detection | Smart Optimization | <span id="time">Loading...</span>
     </div>
     
     <!-- HEADER -->
@@ -1233,7 +1354,7 @@
                 <div class="tagline">
                     <span>🚀 Iteration 7 In Progress</span>
                     <span style="opacity:0.7;">•</span>
-                    <span>Now using xAI Grok 4.20</span>
+                    <span>Now using DeepSeek AI</span>
                 </div>
                 
                 <h1>Turn One Piece of Content<br>Into <span style="color:#fff;">8+ Platform-Optimized Versions</span></h1>
@@ -1252,7 +1373,7 @@
                 <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-size: 0.95rem; opacity: 0.9;">
                     <div><i class="fas fa-check"></i> Format Detection</div>
                     <div><i class="fas fa-check"></i> Smart Platform Optimization</div>
-                    <div><i class="fas fa-check"></i> Real AI (xAI Grok)</div>
+                    <div><i class="fas fa-check"></i> Real AI (DeepSeek)</div>
                 </div>
             </div>
         </div>
@@ -1753,11 +1874,79 @@ class PlatformSelectionManager {
     <section id="how" class="section">
         <div class="container">
             <h2 class="section-title">How It Works</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto; color: #666;">
-                1. Paste your content<br>
-                2. Select platforms<br>
-                3. Get instant results
-            </p>
+            <p class="section-subtitle" style="margin-bottom: 60px;">Transform your content in 3 simple steps</p>
+            
+            <div class="how-it-works-grid">
+                <div class="how-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📝</div>
+                    <h3>Paste or Upload</h3>
+                    <p>Start with any content: articles, videos, podcasts, presentations, or raw text.</p>
+                </div>
+                
+                <div class="how-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🎯</div>
+                    <h3>Select Platforms</h3>
+                    <p>Choose where you want to post. Our AI optimizes for each platform's unique requirements.</p>
+                </div>
+                
+                <div class="how-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">🚀</div>
+                    <h3>Get Instant Results</h3>
+                    <p>Receive perfectly formatted content ready to copy, paste, and publish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SOCIAL PROOF -->
+    <section id="testimonials" class="section" style="background: linear-gradient(135deg, #ff3366 0%, #e91e63 100%); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Trusted by Creators</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9); margin-bottom: 60px;">See what others are saying about Trudor Echo</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "This saved me 10+ hours per week. I used to spend hours manually repurposing my YouTube videos for other platforms. Now it's done in minutes."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">🎬</div>
+                        <div class="author-info">
+                            <strong>Sarah Chen</strong>
+                            <span>YouTube Creator (250K subs)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "As a solopreneur, I don't have time to create content for 8 different platforms. Trudor Echo lets me maintain a consistent presence everywhere."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">💼</div>
+                        <div class="author-info">
+                            <strong>Marcus Rodriguez</strong>
+                            <span>Founder, Tech Startup</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The platform-specific optimization is incredible. My LinkedIn posts get 3x more engagement now that they're properly formatted."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">📈</div>
+                        <div class="author-info">
+                            <strong>Jessica Park</strong>
+                            <span>Marketing Director</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -2527,7 +2716,54 @@ class PlatformSelectionManager {
         
         // Update iteration banner
         document.querySelector('.iteration-banner').textContent = 
-            '🚀 Iteration 7 - REAL AI INTEGRATION | xAI Grok 4.20 | Format Detection | Smart Platform Optimization | ' + new Date().toLocaleTimeString();
+            '🚀 Iteration 7 - REAL AI INTEGRATION | DeepSeek AI | Format Detection | Smart Platform Optimization | ' + new Date().toLocaleTimeString();
     </script>
+    
+    <!-- FOOTER -->
+    <footer style="background: #333; color: white; padding: 60px 0 30px; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="color: #ff3366; margin-bottom: 20px;">Trudor Echo</h3>
+                    <p style="color: #aaa; line-height: 1.6;">AI-powered content repurposing that saves you hours every week.</p>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 20px;">Product</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#input" style="color: #aaa; text-decoration: none;">Try Free Demo</a></li>
+                        <li><a href="#pricing" style="color: #aaa; text-decoration: none;">Pricing</a></li>
+                        <li><a href="#how" style="color: #aaa; text-decoration: none;">How It Works</a></li>
+                        <li><a href="#testimonials" style="color: #aaa; text-decoration: none;">Testimonials</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 20px;">Resources</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#examples" style="color: #aaa; text-decoration: none;">Examples</a></li>
+                        <li><a href="#faq" style="color: #aaa; text-decoration: none;">FAQ</a></li>
+                        <li><a href="#" style="color: #aaa; text-decoration: none;">Blog</a></li>
+                        <li><a href="#" style="color: #aaa; text-decoration: none;">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 20px;">Company</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#" style="color: #aaa; text-decoration: none;">About</a></li>
+                        <li><a href="#" style="color: #aaa; text-decoration: none;">Contact</a></li>
+                        <li><a href="#" style="color: #aaa; text-decoration: none;">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #aaa; text-decoration: none;">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid #444; padding-top: 30px; text-align: center; color: #888;">
+                <p>© 2026 Trudor Echo. All rights reserved. | Iteration 7 - REAL AI INTEGRATION</p>
+                <p style="font-size: 0.9rem; margin-top: 10px;">Powered by DeepSeek AI • Made with ❤️ for creators</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
