@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Trudor Echo Navigation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: monospace; }
+        body { background: #000; color: #0f0; padding: 20px; }
+        .terminal { background: #111; border: 2px solid #0f0; padding: 30px; max-width: 800px; margin: 0 auto; }
+        h1 { color: #0f0; text-align: center; margin-bottom: 30px; }
+        .test { margin: 15px 0; padding: 15px; background: #222; border-radius: 5px; }
+        .pass { color: #0f0; }
+        .fail { color: #f00; }
+        .button { background: #0f0; color: #000; padding: 10px 20px; border: none; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1>🧪 Test Trudor Echo Navigation & Buttons</h1>
+        
+        <div class="test">
+            <h3>Test 1: Navigation Links</h3>
+            <p>Click each link - should scroll to section:</p>
+            <button class="button" onclick="testLink('#how')">Test #how</button>
+            <button class="button" onclick="testLink('#pricing')">Test #pricing</button>
+            <button class="button" onclick="testLink('#examples')">Test #examples</button>
+            <button class="button" onclick="testLink('#faq')">Test #faq</button>
+            <div id="linkResult" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div class="test">
+            <h3>Test 2: Payment Buttons</h3>
+            <p>Click payment buttons - should show alerts:</p>
+            <button class="button" onclick="testButton('pay12')">Test $12 Button</button>
+            <button class="button" onclick="testButton('pay29')">Test $29 Button</button>
+            <div id="buttonResult" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div class="test">
+            <h3>Test 3: CTA Buttons</h3>
+            <p>Click main CTA buttons:</p>
+            <button class="button" onclick="testCTA()">Test "Get Started" Button</button>
+            <button class="button" onclick="testAIButton()">Test "AI Optimize Selection"</button>
+            <div id="ctaResult" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div class="test">
+            <h3>Test 4: File Limits Display</h3>
+            <p>Check if file limits are visible:</p>
+            <button class="button" onclick="checkFileLimits()">Check File Limits</button>
+            <div id="limitsResult" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div class="test">
+            <h3>Test 5: Color Check</h3>
+            <p>Verify colors are blue/green, not neon peach:</p>
+            <button class="button" onclick="checkColors()">Check Colors</button>
+            <div id="colorResult" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <button class="button" style="background: #667eea; color: white; padding: 15px 30px; font-size: 1.2rem;" onclick="runAllTests()">
+                🚀 RUN ALL TESTS
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        function testLink(hash) {
+            const element = document.querySelector(hash);
+            if (element) {
+                document.getElementById('linkResult').innerHTML = `<span class="pass">✓ ${hash} section exists</span>`;
+                element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('linkResult').innerHTML = `<span class="fail">✗ ${hash} section NOT FOUND</span>`;
+            }
+        }
+        
+        function testButton(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button && typeof button.onclick === 'function') {
+                document.getElementById('buttonResult').innerHTML = `<span class="pass">✓ ${buttonId} has click handler</span>`;
+                button.click();
+            } else {
+                document.getElementById('buttonResult').innerHTML = `<span class="fail">✗ ${buttonId} missing or no handler</span>`;
+            }
+        }
+        
+        function testCTA() {
+            const buttons = document.querySelectorAll('.cta-button, [href="#pricing"]');
+            if (buttons.length > 0) {
+                document.getElementById('ctaResult').innerHTML = `<span class="pass">✓ Found ${buttons.length} CTA buttons</span>`;
+                buttons[0].scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('ctaResult').innerHTML = `<span class="fail">✗ No CTA buttons found</span>`;
+            }
+        }
+        
+        function testAIButton() {
+            const button = document.getElementById('aiOptimizeBtn');
+            if (button) {
+                document.getElementById('ctaResult').innerHTML += `<br><span class="pass">✓ AI Optimize button found</span>`;
+                button.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('ctaResult').innerHTML += `<br><span class="fail">✗ AI Optimize button NOT FOUND</span>`;
+            }
+        }
+        
+        function checkFileLimits() {
+            const text = document.body.innerText;
+            const hasLimits = text.includes('25MB') || text.includes('500MB') || text.includes('2GB');
+            if (hasLimits) {
+                document.getElementById('limitsResult').innerHTML = `<span class="pass">✓ File limits displayed</span>`;
+            } else {
+                document.getElementById('limitsResult').innerHTML = `<span class="fail">✗ File limits NOT displayed</span>`;
+            }
+        }
+        
+        function checkColors() {
+            const styles = document.querySelectorAll('style');
+            let hasNeonPeach = false;
+            let hasBlueGreen = false;
+            
+            styles.forEach(style => {
+                const css = style.textContent;
+                if (css.includes('#ff3366') || css.includes('#ff0') || css.includes('neon')) {
+                    hasNeonPeach = true;
+                }
+                if (css.includes('#667eea') || css.includes('#28a745') || css.includes('#764ba2')) {
+                    hasBlueGreen = true;
+                }
+            });
+            
+            if (!hasNeonPeach && hasBlueGreen) {
+                document.getElementById('colorResult').innerHTML = `<span class="pass">✓ Colors are blue/green (good)</span>`;
+            } else if (hasNeonPeach) {
+                document.getElementById('colorResult').innerHTML = `<span class="fail">✗ Still has neon peach colors</span>`;
+            } else {
+                document.getElementById('colorResult').innerHTML = `<span class="fail">✗ Color check inconclusive</span>`;
+            }
+        }
+        
+        function runAllTests() {
+            testLink('#pricing');
+            testButton('pay12');
+            testCTA();
+            testAIButton();
+            checkFileLimits();
+            checkColors();
+            alert('All tests completed. Check results above.');
+        }
+        
+        console.log('Navigation test loaded. Open Trudor Echo site and run tests.');
+    </script>
+</body>
+</html>

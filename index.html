@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trudor Echo - Iteration 10 - ADAPTIVE PLATFORM RECOMMENDER</title>
+    <title>Trudor Echo - Iteration 11 - COLOR & NAVIGATION FIX</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET */
@@ -21,7 +21,7 @@
         
         /* ITERATION BANNER - VERY VISIBLE */
         .iteration-banner {
-            background: #ff3366;
+            background: #667eea;
             color: white;
             text-align: center;
             padding: 15px;
@@ -48,12 +48,12 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #ff3366;
+            color: #667eea;
             text-decoration: none;
         }
         
         .version-badge {
-            background: #ff3366;
+            background: #667eea;
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
@@ -67,11 +67,11 @@
             text-decoration: none;
         }
         
-        .nav-links a:hover { color: #ff3366; }
+        .nav-links a:hover { color: #667eea; }
         
         /* BUTTONS */
         .cta-button {
-            background: #ff3366;
+            background: #667eea;
             color: white;
             padding: 12px 24px;
             border-radius: 8px;
@@ -88,7 +88,7 @@
         .hero {
             text-align: center;
             padding: 140px 20px 100px;
-            background: linear-gradient(135deg, #ff3366 0%, #e91e63 50%, #9c27b0 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5d4a9a 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -154,7 +154,7 @@
         
         /* DRAG & DROP */
         .drop-zone {
-            border: 3px dashed #ff3366;
+            border: 3px dashed #667eea;
             border-radius: 16px;
             padding: 60px 40px;
             text-align: center;
@@ -165,7 +165,7 @@
         
         .drop-icon {
             font-size: 4rem;
-            color: #ff3366;
+            color: #667eea;
             margin-bottom: 20px;
         }
         
@@ -187,7 +187,7 @@
         }
         
         textarea:focus {
-            border-color: #ff3366;
+            border-color: #667eea;
             outline: none;
         }
         
@@ -220,19 +220,19 @@
         }
         
         .platform:hover {
-            border-color: #ff3366;
+            border-color: #667eea;
             transform: translateY(-3px);
         }
         
         .platform.selected {
             background: #fff0f0;
-            border-color: #ff3366;
+            border-color: #667eea;
             box-shadow: 0 5px 15px rgba(255, 51, 102, 0.1);
         }
         
         .platform i {
             font-size: 2rem;
-            color: #ff3366;
+            color: #667eea;
             margin-bottom: 10px;
             display: block;
         }
@@ -272,7 +272,7 @@
         .progress-spinner {
             font-size: 4rem;
             margin-bottom: 20px;
-            color: #ff3366;
+            color: #667eea;
         }
         
         .progress-text {
@@ -332,7 +332,7 @@
         }
         
         .email-input:focus {
-            border-color: #ff3366;
+            border-color: #667eea;
             outline: none;
         }
         
@@ -413,7 +413,7 @@
         .price {
             font-size: 3rem;
             font-weight: bold;
-            color: #ff3366;
+            color: #667eea;
             margin: 20px 0;
         }
         
@@ -459,7 +459,7 @@
             display: inline-block;
             width: 40px;
             height: 40px;
-            background: #ff3366;
+            background: #667eea;
             color: white;
             border-radius: 50%;
             font-weight: bold;
@@ -1326,7 +1326,7 @@
 <body>
     <!-- CLEAR ITERATION MARKER -->
     <div class="iteration-banner">
-        🚀 ITERATION 10 - ADAPTIVE PLATFORM RECOMMENDER | AI-Powered Selection | Suitability Scoring | One-Click Optimization | <span id="time">Loading...</span>
+        🚀 ITERATION 11 - COLOR & NAVIGATION FIX | Primary Blues & Greens | Working Buttons | Clear File Limits | Pricing Integration | <span id="time">Loading...</span>
     </div>
     
     <!-- HEADER -->
@@ -1334,7 +1334,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    Trudor Echo <span class="version-badge">Iteration 10</span>
+                    Trudor Echo <span class="version-badge">Iteration 11</span>
                 </a>
                 <div class="nav-links">
                     <a href="#how">How It Works</a>
@@ -1403,6 +1403,25 @@
             <div class="textarea-container">
                 <h3 style="text-align: center; margin-bottom: 20px;">Or Paste Text Directly:</h3>
                 <textarea id="contentInput" placeholder="Paste your blog post, video transcript, podcast script, or any long-form content here...&#10;&#10;Minimum 200 words for best results."></textarea>
+                
+                <div style="margin-top: 15px; font-size: 0.9rem; color: #666; display: flex; flex-wrap: wrap; gap: 20px;">
+                  <div>
+                    <strong>File Limits:</strong>
+                    <div style="font-size: 0.85rem; margin-top: 5px;">
+                      <div>• Free: 25MB max • 5 files/month</div>
+                      <div>• Pro: 500MB max • Unlimited files</div>
+                      <div>• Business: 2GB max • Team uploads</div>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>Supported Formats:</strong>
+                    <div style="font-size: 0.85rem; margin-top: 5px;">
+                      <div>• Text: .txt, .docx, .pdf</div>
+                      <div>• Audio: .mp3, .wav, .m4a</div>
+                      <div>• Video: .mp4, .mov, .avi</div>
+                    </div>
+                  </div>
+                </div>
                 <div style="text-align: center;">
                     <button class="cta-button" onclick="clearText()" style="background: #666; margin-right: 10px;">
                         <i class="fas fa-eraser"></i> Clear
@@ -1427,7 +1446,7 @@
                         <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
                             <div style="font-size: 2rem; margin-bottom: 15px;">📊</div>
                             <div style="margin-bottom: 10px;">
-                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="wordCount">0</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #667eea; line-height: 1;" id="wordCount">0</div>
                                 <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Words</div>
                             </div>
                             <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;">Optimal for 3-5 platforms</div>
@@ -1436,7 +1455,7 @@
                         <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
                             <div style="font-size: 2rem; margin-bottom: 15px;">🎯</div>
                             <div style="margin-bottom: 10px;">
-                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="contentType">Text</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #667eea; line-height: 1;" id="contentType">Text</div>
                                 <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Content Type</div>
                             </div>
                             <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;" id="typeTip">Best for articles & blogs</div>
@@ -1445,7 +1464,7 @@
                         <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
                             <div style="font-size: 2rem; margin-bottom: 15px;">⚡</div>
                             <div style="margin-bottom: 10px;">
-                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="sentimentScore">Neutral</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #667eea; line-height: 1;" id="sentimentScore">Neutral</div>
                                 <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Sentiment</div>
                             </div>
                             <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;" id="sentimentTip">Balanced tone detected</div>
@@ -1454,7 +1473,7 @@
                         <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
                             <div style="font-size: 2rem; margin-bottom: 15px;">🏆</div>
                             <div style="margin-bottom: 10px;">
-                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="optimalPlatforms">3</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #667eea; line-height: 1;" id="optimalPlatforms">3</div>
                                 <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Optimal Platforms</div>
                             </div>
                             <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;" id="platformTip">Based on content analysis</div>
@@ -1547,7 +1566,7 @@
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
           <i class="fas fa-chart-line"></i>
           <h4 style="margin: 0; color: #333; font-size: 1.1rem;">Platform Suitability Analysis</h4>
-          <span style="background: #ff3366; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;" id="overallSuitabilityScore">0% match</span>
+          <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;" id="overallSuitabilityScore">0% match</span>
         </div>
         <p style="color: #666; margin-bottom: 20px; line-height: 1.5;" id="suitabilityDescription">
           Based on your content analysis, these platforms are recommended:
@@ -1739,65 +1758,96 @@
       </div>
     </div>
     
-    <!-- Step 3: Upload/Input -->
-    <div class="upload-step">
-      <h3>Step 3: Add your content</h3>
-      
-      <!-- File Upload with Limits -->
-      <div class="upload-options">
-        <div class="upload-option paste">
-          <div class="option-header">
-            <h4>📝 Paste Text</h4>
-            <span class="option-badge">Free: 5,000 chars • Pro: 50,000 chars</span>
-          </div>
-          <textarea class="paste-textarea" placeholder="Paste your content here..." maxlength="5000"></textarea>
-          <div class="char-counter">
-            <span class="current-chars">0</span>/<span class="max-chars">5000</span> characters
-            <span class="limit-info">(Upgrade for 10x more)</span>
-          </div>
-        </div>
-        
-        <div class="upload-option file-upload">
-          <div class="option-header">
-            <h4>📁 Upload File</h4>
-            <span class="option-badge">Free: 25MB • Pro: 500MB • Business: 2GB</span>
-          </div>
-          <div class="upload-dropzone">
-            <div class="dropzone-content">
-              <div class="dropzone-icon">📤</div>
-              <h5>Drop files here or click to upload</h5>
-              <p class="dropzone-subtitle">Supports: .txt, .pdf, .docx, .mp3, .mp4, .mov</p>
-              <div class="file-limits">
-                <div class="limit-item">
-                  <span class="limit-tier">Free:</span>
-                  <span class="limit-value">25MB max • 5 files/month</span>
-                </div>
-                <div class="limit-item">
-                  <span class="limit-tier">Pro:</span>
-                  <span class="limit-value">500MB max • Unlimited files</span>
-                </div>
-                <div class="limit-item">
-                  <span class="limit-tier">Business:</span>
-                  <span class="limit-value">2GB max • Team uploads</span>
-                </div>
-              </div>
+    <!-- Pricing Integration CTA -->
+    <div class="pricing-cta-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 0; margin: 60px 0; border-radius: 20px;">
+      <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Scale Your Content?</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">
+            Unlock higher limits, faster processing, and team collaboration with our Pro plans
+          </p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 50px;">
+            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; backdrop-filter: blur(10px);">
+              <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Free</h3>
+              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;">$0</div>
+              <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 5,000 characters
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 25MB file size
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 5 files/month
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 3 URLs/day
+                </li>
+              </ul>
+              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: white; color: #667eea; width: 100%;">
+                Start Free
+              </button>
             </div>
-            <input type="file" class="file-input" multiple>
+            
+            <div style="background: rgba(255, 255, 255, 0.2); border: 3px solid white; border-radius: 16px; padding: 30px; backdrop-filter: blur(10px); transform: scale(1.05);">
+              <div style="background: #28a745; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; display: inline-block; margin-bottom: 15px;">MOST POPULAR</div>
+              <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Pro</h3>
+              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;">$29<span style="font-size: 1rem;">/month</span></div>
+              <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 50,000 characters
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 500MB file size
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> Unlimited files
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 50 URLs/day
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> Priority processing
+                </li>
+              </ul>
+              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: #28a745; color: white; width: 100%;">
+                Try Pro Free for 14 Days
+              </button>
+            </div>
+            
+            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; backdrop-filter: blur(10px);">
+              <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Business</h3>
+              <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;">$99<span style="font-size: 1rem;">/month</span></div>
+              <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 200,000 characters
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 2GB file size
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> Team collaboration
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> 200 URLs/day
+                </li>
+                <li style="margin-bottom: 10px; padding-left: 24px; position: relative;">
+                  <span style="position: absolute; left: 0;">✓</span> Dedicated support
+                </li>
+              </ul>
+              <button class="cta-button" onclick="window.location.href='#pricing'" style="background: white; color: #667eea; width: 100%;">
+                Contact Sales
+              </button>
+            </div>
           </div>
+          
+          <p style="font-size: 0.9rem; opacity: 0.8;">
+            All plans include our AI-powered platform selection and content optimization. No credit card required for free trial.
+          </p>
         </div>
-        
-        <div class="upload-option url-input">
-          <div class="option-header">
-            <h4>🔗 Import from URL</h4>
-            <span class="option-badge">Free: 3 URLs/day • Pro: 50 URLs/day</span>
-          </div>
-          <div class="url-input-group">
-            <input type="url" class="url-field" placeholder="https://youtube.com/watch?v=... or https://article.com/...">
-            <button class="btn btn-secondary fetch-btn">
-              <span class="btn-icon">🔍</span>
-              Fetch Content
-            </button>
-          </div>
+      </div>
+    </div>
           <p class="url-hint">Supports: YouTube, TikTok, podcasts, blogs, articles</p>
         </div>
       </div>
@@ -2000,7 +2050,7 @@ new PlatformSelectionManager();
                     <button class="cta-button" onclick="scrollToInput()">Try Free Demo</button>
                 </div>
                 
-                <div class="pricing-card" style="border: 3px solid #ff3366;">
+                <div class="pricing-card" style="border: 3px solid #667eea;">
                     <h3>Pay-Per-Use</h3>
                     <div class="price">$12</div>
                     <p>One-time payment</p>
@@ -2098,7 +2148,7 @@ new PlatformSelectionManager();
     </section>
     
     <!-- SOCIAL PROOF -->
-    <section id="testimonials" class="section" style="background: linear-gradient(135deg, #ff3366 0%, #e91e63 100%); color: white;">
+    <section id="testimonials" class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
         <div class="container">
             <h2 class="section-title" style="color: white;">Trusted by Creators</h2>
             <p class="section-subtitle" style="color: rgba(255,255,255,0.9); margin-bottom: 60px;">See what others are saying about Trudor Echo</p>
@@ -2240,13 +2290,13 @@ new PlatformSelectionManager();
         
         dropZone.addEventListener('dragleave', () => {
             dropZone.style.background = 'white';
-            dropZone.style.borderColor = '#ff3366';
+            dropZone.style.borderColor = '#667eea';
         });
         
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.style.background = 'white';
-            dropZone.style.borderColor = '#ff3366';
+            dropZone.style.borderColor = '#667eea';
             handleFiles({ files: e.dataTransfer.files });
         });
         
@@ -2791,7 +2841,7 @@ new PlatformSelectionManager();
                     resultsHTML += `
                         <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
                             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <i class="${icons[platform]}" style="color: #ff3366; font-size: 1.2rem;"></i>
+                                <i class="${icons[platform]}" style="color: #667eea; font-size: 1.2rem;"></i>
                                 <h3 style="margin: 0; color: #333;">${platformNames[platform]}</h3>
                             </div>
                             <div style="background: white; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap; max-height: 200px; overflow-y: auto;">
@@ -3169,7 +3219,7 @@ new PlatformSelectionManager();
         <div class="container">
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px;">
                 <div>
-                    <h3 style="color: #ff3366; margin-bottom: 20px;">Trudor Echo</h3>
+                    <h3 style="color: #667eea; margin-bottom: 20px;">Trudor Echo</h3>
                     <p style="color: #aaa; line-height: 1.6;">AI-powered content repurposing that saves you hours every week.</p>
                 </div>
                 
