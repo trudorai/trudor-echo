@@ -1413,6 +1413,56 @@
                 </div>
             </div>
             
+            <!-- CONTENT INTELLIGENCE DASHBOARD - Iteration 9 -->
+            <div class="intelligence-dashboard" id="intelligenceDashboard" style="display: none; margin: 40px 0; padding: 40px 0; border-top: 2px solid #e9ecef; border-bottom: 2px solid #e9ecef;">
+                <div class="container">
+                    <h3 style="text-align: center; margin: 0 0 20px; color: #333;">
+                        <i class="fas fa-brain"></i> Content Intelligence Analysis
+                    </h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                        Our AI is analyzing your content to optimize platform recommendations
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                        <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 15px;">📊</div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="wordCount">0</div>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Words</div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;">Optimal for 3-5 platforms</div>
+                        </div>
+                        
+                        <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 15px;">🎯</div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="contentType">Text</div>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Content Type</div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;" id="typeTip">Best for articles & blogs</div>
+                        </div>
+                        
+                        <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 15px;">⚡</div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="sentimentScore">Neutral</div>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Sentiment</div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;" id="sentimentTip">Balanced tone detected</div>
+                        </div>
+                        
+                        <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 15px;">🏆</div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 2rem; font-weight: bold; color: #ff3366; line-height: 1;" id="optimalPlatforms">3</div>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Optimal Platforms</div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0;" id="platformTip">Based on content analysis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- PLATFORM SELECTION REDESIGN -->
 <!-- Replaces current platform selector with toggle buttons and format detection -->
 
@@ -2782,6 +2832,97 @@ new PlatformSelectionManager();
             
             return templates[platform] || `Platform content for: ${platform}${fileNote}\n\n${text.substring(0, 200)}...`;
         }
+        
+        // CONTENT ANALYZER - Iteration 9
+        class ContentAnalyzer {
+            constructor() {
+                this.contentInput = document.getElementById('contentInput');
+                this.dashboard = document.getElementById('intelligenceDashboard');
+                this.init();
+            }
+            
+            init() {
+                if (this.contentInput) {
+                    this.contentInput.addEventListener('input', () => this.analyzeContent());
+                    this.contentInput.addEventListener('paste', () => setTimeout(() => this.analyzeContent(), 100));
+                }
+            }
+            
+            analyzeContent() {
+                const text = this.contentInput.value.trim();
+                
+                if (text.length < 50) {
+                    this.dashboard.style.display = 'none';
+                    return;
+                }
+                
+                // Show dashboard
+                this.dashboard.style.display = 'block';
+                
+                // Calculate metrics
+                const words = text.split(/\s+/).length;
+                
+                // Update metrics
+                document.getElementById('wordCount').textContent = words.toLocaleString();
+                
+                // Determine content type
+                let contentType = 'Text';
+                let typeTip = 'Best for articles & blogs';
+                
+                if (words > 1000) {
+                    contentType = 'Long-form';
+                    typeTip = 'Ideal for whitepapers & guides';
+                } else if (text.includes('http') || text.includes('www.')) {
+                    contentType = 'Web Content';
+                    typeTip = 'Contains links & references';
+                }
+                
+                document.getElementById('contentType').textContent = contentType;
+                document.getElementById('typeTip').textContent = typeTip;
+                
+                // Analyze sentiment
+                const positiveWords = ['great', 'amazing', 'love', 'excellent', 'best', 'happy', 'perfect'].filter(w => 
+                    text.toLowerCase().includes(w)
+                ).length;
+                const negativeWords = ['bad', 'terrible', 'hate', 'worst', 'awful', 'problem', 'issue'].filter(w => 
+                    text.toLowerCase().includes(w)
+                ).length;
+                
+                let sentiment = 'Neutral';
+                let sentimentTip = 'Balanced tone detected';
+                
+                if (positiveWords > negativeWords + 2) {
+                    sentiment = 'Positive';
+                    sentimentTip = 'Uplifting & engaging tone';
+                } else if (negativeWords > positiveWords + 2) {
+                    sentiment = 'Critical';
+                    sentimentTip = 'Analytical & critical tone';
+                }
+                
+                document.getElementById('sentimentScore').textContent = sentiment;
+                document.getElementById('sentimentTip').textContent = sentimentTip;
+                
+                // Calculate optimal platforms
+                let optimalPlatforms = 3;
+                let platformTip = 'Based on content analysis';
+                
+                if (words > 800) {
+                    optimalPlatforms = 5;
+                    platformTip = 'Rich content supports multiple platforms';
+                } else if (words < 200) {
+                    optimalPlatforms = 2;
+                    platformTip = 'Concise content works best on 1-2 platforms';
+                }
+                
+                document.getElementById('optimalPlatforms').textContent = optimalPlatforms;
+                document.getElementById('platformTip').textContent = platformTip;
+            }
+        }
+        
+        // Initialize analyzer when DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.contentAnalyzer = new ContentAnalyzer();
+        });
         
         // Helper functions
         function copyToClipboard(platform, text) {
