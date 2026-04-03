@@ -467,9 +467,87 @@
                     </div>
                 </div>
                 
-                <button class="cta-button" onclick="showPricing()" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem;">
-                    <i class="fas fa-arrow-right"></i> Continue to Pricing
-                </button>
+                <div style="margin-top: 30px;">
+                    <h3 style="margin-bottom: 15px;">Or Paste Text Directly:</h3>
+                    <textarea id="contentInput" class="content-input" placeholder="Paste your blog post, transcript, article, or any content here..." rows="6" style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 8px; font-family: inherit; font-size: 1rem;"></textarea>
+                    
+                    <div style="margin-top: 20px;">
+                        <h4>Select Target Platforms:</h4>
+                        <div class="platform-checkboxes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="tiktok" checked>
+                                <i class="fab fa-tiktok"></i> TikTok/Reels
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="youtube" checked>
+                                <i class="fab fa-youtube"></i> YouTube Shorts
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="linkedin" checked>
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="instagram" checked>
+                                <i class="fab fa-instagram"></i> Instagram
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="twitter" checked>
+                                <i class="fab fa-twitter"></i> Twitter/X
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="newsletter" checked>
+                                <i class="fas fa-newspaper"></i> Newsletter
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button id="generateButton" class="cta-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem; width: 100%;">
+                        <i class="fas fa-magic"></i> Generate AI Content
+                        <span id="processing" style="display: none; margin-left: 10px;">
+                            <i class="fas fa-spinner fa-spin"></i> Processing...
+                        </span>
+                    </button>
+                    
+                    <button class="cta-button" onclick="showPricing()" style="margin-top: 15px; padding: 15px 40px; font-size: 1.1rem; width: 100%; background: #666;">
+                        <i class="fas fa-arrow-right"></i> Skip to Pricing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI Output Section -->
+    <section id="ai-output" class="output-section" style="display: none; padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <div class="output-box" style="background: white; border-radius: 16px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h2 style="color: #333;">Your AI-Generated Content</h2>
+                    <button class="cta-button" onclick="showPricing()">
+                        <i class="fas fa-arrow-right"></i> Continue to Pricing
+                    </button>
+                </div>
+                
+                <div id="outputContent" style="margin-top: 20px;">
+                    <!-- AI outputs will be inserted here -->
+                    <div style="text-align: center; padding: 40px; color: #666;">
+                        <i class="fas fa-robot" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Your AI-generated content will appear here</h3>
+                        <p>Click "Generate AI Content" above to see the magic happen!</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e9ecef;">
+                    <h3>What's Next?</h3>
+                    <p style="color: #666; margin-top: 10px;">
+                        After reviewing your AI-generated content, continue to pricing to unlock:
+                    </p>
+                    <ul style="margin-top: 15px; color: #666;">
+                        <li>Unlimited generations</li>
+                        <li>Higher quality outputs</li>
+                        <li>Priority processing</li>
+                        <li>Advanced formatting options</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -758,6 +836,157 @@
             document.getElementById('payment').style.display = 'block';
         }
         
+        function showAIOutput() {
+            document.getElementById('upload').style.display = 'none';
+            document.getElementById('ai-output').style.display = 'block';
+            document.getElementById('pricing-selection').style.display = 'none';
+            document.getElementById('account-creation').style.display = 'none';
+            document.getElementById('payment').style.display = 'none';
+        }
+        
+        // AI Generation Functions
+        // Initialize AI button after DOM loads
+        const initAIButton = () => {
+            const generateButton = document.getElementById('generateButton');
+            if (generateButton) {
+                generateButton.addEventListener('click', async function() {
+                    const contentInput = document.getElementById('contentInput');
+                    const content = contentInput ? contentInput.value.trim() : '';
+                    
+                    if (content.length < 50) {
+                        alert('Please enter at least 50 characters of content.');
+                        return;
+                    }
+                    
+                    // Get selected platforms
+                    const selectedPlatforms = [];
+                    document.querySelectorAll('.platform-checkboxes input:checked').forEach(cb => {
+                        selectedPlatforms.push(cb.id);
+                    });
+                    
+                    if (selectedPlatforms.length === 0) {
+                        alert('Please select at least one platform.');
+                        return;
+                    }
+                    
+                    // Show processing state
+                    generateButton.disabled = true;
+                    const processingSpan = document.getElementById('processing');
+                    if (processingSpan) processingSpan.style.display = 'inline';
+                    
+                    try {
+                        // Call real AI API
+                        const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                content: content,
+                                platforms: selectedPlatforms
+                            })
+                        });
+                        
+                        if (!response.ok) throw new Error(`API error: ${response.status}`);
+                        
+                        const data = await response.json();
+                        displayAIOutputs(data.results || data);
+                        
+                    } catch (error) {
+                        console.error('AI API error:', error);
+                        // Fallback to simulation
+                        alert('AI service temporarily unavailable. Showing demo version.');
+                        const outputs = generateDemoOutputs(content, selectedPlatforms);
+                        displayAIOutputs(outputs);
+                    } finally {
+                        // Hide processing
+                        generateButton.disabled = false;
+                        if (processingSpan) processingSpan.style.display = 'none';
+                        
+                        // Show output section
+                        showAIOutput();
+                        document.getElementById('ai-output').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+        
+        function generateDemoOutputs(content, platforms) {
+            const outputs = {};
+            platforms.forEach(platform => {
+                switch(platform) {
+                    case 'tiktok':
+                        outputs.tiktok = `🎬 TIKTOK SCRIPT (Demo)\n\nHook: "Did you know AI can turn this into 8+ posts?"\n\n${content.substring(0, 100)}...\n\nCTA: Follow for more AI tips! #AIContent #TrudorEcho`;
+                        break;
+                    case 'youtube':
+                        outputs.youtube = `📺 YOUTUBE SHORTS (Demo)\n\n"The Future of Content Creation"\n\n${content.substring(0, 150)}...\n\nLike & subscribe for more!`;
+                        break;
+                    case 'linkedin':
+                        outputs.linkedin = `🔗 LINKEDIN POST (Demo)\n\nThought leadership post:\n\n${content.substring(0, 200)}...\n\nWhat are your thoughts on AI content? #AI #ContentStrategy`;
+                        break;
+                    case 'instagram':
+                        outputs.instagram = `📸 INSTAGRAM CAPTION (Demo)\n\nTransforming content with AI ✨\n\n${content.substring(0, 120)}...\n\n\n#AIContent #ContentCreator #DigitalMarketing`;
+                        break;
+                    case 'twitter':
+                        outputs.twitter = `🐦 TWITTER THREAD (Demo)\n\n1/5 AI is changing content creation:\n\n${content.substring(0, 80)}...\n\n2/5 One piece → multiple platforms\n3/5 Save hours every week\n4/5 Consistent brand voice\n5/5 Try Trudor Echo free!`;
+                        break;
+                    case 'newsletter':
+                        outputs.newsletter = `📰 NEWSLETTER (Demo)\n\nSubject: AI Content Insights\n\n${content.substring(0, 250)}...\n\nKey takeaways:\n1. AI saves time\n2. Better consistency\n3. More engagement`;
+                        break;
+                    default:
+                        outputs[platform] = `${platform.toUpperCase()} CONTENT:\n\n${content.substring(0, 150)}...`;
+                }
+            });
+            return outputs;
+        }
+        
+        function displayAIOutputs(outputs) {
+            const outputContent = document.getElementById('outputContent');
+            if (!outputContent) return;
+            
+            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">';
+            
+            for (const [platform, content] of Object.entries(outputs)) {
+                const platformIcons = {
+                    tiktok: 'fab fa-tiktok',
+                    youtube: 'fab fa-youtube',
+                    linkedin: 'fab fa-linkedin',
+                    instagram: 'fab fa-instagram',
+                    twitter: 'fab fa-twitter',
+                    newsletter: 'fas fa-newspaper',
+                    email: 'fas fa-envelope',
+                    threads: 'fas fa-comments'
+                };
+                
+                html += `
+                <div style="background: white; border: 2px solid #e9ecef; border-radius: 12px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <i class="${platformIcons[platform] || 'fas fa-share-alt'}" style="color: #667eea; font-size: 1.2rem;"></i>
+                        <h3 style="margin: 0; text-transform: capitalize;">${platform}</h3>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 0.9rem; white-space: pre-wrap; max-height: 300px; overflow-y: auto;">
+                        ${content.replace(/\n/g, '<br>')}
+                    </div>
+                    <div style="margin-top: 15px; display: flex; gap: 10px;">
+                        <button onclick="navigator.clipboard.writeText('${content.replace(/'/g, "\\'")}')" style="padding: 8px 15px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button onclick="regenerate('${platform}')" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                            <i class="fas fa-redo"></i> Regenerate
+                        </button>
+                    </div>
+                </div>`;
+            }
+            
+            html += '</div>';
+            outputContent.innerHTML = html;
+        }
+        
+        function regenerate(platform) {
+            alert(`Would regenerate ${platform} content with real AI API`);
+            // In production: Call API again for this specific platform
+        }
+        
         // Auth functions
         function signInWithGoogle() {
             alert('Google authentication would open here in production.');
@@ -826,6 +1055,15 @@
                     }
                 });
             }
+            
+            // Set sample content for demo
+            const contentInput = document.getElementById('contentInput');
+            if (contentInput) {
+                contentInput.value = `The Future of AI in Content Creation\n\nArtificial intelligence is transforming how we create and distribute content. In 2024, we're seeing AI move from simple text generation to full-scale content strategy and repurposing.\n\nKey trends:\n1. Personalization at scale - AI can now tailor content for different platforms and audiences automatically\n2. Multi-format repurposing - One piece of content can become videos, blogs, social posts, and newsletters\n3. Brand voice consistency - AI learns your unique tone and applies it across all outputs\n4. Efficiency gains - What used to take hours now takes minutes\n\nThe most successful creators aren't those who work hardest, but those who work smartest with the right tools.`;
+            }
+            
+            // Initialize AI button
+            initAIButton();
         });
         
         console.log('Iteration 13 loaded: Simple flow with working pages.');
