@@ -953,76 +953,98 @@
             console.log('Initializing AI button...');
             const generateButton = document.getElementById('generateButton');
             console.log('Button found:', !!generateButton);
-            if (generateButton) {
-                generateButton.addEventListener('click', async function() {
-                    console.log('Generate button clicked!');
-                    const contentInput = document.getElementById('contentInput');
-                    const content = contentInput ? contentInput.value.trim() : '';
-                    console.log('Content length:', content.length);
-                    
-                    if (content.length < 50) {
-                        alert('Please enter at least 50 characters of content.');
-                        return;
-                    }
-                    
-                    // Get selected platforms
-                    const selectedPlatforms = [];
-                    document.querySelectorAll('.platform-checkboxes input:checked').forEach(cb => {
-                        selectedPlatforms.push(cb.id);
-                    });
-                    console.log('Selected platforms:', selectedPlatforms);
-                    
-                    if (selectedPlatforms.length === 0) {
-                        alert('Please select at least one platform.');
-                        return;
-                    }
-                    
-                    // Show processing state
-                    generateButton.disabled = true;
-                    const processingSpan = document.getElementById('processing');
-                    if (processingSpan) processingSpan.style.display = 'inline';
-                    
-                    try {
-                        // Call real AI API
-                        const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
-                        console.log('Calling API:', apiUrl);
-                        console.log('Request body:', { content: content, platforms: selectedPlatforms });
-                        
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                content: content,
-                                platforms: selectedPlatforms
-                            })
-                        });
-                        
-                        if (!response.ok) throw new Error(`API error: ${response.status}`);
-                        
-                        const data = await response.json();
-                        // Store echoId and shareUrl for sharing features
-                        window.currentEchoId = data.echoId;
-                        window.currentShareUrl = data.shareUrl;
-                        displayAIOutputs(data.results || data, data.echoId, data.shareUrl);
-                        
-                    } catch (error) {
-                        console.error('AI API error:', error);
-                        // Fallback to simulation
-                        alert('AI service temporarily unavailable. Showing demo version.');
-                        const outputs = generateDemoOutputs(content, selectedPlatforms);
-                        displayAIOutputs(outputs, null, null);
-                    } finally {
-                        // Hide processing
-                        generateButton.disabled = false;
-                        if (processingSpan) processingSpan.style.display = 'none';
-                        
-                        // Show output section
-                        showAIOutput();
-                        document.getElementById('ai-output').scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
+            
+            if (!generateButton) {
+                console.error('Generate button not found!');
+                return;
             }
-        });
+            
+            generateButton.addEventListener('click', async function() {
+                console.log('Generate button clicked!');
+                
+                // Get content
+                const contentInput = document.getElementById('contentInput');
+                const content = contentInput ? contentInput.value.trim() : '';
+                console.log('Content length:', content.length);
+                
+                if (content.length < 50) {
+                    alert('Please enter at least 50 characters of content.');
+                    return;
+                }
+                
+                // Get selected platforms
+                const selectedPlatforms = [];
+                document.querySelectorAll('.platform-checkboxes input:checked').forEach(cb => {
+                    selectedPlatforms.push(cb.id);
+                });
+                console.log('Selected platforms:', selectedPlatforms);
+                
+                if (selectedPlatforms.length === 0) {
+                    alert('Please select at least one platform.');
+                    return;
+                }
+                
+                // Show processing state
+                generateButton.disabled = true;
+                const processingSpan = document.getElementById('processing');
+                if (processingSpan) {
+                    processingSpan.style.display = 'inline';
+                }
+                
+                try {
+                    // Call real AI API
+                    const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
+                    console.log('Calling API:', apiUrl);
+                    console.log('Request body:', { content: content, platforms: selectedPlatforms });
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            content: content,
+                            platforms: selectedPlatforms
+                        })
+                    });
+                    
+                    console.log('Response status:', response.status);
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('API error:', response.status, errorText);
+                        throw new Error(`API error: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log('API response:', { 
+                        success: data.success, 
+                        echoId: data.echoId, 
+                        hasResults: !!data.results 
+                    });
+                    
+                    // Store echoId and shareUrl for sharing features
+                    window.currentEchoId = data.echoId;
+                    window.currentShareUrl = data.shareUrl;
+                    displayAIOutputs(data.results || data, data.echoId, data.shareUrl);
+                    
+                } catch (error) {
+                    console.error('AI API error:', error);
+                    // Fallback to simulation
+                    alert('AI service temporarily unavailable. Showing demo version.');
+                    const outputs = generateDemoOutputs(content, selectedPlatforms);
+                    displayAIOutputs(outputs, null, null);
+                } finally {
+                    // Hide processing
+                    generateButton.disabled = false;
+                    if (processingSpan) {
+                        processingSpan.style.display = 'none';
+                    }
+                    
+                    // Show output section
+                    showAIOutput();
+                    document.getElementById('ai-output').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        };
         
         function generateDemoOutputs(content, platforms) {
             const outputs = {};
