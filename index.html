@@ -953,8 +953,10 @@
             const generateButton = document.getElementById('generateButton');
             if (generateButton) {
                 generateButton.addEventListener('click', async function() {
+                    console.log('Generate button clicked!');
                     const contentInput = document.getElementById('contentInput');
                     const content = contentInput ? contentInput.value.trim() : '';
+                    console.log('Content length:', content.length);
                     
                     if (content.length < 50) {
                         alert('Please enter at least 50 characters of content.');
@@ -966,6 +968,7 @@
                     document.querySelectorAll('.platform-checkboxes input:checked').forEach(cb => {
                         selectedPlatforms.push(cb.id);
                     });
+                    console.log('Selected platforms:', selectedPlatforms);
                     
                     if (selectedPlatforms.length === 0) {
                         alert('Please select at least one platform.');
@@ -980,6 +983,8 @@
                     try {
                         // Call real AI API
                         const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
+                        console.log('Calling API:', apiUrl);
+                        console.log('Request body:', { content: content, platforms: selectedPlatforms });
                         
                         const response = await fetch(apiUrl, {
                             method: 'POST',
