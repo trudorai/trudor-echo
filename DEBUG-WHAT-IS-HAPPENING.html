@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEBUG: Why am I seeing Iteration 8?</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: monospace; }
+        body { background: #000; color: #0f0; padding: 20px; }
+        .terminal { background: #111; border: 2px solid #f00; padding: 30px; max-width: 1000px; margin: 0 auto; }
+        h1 { color: #f00; text-align: center; margin-bottom: 30px; }
+        .section { margin: 20px 0; padding: 20px; background: #222; border-radius: 5px; }
+        .command { color: #ff0; background: #333; padding: 10px; margin: 10px 0; }
+        .error { color: #f00; font-weight: bold; }
+        .success { color: #0f0; }
+        .test-button { background: #f00; color: white; padding: 15px; border: none; font-size: 1.2rem; cursor: pointer; width: 100%; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1>🔴 DEBUG: WHY AM I SEEING ITERATION 8?</h1>
+        
+        <div class="section">
+            <h2>STEP 1: What file are you opening?</h2>
+            <p>Copy and paste the EXACT URL from your browser address bar:</p>
+            <div class="command" id="currentUrl">Loading...</div>
+        </div>
+        
+        <div class="section">
+            <h2>STEP 2: File verification</h2>
+            <p>The file on disk <span class="success">SHOULD</span> contain:</p>
+            <div class="command">
+                Title: "Trudor Echo - Iteration 10 - ADAPTIVE PLATFORM RECOMMENDER"<br>
+                Banner: "🚀 ITERATION 10 ACTIVE - ADAPTIVE PLATFORM RECOMMENDER..."
+            </div>
+            <p>If you see "Iteration 8", you're either:</p>
+            <ol>
+                <li class="error">Opening the WRONG file</li>
+                <li class="error">Browser caching is EXTREME</li>
+                <li class="error">Server is serving wrong file</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h2>STEP 3: Test the CORRECT file</h2>
+            <button class="test-button" onclick="openCorrectFile()">
+                🚨 CLICK TO OPEN CORRECT ITERATION 10 FILE
+            </button>
+            <p>This will open: <code>file:///home/ben/.openclaw/workspace/trudor-echo/index.html</code></p>
+        </div>
+        
+        <div class="section">
+            <h2>STEP 4: Nuclear option - FORCE refresh</h2>
+            <div class="command">
+                # In your browser console (F12), run:<br>
+                location.reload(true);  // Force reload from server<br>
+                <br>
+                # Or open with cache busting:<br>
+                file:///home/ben/.openclaw/workspace/trudor-echo/index.html?cachebust=<?php echo time(); ?>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>STEP 5: What does YOUR browser show?</h2>
+            <p>Press F12 → Console → Paste this:</p>
+            <div class="command">
+                console.log('Title:', document.title);<br>
+                console.log('Banner:', document.querySelector('.iteration-banner')?.textContent);<br>
+                console.log('URL:', window.location.href);
+            </div>
+            <p>Then tell me what it outputs.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Show current URL
+        document.getElementById('currentUrl').textContent = window.location.href;
+        
+        function openCorrectFile() {
+            const url = 'file:///home/ben/.openclaw/workspace/trudor-echo/index.html?debug=' + Date.now();
+            window.open(url, '_blank');
+            alert('Opening CORRECT Iteration 10 file with cache busting.\n\nIf you still see Iteration 8, your browser is BROKEN.');
+        }
+        
+        console.log('=== DEBUG MODE ===');
+        console.log('You should be seeing Iteration 10');
+        console.log('If you see Iteration 8, something is WRONG');
+        console.log('==================');
+    </script>
+</body>
+</html>

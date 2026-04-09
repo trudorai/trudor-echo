@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Full Flow</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .banner {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            color: white;
+        }
+        .content-box {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .email-btn { background: #4dabf7; color: white; }
+        .download-btn { background: #40c057; color: white; }
+        .copy-btn { background: white; color: #667eea; }
+        .copy-btn.copied { background: #28a745; color: white; }
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Full Trudor Echo Flow</h1>
+    
+    <div class="banner">
+        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <i class="fas fa-check-circle" style="font-size: 2rem; margin-right: 15px;"></i>
+            <div>
+                <h2 style="margin: 0; font-size: 1.8rem;">✅ Your Echo is Ready!</h2>
+                <p style="margin: 5px 0 0 0; opacity: 0.9;">Shareable link (valid for 7 days):</p>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-link" style="font-size: 1.2rem;"></i>
+                <a href="https://trudor.ai/results/echo-test-123" style="color: white; text-decoration: underline; word-break: break-all;">
+                    https://trudor.ai/results/echo-test-123
+                </a>
+                <button onclick="copyLink('https://trudor.ai/results/echo-test-123', this)" class="copy-btn" style="margin-left: auto;">
+                    <i class="fas fa-copy"></i> Copy Link
+                </button>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 15px; align-items: center;">
+            <div>
+                <input type="email" id="testEmail" placeholder="your@email.com" value="test@example.com">
+            </div>
+            <button onclick="sendTestEmail()" class="email-btn">
+                <i class="fas fa-envelope"></i> 📧 Email me the full package
+            </button>
+            <button onclick="downloadTestZip()" class="download-btn">
+                <i class="fas fa-download"></i> ⬇️ Download All as ZIP
+            </button>
+        </div>
+    </div>
+    
+    <h2>Generated Content</h2>
+    
+    <div class="content-box">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+            <i class="fab fa-linkedin" style="color: #667eea; font-size: 1.2rem;"></i>
+            <h3 style="margin: 0; text-transform: capitalize;">linkedin</h3>
+        </div>
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 0.9rem; white-space: pre-wrap;">
+✅ Trudor Echo activated.
+
+**Platform: LINKEDIN**
+
+- **Hook / Title:** The Future of AI in Content Creation
+- **Full Content:** Artificial intelligence is transforming how we create and distribute content...
+- **Suggested Hashtags:** #AI #ContentStrategy #DigitalMarketing #Innovation #FutureOfWork
+- **Emoji Strategy:** 🤖🚀💡
+- **Length / Estimated Duration:** Medium (3-5 paragraphs)
+- **Performance Tip:** Post during business hours (9am-5pm) for maximum engagement
+        </div>
+        <div style="margin-top: 15px; display: flex; gap: 10px;">
+            <button onclick="copyContent(this.previousElementSibling.textContent, this)" class="copy-btn">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+            <button onclick="alert('Would regenerate linkedin content')" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                <i class="fas fa-redo"></i> Regenerate
+            </button>
+        </div>
+    </div>
+    
+    <div id="testOutput" style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 8px;"></div>
+    
+    <script>
+        async function copyLink(text, button) {
+            await copyToClipboard(text, button);
+        }
+        
+        async function copyContent(text, button) {
+            await copyToClipboard(text, button);
+        }
+        
+        async function copyToClipboard(text, button) {
+            try {
+                await navigator.clipboard.writeText(text);
+                
+                // Visual feedback
+                const originalHTML = button.innerHTML;
+                const originalClass = button.className;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.className += ' copied';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.className = originalClass;
+                }, 2000);
+                
+                showOutput(`✅ Copied to clipboard: ${text.substring(0, 50)}...`);
+                
+            } catch (err) {
+                console.error('Copy failed:', err);
+                
+                // Try fallback
+                try {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Visual feedback
+                    const originalHTML = button.innerHTML;
+                    const originalClass = button.className;
+                    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    button.className += ' copied';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        button.innerHTML = originalHTML;
+                        button.className = originalClass;
+                    }, 2000);
+                    
+                    showOutput(`✅ Copied (fallback): ${text.substring(0, 50)}...`);
+                    
+                } catch (fallbackErr) {
+                    showOutput(`❌ Failed to copy: ${err.message}`);
+                }
+            }
+        }
+        
+        function sendTestEmail() {
+            const email = document.getElementById('testEmail').value;
+            showOutput(`📧 Would send email to: ${email} for echo-test-123`);
+            
+            // Simulate API call
+            setTimeout(() => {
+                showOutput(`✅ Email sent successfully to ${email}!`);
+            }, 1000);
+        }
+        
+        function downloadTestZip() {
+            showOutput(`⬇️ ZIP download for echo-test-123 is coming soon!`);
+        }
+        
+        function showOutput(message) {
+            const output = document.getElementById('testOutput');
+            output.innerHTML = message;
+            output.style.display = 'block';
+        }
+        
+        // Load Font Awesome
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(link);
+    </script>
+</body>
+</html>

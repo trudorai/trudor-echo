@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Trudor Echo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Force HTTPS and security headers -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
+        body { background: #f5f5f5; color: #333; line-height: 1.6; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Content */
+        .content-section {
+            padding: 80px 0;
+            background: white;
+            min-height: 70vh;
+        }
+        
+        .content-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            color: #444;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            color: #555;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .last-updated {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .important-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .footer-extra {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Force HTTPS redirect -->
+    <script>
+      // Immediate redirect from HTTP to HTTPS
+      if (window.location.protocol === 'http:' && window.location.hostname === 'trudor.ai') {
+        window.location.href = 'https://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash;
+      }
+    </script>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Trudor Echo</a>
+                <div class="nav-links">
+                    <a href="how.html">How It Works</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <a href="index.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-box">
+                <h1>Terms of Service</h1>
+                
+                <div class="last-updated">
+                    <p><strong>Last Updated:</strong> April 8, 2026</p>
+                    <p>These Terms of Service ("Terms") govern your access to and use of Trudor Echo's website, services, and applications (collectively, the "Services"). By accessing or using our Services, you agree to be bound by these Terms.</p>
+                </div>
+                
+                <div class="important-note">
+                    <p><strong>Important:</strong> Please read these Terms carefully. They contain important information about your legal rights, remedies, and obligations.</p>
+                </div>
+                
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing or using Trudor Echo, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you may not use our Services.</p>
+                
+                <h2>2. Description of Service</h2>
+                <p>Trudor Echo provides AI-powered content repurposing tools that help users transform content into optimized formats for different platforms (e.g., LinkedIn, Twitter, Instagram, etc.).</p>
+                
+                <h2>3. Eligibility</h2>
+                <p>You must be at least 13 years old to use our Services. By using our Services, you represent that you are at least 13 years old.</p>
+                
+                <h2>4. Account Registration</h2>
+                <p>To access certain features, you must register for an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate, current, and complete information</li>
+                    <li>Maintain and promptly update your account information</li>
+                    <li>Maintain the security of your password</li>
+                    <li>Accept responsibility for all activities that occur under your account</li>
+                    <li>Notify us immediately of any unauthorized use of your account</li>
+                </ul>
+                
+                <h2>5. Subscription Plans</h2>
+                <p>We offer both free and paid subscription plans:</p>
+                <ul>
+                    <li><strong>Free Plan:</strong> Limited features, subject to change</li>
+                    <li><strong>Pro Plan:</strong> $29/month, billed monthly</li>
+                    <li><strong>Business Plan:</strong> $99/month, billed monthly</li>
+                </ul>
+                <p>Paid subscriptions automatically renew until canceled. You can cancel at any time through your account settings.</p>
+                
+                <h2>6. Payments and Billing</h2>
+                <p>All payments are processed through Stripe. By subscribing, you authorize us to charge your payment method for the subscription fee. Prices are subject to change with 30 days notice.</p>
+                
+                <h2>7. Cancellation and Refunds</h2>
+                <p>You may cancel your subscription at any time. We do not provide refunds for partial months. Upon cancellation, you will continue to have access until the end of your billing period.</p>
+                
+                <h2>8. User Content</h2>
+                <p>You retain ownership of any content you submit to our Services. By submitting content, you grant us a license to process and store it for the purpose of providing our Services.</p>
+                
+                <h2>9. Acceptable Use</h2>
+                <p>You agree not to use our Services to:</p>
+                <ul>
+                    <li>Violate any laws or regulations</li>
+                    <li>Infringe on intellectual property rights</li>
+                    <li>Spread malware or viruses</li>
+                    <li>Harass, abuse, or harm others</li>
+                    <li>Attempt to gain unauthorized access to our systems</li>
+                    <li>Use automated systems to access our Services</li>
+                </ul>
+                
+                <h2>10. Intellectual Property</h2>
+                <p>All content, features, and functionality of our Services are owned by Trudor Echo and are protected by copyright, trademark, and other intellectual property laws.</p>
+                
+                <h2>11. Termination</h2>
+                <p>We may suspend or terminate your access to our Services at any time for any reason, including violation of these Terms.</p>
+                
+                <h2>12. Disclaimer of Warranties</h2>
+                <p>OUR SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND. WE DO NOT GUARANTEE THAT OUR SERVICES WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.</p>
+                
+                <h2>13. Limitation of Liability</h2>
+                <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, TRUDOR ECHO SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.</p>
+                
+                <h2>14. Indemnification</h2>
+                <p>You agree to indemnify and hold harmless Trudor Echo from any claims, damages, or expenses arising from your use of our Services or violation of these Terms.</p>
+                
+                <h2>15. Changes to Terms</h2>
+                <p>We may modify these Terms at any time. We will notify you of significant changes by posting the new Terms on this page. Your continued use of our Services constitutes acceptance of the modified Terms.</p>
+                
+                <h2>16. Governing Law</h2>
+                <p>These Terms shall be governed by the laws of Ontario, Canada, without regard to its conflict of law provisions.</p>
+                
+                <h2>17. Contact Information</h2>
+                <p>If you have any questions about these Terms, please contact us at:</p>
+                <p><strong>Email:</strong> legal@trudor.ai<br>
+                <strong>Address:</strong> Trudor Echo, 123 Innovation Drive, Toronto, ON M5H 2N2, Canada</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</a>
+                <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                    AI-powered content repurposing for creators, marketers, and businesses.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="how.html">How It Works</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="mailto:support@trudor.ai?subject=Trudor Echo Support">Contact</a>
+                </div>
+                
+                <div class="copyright">
+                    © 2026 Trudor Echo. All rights reserved.
+                </div>
+                
+                <div class="footer-extra">
+                    Made with ❤️ in Toronto
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Terms of Service page loaded');
+        });
+    </script>
+</body>
+</html>

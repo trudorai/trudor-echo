@@ -3,16 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trudor Echo - AI Content Repurposing</title>
-    
-    <!-- Force HTTPS and security headers -->
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <title>Trudor Echo - Iteration 13 - SIMPLE FLOW & WORKING PAGES</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://js.stripe.com/v3/"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         body { background: #f5f5f5; color: #333; }
@@ -24,7 +16,18 @@
             padding: 0 20px;
         }
         
-
+        /* Iteration Banner */
+        .iteration-banner {
+            background: #667eea;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         
         /* Header */
         header {
@@ -46,7 +49,14 @@
             text-decoration: none;
         }
         
-        
+        .version-badge {
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
         
         .nav-links {
             display: flex;
@@ -351,72 +361,43 @@
             text-align: center;
         }
         
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
         .footer-links {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
+            gap: 30px;
             margin: 30px 0;
         }
         
         .footer-links a {
             color: #ccc;
             text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
         }
         
         .footer-links a:hover {
             color: white;
-            text-decoration: underline;
         }
         
         .copyright {
             margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #444;
             color: #999;
             font-size: 0.9rem;
-        }
-        
-        .footer-extra {
-            margin-top: 20px;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive footer */
-        @media (max-width: 768px) {
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            footer {
-                padding: 40px 0 20px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Force HTTPS redirect -->
-    <script>
-      // Immediate redirect from HTTP to HTTPS
-      if (window.location.protocol === 'http:' && window.location.hostname === 'trudor.ai') {
-        window.location.href = 'https://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash;
-      }
-    </script>
-
+    <!-- Iteration Banner -->
+    <div class="iteration-banner">
+        🚀 ITERATION 13 - SIMPLE FLOW & WORKING PAGES | Clean Upload → Pricing → Account → Payment | Multi-Page Navigation | <span id="time">Loading...</span>
+    </div>
     
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">
-                    Trudor Echo
+                    Trudor Echo <span class="version-badge">Iteration 13</span>
                 </a>
                 
                 <nav>
@@ -439,49 +420,6 @@
             <h1>AI-Powered Content Repurposing</h1>
             <p>Turn one piece of content into 8+ platform-ready versions in minutes. No confusing options, just results.</p>
             <a href="#upload" class="cta-button" style="background: white; color: #667eea;">Start Free</a>
-        </div>
-    </section>
-    
-    <!-- Trust Badges -->
-    <section class="trust-badges" style="padding: 60px 0; background: white;">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <h2 style="color: #333; margin-bottom: 15px;">Trusted by Teams That Care About</h2>
-                <p style="color: #666; max-width: 600px; margin: 0 auto;">Security, privacy, and reliability aren't optional—they're essential.</p>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                <div style="text-align: center; padding: 30px; border: 2px solid #f0f0f0; border-radius: 12px; transition: all 0.3s;">
-                    <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: #667eea; margin-bottom: 20px;"></i>
-                    <h3 style="color: #333; margin-bottom: 10px;">Enterprise Security</h3>
-                    <p style="color: #666;">SOC 2 compliant • End-to-end encryption • Regular security audits</p>
-                </div>
-                
-                <div style="text-align: center; padding: 30px; border: 2px solid #f0f0f0; border-radius: 12px; transition: all 0.3s;">
-                    <i class="fas fa-lock" style="font-size: 2.5rem; color: #667eea; margin-bottom: 20px;"></i>
-                    <h3 style="color: #333; margin-bottom: 10px;">Privacy First</h3>
-                    <p style="color: #666;">GDPR/CCPA ready • Your data stays yours • No training on your content</p>
-                </div>
-                
-                <div style="text-align: center; padding: 30px; border: 2px solid #f0f0f0; border-radius: 12px; transition: all 0.3s;">
-                    <i class="fas fa-bolt" style="font-size: 2.5rem; color: #667eea; margin-bottom: 20px;"></i>
-                    <h3 style="color: #333; margin-bottom: 10px;">Reliable Performance</h3>
-                    <p style="color: #666;">99.9% uptime • 24/7 monitoring • Automatic failover</p>
-                </div>
-                
-                <div style="text-align: center; padding: 30px; border: 2px solid #f0f0f0; border-radius: 12px; transition: all 0.3s;">
-                    <i class="fas fa-handshake" style="font-size: 2.5rem; color: #667eea; margin-bottom: 20px;"></i>
-                    <h3 style="color: #333; margin-bottom: 10px;">Risk-Free Trial</h3>
-                    <p style="color: #666;">14-day free trial • No credit card needed • Money-back guarantee</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #f0f0f0;">
-                <p style="color: #666;">
-                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
-                    <strong> 500+ teams</strong> trust Trudor Echo with their content
-                </p>
-            </div>
         </div>
     </section>
     
@@ -563,7 +501,7 @@
                         </div>
                     </div>
                     
-                    <button id="generateButton" type="button" class="cta-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem; width: 100%;">
+                    <button id="generateButton" class="cta-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem; width: 100%;">
                         <i class="fas fa-magic"></i> Generate AI Content
                         <span id="processing" style="display: none; margin-left: 10px;">
                             <i class="fas fa-spinner fa-spin"></i> Processing...
@@ -614,94 +552,6 @@
         </div>
     </section>
     
-    <!-- Testimonials -->
-    <section class="testimonials" style="padding: 80px 0; background: #f8f9fa;">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <h2 style="color: #333; margin-bottom: 15px;">What Our Customers Say</h2>
-                <p style="color: #666; max-width: 700px; margin: 0 auto;">Join 500+ content teams, marketers, and creators who save hours every week with Trudor Echo.</p>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
-                <!-- Testimonial 1 -->
-                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
-                            JD
-                        </div>
-                        <div>
-                            <h4 style="margin: 0; color: #333;">John Davis</h4>
-                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">Content Director @ TechStartup</p>
-                        </div>
-                        <div style="margin-left: auto; color: #ffc107; font-size: 1.2rem;">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-                        "Trudor Echo cut our content creation time from 8 hours to 45 minutes. We now repurpose every webinar into 12+ social posts automatically."
-                    </p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">⏱️ Saved 7+ hours/week</span>
-                        <span style="background: #e3f2fd; color: #1565c0; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📈 300% more engagement</span>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
-                            SC
-                        </div>
-                        <div>
-                            <h4 style="margin: 0; color: #333;">Sarah Chen</h4>
-                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">CEO @ GrowthLab Agency</p>
-                        </div>
-                        <div style="margin-left: auto; color: #ffc107; font-size: 1.2rem;">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-                        "We serve 12 clients with Trudor Echo. What used to be our biggest bottleneck is now our competitive advantage. The consistency across platforms is incredible."
-                    </p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">💰 $2,000/month saved</span>
-                        <span style="background: #f3e5f5; color: #7b1fa2; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">🎯 98% brand consistency</span>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #ff6b6b, #ff8e53); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
-                            MR
-                        </div>
-                        <div>
-                            <h4 style="margin: 0; color: #333;">Marcus Rodriguez</h4>
-                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">Solo Creator @ TechWithMarcus</p>
-                        </div>
-                        <div style="margin-left: auto; color: #ffc107; font-size: 1.2rem;">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-                        "As a solo creator, time is everything. Trudor Echo lets me focus on creating great content instead of spending hours reformatting for different platforms."
-                    </p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">⚡ 5x more content output</span>
-                        <span style="background: #fff3e0; color: #ef6c00; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📱 Consistent across 8 platforms</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Case Study Teaser -->
-            <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; padding: 40px; color: white; text-align: center;">
-                <h3 style="margin-bottom: 15px;">Want to See Real Results?</h3>
-                <p style="margin-bottom: 25px; opacity: 0.9;">Read our detailed case studies showing exactly how teams save time and increase engagement.</p>
-                <a href="examples.html" style="background: white; color: #667eea; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">View Case Studies →</a>
-            </div>
-        </div>
-    </section>
-    
     <!-- Interactive Pricing -->
     <section id="pricing-selection" class="pricing-section" style="display: none;">
         <div class="container">
@@ -720,7 +570,7 @@
                         <li>25MB file size</li>
                         <li>5 files/month</li>
                         <li>3 URLs/day</li>
-                        <li>Basic support (48h response)</li>
+                        <li>Basic support</li>
                     </ul>
                     <button class="cta-button" style="background: #666; width: 100%;" onclick="selectPlan('free'); event.stopPropagation();">
                         Start Free
@@ -738,7 +588,7 @@
                         <li>Unlimited files</li>
                         <li>50 URLs/day</li>
                         <li>Priority processing</li>
-                        <li>Email support (24h response)</li>
+                        <li>Email support</li>
                     </ul>
                     <button class="cta-button" style="background: #28a745; width: 100%;" onclick="selectPlan('pro'); event.stopPropagation();">
                         Try Pro Free for 14 Days
@@ -754,7 +604,7 @@
                         <li>2GB file size</li>
                         <li>Team collaboration</li>
                         <li>200 URLs/day</li>
-                        <li>Dedicated support (12h response)</li>
+                        <li>Dedicated support</li>
                         <li>Custom workflows</li>
                     </ul>
                     <button class="cta-button" style="width: 100%;" onclick="selectPlan('business'); event.stopPropagation();">
@@ -837,7 +687,7 @@
             <div class="payment-box">
                 <h2 style="text-align: center; margin-bottom: 30px;">Payment Details</h2>
                 <p style="text-align: center; color: #666; margin-bottom: 30px;">
-                    You're signing up for <span id="paymentPlanName">Pro</span> at <span id="paymentPlanPrice">$29</span>/month
+                    You're signing up for <span id="paymentPlanName">Pro</span> at $29/month
                 </p>
                 
                 <div class="form-group">
@@ -877,8 +727,8 @@
                     <button type="button" class="cta-button" style="background: #666; flex: 1;" onclick="showAccountCreation()">
                         ← Back
                     </button>
-                    <button type="button" class="cta-button" style="flex: 2;" onclick="startStripeCheckout()">
-                        <i class="fas fa-lock"></i> Complete Payment with Stripe
+                    <button type="button" class="cta-button" style="flex: 2;" onclick="completePayment()">
+                        <i class="fas fa-lock"></i> Complete Payment
                     </button>
                 </div>
                 
@@ -892,36 +742,37 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</div>
-                <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
-                    AI-powered content repurposing for creators, marketers, and businesses.
-                    <br><span style="font-size: 0.9rem; color: #999;">Support inquiries typically answered within 24-48 hours. Thank you for your interest!</span>
-                </p>
-                
-                <div class="footer-links">
-                    <a href="how.html">How It Works</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="examples.html">Examples</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                    <a href="mailto:support@trudor.ai?subject=Trudor Echo Support">Contact</a>
-                </div>
-                
-                <div class="copyright">
-                    © 2026 Trudor Echo. All rights reserved.
-                </div>
-                
-                <div class="footer-extra">
-                    Made with ❤️ in Toronto
-                </div>
+            <div class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</div>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                AI-powered content repurposing for creators, marketers, and businesses.
+            </p>
+            
+            <div class="footer-links">
+                <a href="how.html">How It Works</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="examples.html">Examples</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                © 2026 Trudor Echo. All rights reserved. | Iteration 13 - SIMPLE FLOW & WORKING PAGES
             </div>
         </div>
     </footer>
     
     <script>
-
+        // Update time in banner
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            if (timeElement) {
+                timeElement.textContent = new Date().toLocaleTimeString();
+            }
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
         
         // Plan selection
         let selectedPlan = 'pro';
@@ -949,14 +800,6 @@
             document.getElementById('selectedPlanName').textContent = planNames[plan];
             document.getElementById('accountPlanName').textContent = planNames[plan];
             document.getElementById('paymentPlanName').textContent = planNames[plan];
-            
-            // Update price display
-            const planPrices = {
-                'free': '$0',
-                'pro': '$29',
-                'business': '$99'
-            };
-            document.getElementById('paymentPlanPrice').textContent = planPrices[plan];
         }
         
         // Flow navigation
@@ -1004,101 +847,69 @@
         // AI Generation Functions
         // Initialize AI button after DOM loads
         const initAIButton = () => {
-            console.log('Initializing AI button...');
             const generateButton = document.getElementById('generateButton');
-            console.log('Button found:', !!generateButton);
-            
-            if (!generateButton) {
-                console.error('Generate button not found!');
-                return;
-            }
-            
-            generateButton.addEventListener('click', async function() {
-                console.log('Generate button clicked!');
-                
-                // Get content
-                const contentInput = document.getElementById('contentInput');
-                const content = contentInput ? contentInput.value.trim() : '';
-                console.log('Content length:', content.length);
-                
-                if (content.length < 50) {
-                    alert('Please enter at least 50 characters of content.');
-                    return;
-                }
-                
-                // Get selected platforms
-                const selectedPlatforms = [];
-                document.querySelectorAll('.platform-checkboxes input:checked').forEach(cb => {
-                    selectedPlatforms.push(cb.id);
+            if (generateButton) {
+                generateButton.addEventListener('click', async function() {
+                    const contentInput = document.getElementById('contentInput');
+                    const content = contentInput ? contentInput.value.trim() : '';
+                    
+                    if (content.length < 50) {
+                        alert('Please enter at least 50 characters of content.');
+                        return;
+                    }
+                    
+                    // Get selected platforms
+                    const selectedPlatforms = [];
+                    document.querySelectorAll('.platform-checkboxes input:checked').forEach(cb => {
+                        selectedPlatforms.push(cb.id);
+                    });
+                    
+                    if (selectedPlatforms.length === 0) {
+                        alert('Please select at least one platform.');
+                        return;
+                    }
+                    
+                    // Show processing state
+                    generateButton.disabled = true;
+                    const processingSpan = document.getElementById('processing');
+                    if (processingSpan) processingSpan.style.display = 'inline';
+                    
+                    try {
+                        // Call real AI API
+                        const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                content: content,
+                                platforms: selectedPlatforms
+                            })
+                        });
+                        
+                        if (!response.ok) throw new Error(`API error: ${response.status}`);
+                        
+                        const data = await response.json();
+                        displayAIOutputs(data.results || data);
+                        
+                    } catch (error) {
+                        console.error('AI API error:', error);
+                        // Fallback to simulation
+                        alert('AI service temporarily unavailable. Showing demo version.');
+                        const outputs = generateDemoOutputs(content, selectedPlatforms);
+                        displayAIOutputs(outputs);
+                    } finally {
+                        // Hide processing
+                        generateButton.disabled = false;
+                        if (processingSpan) processingSpan.style.display = 'none';
+                        
+                        // Show output section
+                        showAIOutput();
+                        document.getElementById('ai-output').scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
-                console.log('Selected platforms:', selectedPlatforms);
-                
-                if (selectedPlatforms.length === 0) {
-                    alert('Please select at least one platform.');
-                    return;
-                }
-                
-                // Show processing state
-                generateButton.disabled = true;
-                const processingSpan = document.getElementById('processing');
-                if (processingSpan) {
-                    processingSpan.style.display = 'inline';
-                }
-                
-                try {
-                    // Call real AI API
-                    const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
-                    console.log('Calling API:', apiUrl);
-                    console.log('Request body:', { content: content, platforms: selectedPlatforms });
-                    
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            content: content,
-                            platforms: selectedPlatforms
-                        })
-                    });
-                    
-                    console.log('Response status:', response.status);
-                    
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        console.error('API error:', response.status, errorText);
-                        throw new Error(`API error: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    console.log('API response:', { 
-                        success: data.success, 
-                        echoId: data.echoId, 
-                        hasResults: !!data.results 
-                    });
-                    
-                    // Store echoId and shareUrl for sharing features
-                    window.currentEchoId = data.echoId;
-                    window.currentShareUrl = data.shareUrl;
-                    displayAIOutputs(data.results || data, data.echoId, data.shareUrl);
-                    
-                } catch (error) {
-                    console.error('AI API error:', error);
-                    // Fallback to simulation
-                    alert('AI service temporarily unavailable. Showing demo version.');
-                    const outputs = generateDemoOutputs(content, selectedPlatforms);
-                    displayAIOutputs(outputs, null, null);
-                } finally {
-                    // Hide processing
-                    generateButton.disabled = false;
-                    if (processingSpan) {
-                        processingSpan.style.display = 'none';
-                    }
-                    
-                    // Show output section
-                    showAIOutput();
-                    document.getElementById('ai-output').scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        };
+            }
+        });
         
         function generateDemoOutputs(content, platforms) {
             const outputs = {};
@@ -1129,50 +940,11 @@
             return outputs;
         }
         
-        function displayAIOutputs(outputs, echoId = null, shareUrl = null) {
+        function displayAIOutputs(outputs) {
             const outputContent = document.getElementById('outputContent');
             if (!outputContent) return;
             
-            let html = '';
-            
-            // Share Banner (only if we have echoId and shareUrl)
-            if (echoId && shareUrl) {
-                html += `
-                <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; padding: 30px; margin-bottom: 40px; color: white;">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <i class="fas fa-check-circle" style="font-size: 2rem; margin-right: 15px;"></i>
-                        <div>
-                            <h2 style="margin: 0; font-size: 1.8rem;">✅ Your Echo is Ready!</h2>
-                            <p style="margin: 5px 0 0 0; opacity: 0.9;">Shareable link (valid for 7 days):</p>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px; margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-link" style="font-size: 1.2rem;"></i>
-                            <a href="${shareUrl}" style="color: white; text-decoration: underline; word-break: break-all;">${shareUrl}</a>
-                            <button onclick="copyToClipboard('${shareUrl}', this)" style="margin-left: auto; padding: 8px 15px; background: white; color: #667eea; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                                <i class="fas fa-copy"></i> Copy Link
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 15px; align-items: center;">
-                        <div>
-                            <input type="email" id="echoEmail" placeholder="your@email.com" style="width: 100%; padding: 12px 15px; border: none; border-radius: 8px; font-size: 1rem;">
-                        </div>
-                        <button onclick="sendEchoEmail('${echoId}')" style="padding: 12px 25px; background: #4dabf7; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px;">
-                            <i class="fas fa-envelope"></i> 📧 Email me the full package
-                        </button>
-                        <button onclick="downloadEchoZip('${echoId}')" style="padding: 12px 25px; background: #40c057; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px;">
-                            <i class="fas fa-download"></i> ⬇️ Download All as ZIP
-                        </button>
-                    </div>
-                </div>`;
-            }
-            
-            // Results Grid
-            html += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">';
+            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">';
             
             for (const [platform, content] of Object.entries(outputs)) {
                 const platformIcons = {
@@ -1196,7 +968,7 @@
                         ${content.replace(/\n/g, '<br>')}
                     </div>
                     <div style="margin-top: 15px; display: flex; gap: 10px;">
-                        <button onclick="copyToClipboard('${content.replace(/'/g, "\\'")}', this)" style="padding: 8px 15px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <button onclick="navigator.clipboard.writeText('${content.replace(/'/g, "\\'")}')" style="padding: 8px 15px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">
                             <i class="fas fa-copy"></i> Copy
                         </button>
                         <button onclick="regenerate('${platform}')" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer;">
@@ -1208,131 +980,6 @@
             
             html += '</div>';
             outputContent.innerHTML = html;
-        }
-        
-        // Email sending function
-        async function sendEchoEmail(echoId) {
-            const emailInput = document.getElementById('echoEmail');
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                alert('Please enter your email address.');
-                emailInput.focus();
-                return;
-            }
-            
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('Please enter a valid email address.');
-                emailInput.focus();
-                return;
-            }
-            
-            try {
-                // Show loading state
-                const button = document.querySelector('button[onclick*="sendEchoEmail"]');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                button.disabled = true;
-                
-                const response = await fetch('https://trudor-echo-api.trudorcap.workers.dev/api/send-echo', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ echoId, email })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // Restore button
-                button.innerHTML = originalText;
-                button.disabled = false;
-                
-                if (data.success) {
-                    alert('✅ Email sent! Check your inbox for the full package.');
-                } else {
-                    alert(`Email failed: ${data.error || 'Unknown error'}`);
-                }
-                
-            } catch (error) {
-                console.error('Email sending error:', error);
-                alert('Failed to send email. The feature is in development. Please copy the link manually.');
-                
-                // Restore button
-                const button = document.querySelector('button[onclick*="sendEchoEmail"]');
-                button.innerHTML = '<i class="fas fa-envelope"></i> 📧 Email me the full package';
-                button.disabled = false;
-            }
-        }
-        
-        // Clipboard utility function
-        async function copyToClipboard(text, buttonElement) {
-            const button = buttonElement || (window.event ? window.event.target : null);
-            
-            try {
-                await navigator.clipboard.writeText(text);
-                // Show success feedback
-                if (button) {
-                    const originalText = button.innerHTML;
-                    const originalBackground = button.style.background;
-                    const originalColor = button.style.color;
-                    
-                    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                    button.style.background = '#28a745';
-                    button.style.color = 'white';
-                    
-                    // Reset after 2 seconds
-                    setTimeout(() => {
-                        button.innerHTML = originalText;
-                        button.style.background = originalBackground;
-                        button.style.color = originalColor;
-                    }, 2000);
-                } else {
-                    alert('Link copied to clipboard!');
-                }
-            } catch (err) {
-                console.error('Failed to copy:', err);
-                // Fallback for older browsers
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = text;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    
-                    // Show success feedback
-                    if (button) {
-                        const originalText = button.innerHTML;
-                        const originalBackground = button.style.background;
-                        const originalColor = button.style.color;
-                        
-                        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                        button.style.background = '#28a745';
-                        button.style.color = 'white';
-                        
-                        // Reset after 2 seconds
-                        setTimeout(() => {
-                            button.innerHTML = originalText;
-                            button.style.background = originalBackground;
-                            button.style.color = originalColor;
-                        }, 2000);
-                    } else {
-                        alert('Link copied to clipboard!');
-                    }
-                } catch (fallbackErr) {
-                    console.error('Fallback copy failed:', fallbackErr);
-                    alert('Failed to copy to clipboard. Please copy manually: ' + text);
-                }
-            }
-        }
-        
-        // ZIP download function (placeholder)
-        function downloadEchoZip(echoId) {
-            alert(`ZIP download for Echo ${echoId} is coming soon! For now, please copy each platform's content individually.`);
-            // In production: window.location.href = `https://trudor-echo-api.trudorcap.workers.dev/api/download-echo/${echoId}`;
         }
         
         function regenerate(platform) {
@@ -1378,69 +1025,20 @@
         });
         
         // Payment completion
-        async function startStripeCheckout() {
-            // Get user email from signup form or use a default
-            const emailInput = document.getElementById('email');
-            const userEmail = emailInput ? emailInput.value.trim() : '';
+        function completePayment() {
+            const cardName = document.getElementById('cardName').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiry = document.getElementById('expiry').value;
+            const cvc = document.getElementById('cvc').value;
             
-            if (!userEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
-                alert('Please enter a valid email address first.');
-                if (emailInput) emailInput.focus();
+            if (!cardName || !cardNumber || !expiry || !cvc) {
+                alert('Please fill in all payment details.');
                 return;
             }
             
-            // Show loading state
-            const button = document.querySelector('button[onclick*="startStripeCheckout"]');
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating checkout...';
-            button.disabled = true;
-            
-            try {
-                // Call backend to create Stripe Checkout session
-                const response = await fetch('https://trudor-echo-api.trudorcap.workers.dev/api/create-checkout-session', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        plan: selectedPlan,
-                        email: userEmail,
-                        userId: 'temp-' + Date.now() // In production, use actual user ID
-                    })
-                });
-                
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || `API error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if (data.success && data.url) {
-                    // Redirect to Stripe Checkout
-                    window.location.href = data.url;
-                } else {
-                    throw new Error('Failed to create checkout session');
-                }
-                
-            } catch (error) {
-                console.error('Stripe checkout error:', error);
-                alert(`Payment setup failed: ${error.message}. Please try again or contact support.`);
-                
-                // Restore button
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }
-        }
-        
-        // Check for success redirect from Stripe
-        function checkForStripeSuccess() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const sessionId = urlParams.get('session_id');
-            
-            if (sessionId) {
-                // Payment was successful
-                // Redirect to success page
-                window.location.href = 'success.html';
-            }
+            alert(`Payment successful! Welcome to Trudor Echo ${selectedPlan} plan.`);
+            // In production: Redirect to dashboard
+            window.location.href = 'dashboard.html';
         }
         
         // Initialize
@@ -1466,12 +1064,9 @@
             
             // Initialize AI button
             initAIButton();
-            
-            // Check for Stripe success redirect
-            checkForStripeSuccess();
         });
         
-        console.log('Trudor Echo loaded successfully.');
+        console.log('Iteration 13 loaded: Simple flow with working pages.');
     </script>
 </body>
 </html>

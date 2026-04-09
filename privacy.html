@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Trudor Echo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Force HTTPS and security headers -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
+        body { background: #f5f5f5; color: #333; line-height: 1.6; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Content */
+        .content-section {
+            padding: 80px 0;
+            background: white;
+            min-height: 70vh;
+        }
+        
+        .content-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            color: #444;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            color: #555;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .last-updated {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .footer-extra {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Force HTTPS redirect -->
+    <script>
+      // Immediate redirect from HTTP to HTTPS
+      if (window.location.protocol === 'http:' && window.location.hostname === 'trudor.ai') {
+        window.location.href = 'https://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash;
+      }
+    </script>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Trudor Echo</a>
+                <div class="nav-links">
+                    <a href="how.html">How It Works</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <a href="index.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-box">
+                <h1>Privacy Policy</h1>
+                
+                <div class="last-updated">
+                    <p><strong>Last Updated:</strong> April 8, 2026</p>
+                    <p>This Privacy Policy describes how Trudor Echo ("we", "us", or "our") collects, uses, and shares your personal information when you use our website and services.</p>
+                </div>
+                
+                <h2>1. Information We Collect</h2>
+                <p>We collect information you provide directly to us:</p>
+                <ul>
+                    <li><strong>Account Information:</strong> When you create an account, we collect your name, email address, and password.</li>
+                    <li><strong>Content:</strong> The text, files, and URLs you upload for content repurposing.</li>
+                    <li><strong>Payment Information:</strong> When you subscribe to a paid plan, we collect payment information through our secure payment processor (Stripe).</li>
+                    <li><strong>Communications:</strong> If you contact us, we collect your messages and contact information.</li>
+                </ul>
+                
+                <h2>2. How We Use Your Information</h2>
+                <p>We use the information we collect to:</p>
+                <ul>
+                    <li>Provide, maintain, and improve our services</li>
+                    <li>Process your transactions and send related information</li>
+                    <li>Send you technical notices, updates, and support messages</li>
+                    <li>Respond to your comments and questions</li>
+                    <li>Monitor and analyze trends, usage, and activities</li>
+                    <li>Detect, investigate, and prevent fraudulent transactions</li>
+                </ul>
+                
+                <h2>3. Information Sharing</h2>
+                <p>We do not sell your personal information. We may share information:</p>
+                <ul>
+                    <li><strong>With Service Providers:</strong> To help us operate our services (e.g., payment processing, email delivery).</li>
+                    <li><strong>For Legal Reasons:</strong> If required by law or to protect rights and safety.</li>
+                    <li><strong>Business Transfers:</strong> In connection with a merger, sale, or acquisition.</li>
+                </ul>
+                
+                <h2>4. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.</p>
+                
+                <h2>5. Data Retention</h2>
+                <p>We retain your information for as long as your account is active or as needed to provide services. You can request deletion of your account and data at any time.</p>
+                
+                <h2>6. Your Rights</h2>
+                <p>Depending on your location, you may have rights to:</p>
+                <ul>
+                    <li>Access your personal information</li>
+                    <li>Correct inaccurate information</li>
+                    <li>Delete your information</li>
+                    <li>Object to or restrict processing</li>
+                    <li>Data portability</li>
+                </ul>
+                <p>To exercise these rights, contact us at privacy@trudor.ai.</p>
+                
+                <h2>7. Cookies and Tracking</h2>
+                <p>We use cookies and similar technologies to analyze trends, administer the website, and track users' movements around the site.</p>
+                
+                <h2>8. Children's Privacy</h2>
+                <p>Our services are not intended for children under 13. We do not knowingly collect information from children under 13.</p>
+                
+                <h2>9. Changes to This Policy</h2>
+                <p>We may update this policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+                
+                <h2>10. Contact Us</h2>
+                <p>If you have questions about this Privacy Policy, please contact us at:</p>
+                <p><strong>Email:</strong> privacy@trudor.ai<br>
+                <strong>Address:</strong> Trudor Echo, 123 Innovation Drive, Toronto, ON M5H 2N2, Canada</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="logo" style="color: white; font-size: 2rem; margin-bottom: 20px;">Trudor Echo</a>
+                <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
+                    AI-powered content repurposing for creators, marketers, and businesses.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="how.html">How It Works</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="mailto:support@trudor.ai?subject=Trudor Echo Support">Contact</a>
+                </div>
+                
+                <div class="copyright">
+                    © 2026 Trudor Echo. All rights reserved.
+                </div>
+                
+                <div class="footer-extra">
+                    Made with ❤️ in Toronto
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Privacy Policy page loaded');
+        });
+    </script>
+</body>
+</html>

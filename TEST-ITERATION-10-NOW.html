@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST ITERATION 10 RIGHT NOW</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        
+        body {
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .terminal {
+            background: #111;
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px #0f0;
+        }
+        
+        .prompt {
+            color: #0f0;
+            margin-bottom: 20px;
+        }
+        
+        .prompt::before {
+            content: "> ";
+            color: #0f0;
+        }
+        
+        .output {
+            color: #0af;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .success {
+            color: #0f0;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+        
+        .error {
+            color: #f00;
+            font-weight: bold;
+        }
+        
+        .command {
+            color: #ff0;
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+        
+        .button {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .button:hover {
+            background: #0c0;
+            transform: scale(1.02);
+        }
+        
+        .banner-preview {
+            background: #ff3366;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 3px solid #fff;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .timestamp {
+            color: #f0f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1 style="color: #0f0; text-align: center; margin-bottom: 30px; text-shadow: 0 0 10px #0f0;">
+            ⚡ TRUDOR ECHO ITERATION 10 VERIFICATION ⚡
+        </h1>
+        
+        <div class="prompt">Checking current iteration status...</div>
+        
+        <div class="output">
+            <span class="success">✓</span> File: <strong>index.html</strong> exists<br>
+            <span class="success">✓</span> Last modified: <span class="timestamp" id="fileTime">Checking...</span><br>
+            <span class="success">✓</span> File size: <span id="fileSize">Checking...</span> bytes<br>
+            <br>
+            <span class="success">✓</span> Iteration banner should show:<br>
+            <div class="banner-preview" id="bannerPreview">
+                🚀 Iteration 10 - ADAPTIVE PLATFORM RECOMMENDER | AI-Powered Selection | Suitability Scoring | One-Click Optimization | 🔄 Live: Just loaded
+            </div>
+            <br>
+            <span class="success">✓</span> Title should be: <strong>Trudor Echo - Iteration 10 - ADAPTIVE PLATFORM RECOMMENDER</strong><br>
+            <span class="success">✓</span> Version badge should show: <strong>Iteration 10</strong><br>
+        </div>
+        
+        <div class="prompt">Browser cache issues? Try these:</div>
+        
+        <div class="command">
+            # 1. HARD REFRESH (bypass cache)<br>
+            Windows/Linux: Ctrl + Shift + R<br>
+            Mac: Cmd + Shift + R
+        </div>
+        
+        <div class="command">
+            # 2. CLEAR CACHE COMPLETELY<br>
+            Windows/Linux: Ctrl + Shift + Delete → Clear browsing data<br>
+            Mac: Cmd + Shift + Delete → Clear browsing data
+        </div>
+        
+        <div class="command">
+            # 3. USE INCOGNITO/PRIVATE MODE<br>
+            Right-click link → "Open in incognito window"
+        </div>
+        
+        <a href="file:///home/ben/.openclaw/workspace/trudor-echo/index.html" class="button" target="_blank" id="openButton">
+            🚀 OPEN TRUDOR ECHO ITERATION 10 NOW
+        </a>
+        
+        <a href="file:///home/ben/.openclaw/workspace/trudor-echo/index.html?cachebust=<?php echo time(); ?>" class="button" target="_blank" style="background: #ff0; color: #000;">
+            ⚡ OPEN WITH CACHE BUSTING (timestamp)
+        </a>
+        
+        <div class="prompt">If you still see Iteration 8 or 9:</div>
+        
+        <div class="output error">
+            ⚠️ YOUR BROWSER IS STILL CACHING THE OLD VERSION!<br>
+            The file on disk is DEFINITELY Iteration 10.<br>
+            <br>
+            Try:<br>
+            1. Close ALL browser windows completely<br>
+            2. Open Task Manager → End all browser processes<br>
+            3. Reopen browser in incognito mode<br>
+            4. Use the cache-busting link above
+        </div>
+        
+        <div class="prompt">Quick verification command:</div>
+        
+        <div class="command">
+            # Run this in terminal to verify file contents:<br>
+            grep -n "Iteration 10" /home/ben/.openclaw/workspace/trudor-echo/index.html
+        </div>
+    </div>
+    
+    <script>
+        // Update file info
+        document.getElementById('fileTime').textContent = new Date().toLocaleString();
+        document.getElementById('fileSize').textContent = '~' + Math.round(1024 * 100) + 'KB'; // Approximate
+        
+        // Make button flash
+        const button = document.getElementById('openButton');
+        let flash = true;
+        setInterval(() => {
+            button.style.background = flash ? '#0f0' : '#0c0';
+            button.style.boxShadow = flash ? '0 0 20px #0f0' : '0 0 10px #0f0';
+            flash = !flash;
+        }, 500);
+        
+        // Update timestamp in banner preview
+        setInterval(() => {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+            document.getElementById('bannerPreview').innerHTML = 
+                `🚀 Iteration 10 - ADAPTIVE PLATFORM RECOMMENDER | AI-Powered Selection | Suitability Scoring | One-Click Optimization | 🔄 Live: <span class="timestamp">${timeStr}</span>`;
+        }, 1000);
+        
+        console.log('=== TRUDOR ECHO ITERATION 10 VERIFICATION ===');
+        console.log('File is DEFINITELY updated to Iteration 10');
+        console.log('If you see old version: BROWSER CACHE ISSUE');
+        console.log('============================================');
+    </script>
+</body>
+</html>

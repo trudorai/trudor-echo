@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Debug Trudor Echo API</h1>
+    
+    <div>
+        <h3>Test Backend Directly:</h3>
+        <button onclick="testBackend()">Test Backend API</button>
+        <div id="backend-result" style="margin-top: 20px; padding: 10px; background: #f0f0f0;"></div>
+    </div>
+    
+    <div style="margin-top: 40px;">
+        <h3>Test Frontend Logic:</h3>
+        <textarea id="testContent" style="width: 100%; height: 100px;">Test content for debugging</textarea>
+        <div>
+            <label><input type="checkbox" id="test-linkedin" checked> LinkedIn</label>
+            <label><input type="checkbox" id="test-twitter" checked> Twitter</label>
+            <label><input type="checkbox" id="test-instagram"> Instagram</label>
+        </div>
+        <button onclick="testFrontend()">Test Frontend Flow</button>
+        <div id="frontend-result" style="margin-top: 20px; padding: 10px; background: #f0f0f0;"></div>
+    </div>
+    
+    <script>
+        async function testBackend() {
+            const resultDiv = document.getElementById('backend-result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch('https://trudor-echo-api.trudorcap.workers.dev', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: 'Test content for debugging',
+                        platforms: ['linkedin', 'twitter']
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <strong>✅ Backend Working!</strong><br>
+                    Success: ${data.success}<br>
+                    Echo ID: ${data.echoId}<br>
+                    Share URL: ${data.shareUrl}<br>
+                    Results: ${Object.keys(data.results || {}).join(', ')}
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Backend Error:</strong> ${error.message}`;
+            }
+        }
+        
+        async function testFrontend() {
+            const resultDiv = document.getElementById('frontend-result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            const content = document.getElementById('testContent').value;
+            const selectedPlatforms = [];
+            if (document.getElementById('test-linkedin').checked) selectedPlatforms.push('linkedin');
+            if (document.getElementById('test-twitter').checked) selectedPlatforms.push('twitter');
+            if (document.getElementById('test-instagram').checked) selectedPlatforms.push('instagram');
+            
+            if (selectedPlatforms.length === 0) {
+                resultDiv.innerHTML = 'Please select at least one platform.';
+                return;
+            }
+            
+            try {
+                const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev';
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: content,
+                        platforms: selectedPlatforms
+                    })
+                });
+                
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <strong>✅ Frontend API Call Working!</strong><br>
+                    Success: ${data.success}<br>
+                    Echo ID: ${data.echoId}<br>
+                    Share URL: ${data.shareUrl}<br>
+                    <button onclick="testEmail('${data.echoId}')">Test Email Send</button>
+                `;
+                
+                // Test display function
+                testDisplay(data);
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Frontend Error:</strong> ${error.message}`;
+            }
+        }
+        
+        function testDisplay(data) {
+            console.log('Display function would show:', data);
+            alert(`Display would show: ${Object.keys(data.results).length} platforms, Echo ID: ${data.echoId}`);
+        }
+        
+        async function testEmail(echoId) {
+            const email = prompt('Enter test email:');
+            if (!email) return;
+            
+            try {
+                const response = await fetch('https://trudor-echo-api.trudorcap.workers.dev/api/send-echo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ echoId, email })
+                });
+                
+                const data = await response.json();
+                alert(`Email test: ${data.success ? '✅ Success' : '❌ Failed'}\n${data.message || data.error}`);
+            } catch (error) {
+                alert(`Email error: ${error.message}`);
+            }
+        }
+    </script>
+</body>
+</html>
