@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trudor Echo - AI Content Repurposing</title>
+    
+    <!-- Force HTTPS and security headers -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://js.stripe.com/v3/"></script>
     <style>
@@ -370,6 +377,13 @@
     </style>
 </head>
 <body>
+    <!-- Force HTTPS redirect -->
+    <script>
+      // Immediate redirect from HTTP to HTTPS
+      if (window.location.protocol === 'http:' && window.location.hostname === 'trudor.ai') {
+        window.location.href = 'https://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash;
+      }
+    </script>
 
     
     <!-- Header -->

@@ -196,6 +196,13 @@
     </style>
 </head>
 <body>
+    <!-- Force HTTPS redirect -->
+    <script>
+      // Immediate redirect from HTTP to HTTPS
+      if (window.location.protocol === "http:" && window.location.hostname === "trudor.ai") {
+        window.location.href = "https://" + window.location.hostname + window.location.pathname + window.location.search + window.location.hash;
+      }
+    </script>
     <!-- Header -->
     <header>
         <div class="container">
