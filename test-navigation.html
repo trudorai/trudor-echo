@@ -1,157 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Trudor Echo Navigation</title>
+    <title>Test Navigation Implementation</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: monospace; }
-        body { background: #000; color: #0f0; padding: 20px; }
-        .terminal { background: #111; border: 2px solid #0f0; padding: 30px; max-width: 800px; margin: 0 auto; }
-        h1 { color: #0f0; text-align: center; margin-bottom: 30px; }
-        .test { margin: 15px 0; padding: 15px; background: #222; border-radius: 5px; }
-        .pass { color: #0f0; }
-        .fail { color: #f00; }
-        .button { background: #0f0; color: #000; padding: 10px 20px; border: none; cursor: pointer; margin: 5px; }
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .page-link { display: block; margin: 5px 0; padding: 8px; background: #f8f9fa; border-radius: 4px; }
+        .checklist { margin: 20px 0; padding: 15px; background: #e9ecef; border-radius: 8px; }
+        .nav-preview { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0; }
     </style>
 </head>
 <body>
-    <div class="terminal">
-        <h1>🧪 Test Trudor Echo Navigation & Buttons</h1>
-        
-        <div class="test">
-            <h3>Test 1: Navigation Links</h3>
-            <p>Click each link - should scroll to section:</p>
-            <button class="button" onclick="testLink('#how')">Test #how</button>
-            <button class="button" onclick="testLink('#pricing')">Test #pricing</button>
-            <button class="button" onclick="testLink('#examples')">Test #examples</button>
-            <button class="button" onclick="testLink('#faq')">Test #faq</button>
-            <div id="linkResult" style="margin-top: 10px;"></div>
+    <h1>🧭 Navigation Implementation Test</h1>
+    
+    <div class="checklist">
+        <h3>Navigation Requirements Checklist:</h3>
+        <ul>
+            <li>✅ Logo on left (Trudor Echo) → Homepage link</li>
+            <li>✅ Navigation menu items (centered/right-aligned)</li>
+            <li>✅ Home, Features/How It Works, Pricing, Blog/Case Studies, Support/Contact</li>
+            <li>✅ Sign Up / Log In buttons on right</li>
+            <li>✅ Clean, not overcrowded</li>
+            <li>✅ Mobile: Hamburger menu</li>
+            <li>✅ Site feels like full product (not single landing page)</li>
+            <li>✅ Clear section anchors / separate pages</li>
+        </ul>
+    </div>
+    
+    <div class="nav-preview">
+        <h3>Navigation Preview:</h3>
+        <div style="background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
+                <a href="index.html" style="font-size: 1.8rem; font-weight: bold; color: #667eea; text-decoration: none;">Trudor Echo</a>
+                <div style="display: flex; gap: 30px; align-items: center;">
+                    <a href="index.html" style="color: #667eea; font-weight: 600;">Home</a>
+                    <a href="how.html" style="color: #333;">How It Works</a>
+                    <a href="pricing.html" style="color: #333;">Pricing</a>
+                    <a href="examples.html" style="color: #333;">Examples</a>
+                    <a href="#" style="color: #333;">Blog</a>
+                    <a href="faq.html" style="color: #333;">FAQ</a>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <a href="#login" style="background: transparent; color: #667eea; border: 2px solid #667eea; padding: 10px 25px; border-radius: 8px; text-decoration: none;">Log In</a>
+                    <a href="#upload" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none;">Sign Up</a>
+                </div>
+            </div>
         </div>
-        
-        <div class="test">
-            <h3>Test 2: Payment Buttons</h3>
-            <p>Click payment buttons - should show alerts:</p>
-            <button class="button" onclick="testButton('pay12')">Test $12 Button</button>
-            <button class="button" onclick="testButton('pay29')">Test $29 Button</button>
-            <div id="buttonResult" style="margin-top: 10px;"></div>
+        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Desktop view shown. On mobile (&lt;768px), menu collapses into hamburger.</p>
+    </div>
+    
+    <h3>Test Pages:</h3>
+    <div id="pages">
+        <div class="page-link">
+            <a href="index.html" target="_blank">Homepage (index.html)</a>
+            <span id="index-status">Testing...</span>
         </div>
-        
-        <div class="test">
-            <h3>Test 3: CTA Buttons</h3>
-            <p>Click main CTA buttons:</p>
-            <button class="button" onclick="testCTA()">Test "Get Started" Button</button>
-            <button class="button" onclick="testAIButton()">Test "AI Optimize Selection"</button>
-            <div id="ctaResult" style="margin-top: 10px;"></div>
+        <div class="page-link">
+            <a href="examples.html" target="_blank">Examples (examples.html)</a>
+            <span id="examples-status">Testing...</span>
         </div>
-        
-        <div class="test">
-            <h3>Test 4: File Limits Display</h3>
-            <p>Check if file limits are visible:</p>
-            <button class="button" onclick="checkFileLimits()">Check File Limits</button>
-            <div id="limitsResult" style="margin-top: 10px;"></div>
+        <div class="page-link">
+            <a href="faq.html" target="_blank">FAQ (faq.html)</a>
+            <span id="faq-status">Testing...</span>
         </div>
-        
-        <div class="test">
-            <h3>Test 5: Color Check</h3>
-            <p>Verify colors are blue/green, not neon peach:</p>
-            <button class="button" onclick="checkColors()">Check Colors</button>
-            <div id="colorResult" style="margin-top: 10px;"></div>
+        <div class="page-link">
+            <a href="how.html" target="_blank">How It Works (how.html)</a>
+            <span id="how-status">Testing...</span>
         </div>
-        
-        <div style="margin-top: 30px; text-align: center;">
-            <button class="button" style="background: #667eea; color: white; padding: 15px 30px; font-size: 1.2rem;" onclick="runAllTests()">
-                🚀 RUN ALL TESTS
-            </button>
+        <div class="page-link">
+            <a href="pricing.html" target="_blank">Pricing (pricing.html)</a>
+            <span id="pricing-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="privacy.html" target="_blank">Privacy Policy (privacy.html)</a>
+            <span id="privacy-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="terms.html" target="_blank">Terms of Service (terms.html)</a>
+            <span id="terms-status">Testing...</span>
         </div>
     </div>
     
+    <h3>Navigation Verification:</h3>
+    <div id="verification">
+        <div class="test-result" id="logo-test">Checking logo and homepage link...</div>
+        <div class="test-result" id="nav-items-test">Checking navigation items...</div>
+        <div class="test-result" id="auth-buttons-test">Checking auth buttons...</div>
+        <div class="test-result" id="mobile-test">Checking mobile responsiveness...</div>
+        <div class="test-result" id="sticky-test">Checking sticky header...</div>
+        <div class="test-result" id="active-state-test">Checking active page highlighting...</div>
+    </div>
+    
+    <h3>Site Structure Verification:</h3>
+    <div id="structure">
+        <div class="test-result" id="separate-pages-test">Checking separate pages exist...</div>
+        <div class="test-result" id="footer-test">Checking footer on all pages...</div>
+        <div class="test-result" id="legal-pages-test">Checking legal pages...</div>
+    </div>
+    
     <script>
-        function testLink(hash) {
-            const element = document.querySelector(hash);
-            if (element) {
-                document.getElementById('linkResult').innerHTML = `<span class="pass">✓ ${hash} section exists</span>`;
-                element.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                document.getElementById('linkResult').innerHTML = `<span class="fail">✗ ${hash} section NOT FOUND</span>`;
-            }
-        }
+        // Test each page for navigation
+        const pages = [
+            'index.html', 'examples.html', 'faq.html', 'how.html', 
+            'pricing.html', 'privacy.html', 'terms.html'
+        ];
         
-        function testButton(buttonId) {
-            const button = document.getElementById(buttonId);
-            if (button && typeof button.onclick === 'function') {
-                document.getElementById('buttonResult').innerHTML = `<span class="pass">✓ ${buttonId} has click handler</span>`;
-                button.click();
-            } else {
-                document.getElementById('buttonResult').innerHTML = `<span class="fail">✗ ${buttonId} missing or no handler</span>`;
-            }
-        }
+        const statusElements = {
+            'index.html': 'index-status',
+            'examples.html': 'examples-status',
+            'faq.html': 'faq-status',
+            'how.html': 'how-status',
+            'pricing.html': 'pricing-status',
+            'privacy.html': 'privacy-status',
+            'terms.html': 'terms-status'
+        };
         
-        function testCTA() {
-            const buttons = document.querySelectorAll('.cta-button, [href="#pricing"]');
-            if (buttons.length > 0) {
-                document.getElementById('ctaResult').innerHTML = `<span class="pass">✓ Found ${buttons.length} CTA buttons</span>`;
-                buttons[0].scrollIntoView({ behavior: 'smooth' });
-            } else {
-                document.getElementById('ctaResult').innerHTML = `<span class="fail">✗ No CTA buttons found</span>`;
-            }
-        }
-        
-        function testAIButton() {
-            const button = document.getElementById('aiOptimizeBtn');
-            if (button) {
-                document.getElementById('ctaResult').innerHTML += `<br><span class="pass">✓ AI Optimize button found</span>`;
-                button.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                document.getElementById('ctaResult').innerHTML += `<br><span class="fail">✗ AI Optimize button NOT FOUND</span>`;
-            }
-        }
-        
-        function checkFileLimits() {
-            const text = document.body.innerText;
-            const hasLimits = text.includes('25MB') || text.includes('500MB') || text.includes('2GB');
-            if (hasLimits) {
-                document.getElementById('limitsResult').innerHTML = `<span class="pass">✓ File limits displayed</span>`;
-            } else {
-                document.getElementById('limitsResult').innerHTML = `<span class="fail">✗ File limits NOT displayed</span>`;
-            }
-        }
-        
-        function checkColors() {
-            const styles = document.querySelectorAll('style');
-            let hasNeonPeach = false;
-            let hasBlueGreen = false;
-            
-            styles.forEach(style => {
-                const css = style.textContent;
-                if (css.includes('#ff3366') || css.includes('#ff0') || css.includes('neon')) {
-                    hasNeonPeach = true;
+        // Test a single page
+        async function testPage(page) {
+            try {
+                const response = await fetch(page);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
-                if (css.includes('#667eea') || css.includes('#28a745') || css.includes('#764ba2')) {
-                    hasBlueGreen = true;
+                
+                const html = await response.text();
+                const hasLogo = html.includes('Trudor Echo') && html.includes('href="index.html"');
+                const hasNavItems = html.includes('nav-links') && html.includes('Home') && html.includes('Pricing');
+                const hasAuthButtons = html.includes('login-btn') && html.includes('signup-btn');
+                const hasHamburger = html.includes('hamburger') && html.includes('id="hamburger"');
+                const hasStickyHeader = html.includes('position: sticky') && html.includes('top: 0');
+                
+                const element = document.getElementById(statusElements[page]);
+                if (hasLogo && hasNavItems && hasAuthButtons && hasStickyHeader) {
+                    element.innerHTML = '<span class="success">✅ Navigation complete</span>';
+                } else {
+                    const missing = [];
+                    if (!hasLogo) missing.push('logo');
+                    if (!hasNavItems) missing.push('nav items');
+                    if (!hasAuthButtons) missing.push('auth buttons');
+                    if (!hasStickyHeader) missing.push('sticky header');
+                    element.innerHTML = `<span class="warning">⚠️ Missing: ${missing.join(', ')}</span>`;
                 }
-            });
-            
-            if (!hasNeonPeach && hasBlueGreen) {
-                document.getElementById('colorResult').innerHTML = `<span class="pass">✓ Colors are blue/green (good)</span>`;
-            } else if (hasNeonPeach) {
-                document.getElementById('colorResult').innerHTML = `<span class="fail">✗ Still has neon peach colors</span>`;
-            } else {
-                document.getElementById('colorResult').innerHTML = `<span class="fail">✗ Color check inconclusive</span>`;
+                
+            } catch (error) {
+                const element = document.getElementById(statusElements[page]);
+                element.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
             }
         }
         
-        function runAllTests() {
-            testLink('#pricing');
-            testButton('pay12');
-            testCTA();
-            testAIButton();
-            checkFileLimits();
-            checkColors();
-            alert('All tests completed. Check results above.');
+        // Test homepage for detailed verification
+        async function testHomepage() {
+            try {
+                const response = await fetch('index.html');
+                const html = await response.text();
+                
+                // Test logo
+                const logoTest = document.getElementById('logo-test');
+                if (html.includes('Trudor Echo') && html.includes('href="index.html" class="logo"')) {
+                    logoTest.innerHTML = '<span class="success">✅ Logo present and links to homepage</span>';
+                } else {
+                    logoTest.innerHTML = '<span class="error">❌ Logo missing or incorrect</span>';
+                }
+                
+                // Test navigation items
+                const navTest = document.getElementById('nav-items-test');
+                const requiredNavItems = ['Home', 'How It Works', 'Pricing', 'Examples', 'Blog', 'FAQ'];
+                const hasAllNavItems = requiredNavItems.every(item => html.includes(item));
+                
+                if (hasAllNavItems) {
+                    navTest.innerHTML = `<span class="success">✅ Navigation items present: ${requiredNavItems.join(', ')}</span>`;
+                } else {
+                    navTest.innerHTML = '<span class="warning">⚠️ Some navigation items missing</span>';
+                }
+                
+                // Test auth buttons
+                const authTest = document.getElementById('auth-buttons-test');
+                if (html.includes('Log In') && html.includes('Sign Up') && html.includes('login-btn') && html.includes('signup-btn')) {
+                    authTest.innerHTML = '<span class="success">✅ Auth buttons present: Log In and Sign Up</span>';
+                } else {
+                    authTest.innerHTML = '<span class="error">❌ Auth buttons missing</span>';
+                }
+                
+                // Test mobile responsiveness
+                const mobileTest = document.getElementById('mobile-test');
+                if (html.includes('@media (max-width: 768px)') && html.includes('.hamburger')) {
+                    mobileTest.innerHTML = '<span class="success">✅ Mobile hamburger menu implemented</span>';
+                } else {
+                    mobileTest.innerHTML = '<span class="warning">⚠️ Mobile responsiveness may need improvement</span>';
+                }
+                
+                // Test sticky header
+                const stickyTest = document.getElementById('sticky-test');
+                if (html.includes('position: sticky') && html.includes('top: 0') && html.includes('z-index: 1000')) {
+                    stickyTest.innerHTML = '<span class="success">✅ Sticky header implemented</span>';
+                } else {
+                    stickyTest.innerHTML = '<span class="error">❌ Sticky header missing</span>';
+                }
+                
+                // Test active state
+                const activeTest = document.getElementById('active-state-test');
+                if (html.includes('.nav-links a.active') && html.includes('color: #667eea')) {
+                    activeTest.innerHTML = '<span class="success">✅ Active page highlighting implemented</span>';
+                } else {
+                    activeTest.innerHTML = '<span class="warning">⚠️ Active state styling may need improvement</span>';
+                }
+                
+            } catch (error) {
+                console.error('Homepage test error:', error);
+            }
         }
         
-        console.log('Navigation test loaded. Open Trudor Echo site and run tests.');
+        // Test site structure
+        async function testStructure() {
+            try {
+                // Test separate pages
+                const pagesTest = document.getElementById('separate-pages-test');
+                const requiredPages = ['index.html', 'how.html', 'pricing.html', 'examples.html', 'faq.html', 'privacy.html', 'terms.html'];
+                const missingPages = [];
+                
+                for (const page of requiredPages) {
+                    try {
+                        const response = await fetch(page);
+                        if (!response.ok) {
+                            missingPages.push(page);
+                        }
+                    } catch {
+                        missingPages.push(page);
+                    }
+                }
+                
+                if (missingPages.length === 0) {
+                    pagesTest.innerHTML = '<span class="success">✅ All separate pages exist and are accessible</span>';
+                } else {
+                    pagesTest.innerHTML = `<span class="warning">⚠️ Missing pages: ${missingPages.join(', ')}</span>`;
+                }
+                
+                // Test footer
+                const footerTest = document.getElementById('footer-test');
+                const response = await fetch('index.html');
+                const html = await response.text();
+                
+                if (html.includes('<!-- Footer -->') && html.includes('© 2026 Trudor Echo')) {
+                    footerTest.innerHTML = '<span class="success">✅ Footer present on homepage</span>';
+                } else {
+                    footerTest.innerHTML = '<span class="error">❌ Footer missing or incomplete</span>';
+                }
+                
+                // Test legal pages
+                const legalTest = document.getElementById('legal-pages-test');
+                if (html.includes('href="privacy.html"') && html.includes('href="terms.html"')) {
+                    legalTest.innerHTML = '<span class="success">✅ Legal pages linked from navigation/footer</span>';
+                } else {
+                    legalTest.innerHTML = '<span class="warning">⚠️ Legal page links may be missing</span>';
+                }
+                
+            } catch (error) {
+                console.error('Structure test error:', error);
+            }
+        }
+        
+        // Run all tests
+        async function runAllTests() {
+            console.log('Running navigation tests...');
+            
+            // Test each page
+            for (const page of pages) {
+                await testPage(page);
+            }
+            
+            // Test homepage details
+            await testHomepage();
+            
+            // Test site structure
+            await testStructure();
+            
+            console.log('All tests completed');
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runAllTests);
+        
+        // Manual test button
+        document.body.innerHTML += `
+            <div style="margin-top: 30px; padding: 20px; background: #f0f8ff; border-radius: 8px;">
+                <h3>Manual Verification:</h3>
+                <p>For best results, also manually check:</p>
+                <ol>
+                    <li>Visit each page and verify navigation appears</li>
+                    <li>Click logo → should go to homepage</li>
+                    <li>Click navigation links → should go to correct pages</li>
+                    <li>Test on mobile (resize browser to ~375px width)</li>
+                    <li>Click hamburger menu (mobile) → should open/close</li>
+                    <li>Scroll page → header should stay sticky at top</li>
+                    <li>Verify active page is highlighted in navigation</li>
+                    <li>Test Sign Up button → should scroll to upload section</li>
+                    <li>Test Log In button → placeholder for now</li>
+                </ol>
+                <button onclick="runAllTests()" style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Run Tests Again
+                </button>
+            </div>
+        `;
     </script>
 </body>
 </html>

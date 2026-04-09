@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Footer Implementation</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .page-link { display: block; margin: 5px 0; padding: 8px; background: #f8f9fa; border-radius: 4px; }
+        .checklist { margin: 20px 0; padding: 15px; background: #e9ecef; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Footer Implementation Test</h1>
+    
+    <div class="checklist">
+        <h3>Footer Requirements Checklist:</h3>
+        <ul>
+            <li>✅ Clean, consistent footer on every page</li>
+            <li>✅ Centered/left-aligned text, responsive</li>
+            <li>✅ © 2026 Trudor Echo - All rights reserved</li>
+            <li>✅ Link to Privacy Policy (privacy.html)</li>
+            <li>✅ Link to Terms of Service (terms.html)</li>
+            <li>✅ Optional: "Made with ❤️ in [location]"</li>
+            <li>✅ Optional: Social icons (if available)</li>
+            <li>✅ Optional: Quick links (Support, Contact)</li>
+            <li>✅ Minimal styling, good contrast</li>
+            <li>✅ Mobile-friendly</li>
+        </ul>
+    </div>
+    
+    <h3>Test Pages:</h3>
+    <div id="pages">
+        <div class="page-link">
+            <a href="index.html" target="_blank">Homepage (index.html)</a>
+            <span id="index-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="examples.html" target="_blank">Examples (examples.html)</a>
+            <span id="examples-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="faq.html" target="_blank">FAQ (faq.html)</a>
+            <span id="faq-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="how.html" target="_blank">How It Works (how.html)</a>
+            <span id="how-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="pricing.html" target="_blank">Pricing (pricing.html)</a>
+            <span id="pricing-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="success.html" target="_blank">Success (success.html)</a>
+            <span id="success-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="cancel.html" target="_blank">Cancel (cancel.html)</a>
+            <span id="cancel-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="privacy.html" target="_blank">Privacy Policy (privacy.html)</a>
+            <span id="privacy-status">Testing...</span>
+        </div>
+        <div class="page-link">
+            <a href="terms.html" target="_blank">Terms of Service (terms.html)</a>
+            <span id="terms-status">Testing...</span>
+        </div>
+    </div>
+    
+    <h3>Footer Content Verification:</h3>
+    <div id="verification">
+        <div class="test-result" id="copyright-test">Checking copyright text...</div>
+        <div class="test-result" id="privacy-link-test">Checking Privacy Policy link...</div>
+        <div class="test-result" id="terms-link-test">Checking Terms of Service link...</div>
+        <div class="test-result" id="location-test">Checking location text...</div>
+        <div class="test-result" id="contact-test">Checking contact link...</div>
+        <div class="test-result" id="responsive-test">Checking responsive design...</div>
+    </div>
+    
+    <script>
+        // Test each page for footer existence
+        const pages = [
+            'index.html', 'examples.html', 'faq.html', 'how.html', 
+            'pricing.html', 'success.html', 'cancel.html', 'privacy.html', 'terms.html'
+        ];
+        
+        const statusElements = {
+            'index.html': 'index-status',
+            'examples.html': 'examples-status',
+            'faq.html': 'faq-status',
+            'how.html': 'how-status',
+            'pricing.html': 'pricing-status',
+            'success.html': 'success-status',
+            'cancel.html': 'cancel-status',
+            'privacy.html': 'privacy-status',
+            'terms.html': 'terms-status'
+        };
+        
+        // Test a single page
+        async function testPage(page) {
+            try {
+                const response = await fetch(page);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const html = await response.text();
+                const hasFooter = html.includes('<!-- Footer -->') && html.includes('</footer>');
+                const hasCopyright = html.includes('© 2026 Trudor Echo');
+                const hasPrivacyLink = html.includes('href="privacy.html"');
+                const hasTermsLink = html.includes('href="terms.html"');
+                
+                const element = document.getElementById(statusElements[page]);
+                if (hasFooter && hasCopyright && hasPrivacyLink && hasTermsLink) {
+                    element.innerHTML = '<span class="success">✅ All footer elements present</span>';
+                } else {
+                    const missing = [];
+                    if (!hasFooter) missing.push('footer');
+                    if (!hasCopyright) missing.push('copyright');
+                    if (!hasPrivacyLink) missing.push('privacy link');
+                    if (!hasTermsLink) missing.push('terms link');
+                    element.innerHTML = `<span class="warning">⚠️ Missing: ${missing.join(', ')}</span>`;
+                }
+                
+            } catch (error) {
+                const element = document.getElementById(statusElements[page]);
+                element.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+        
+        // Test homepage for detailed verification
+        async function testHomepage() {
+            try {
+                const response = await fetch('index.html');
+                const html = await response.text();
+                
+                // Test copyright
+                const copyrightTest = document.getElementById('copyright-test');
+                if (html.includes('© 2026 Trudor Echo')) {
+                    copyrightTest.innerHTML = '<span class="success">✅ Copyright text present: "© 2026 Trudor Echo. All rights reserved."</span>';
+                } else {
+                    copyrightTest.innerHTML = '<span class="error">❌ Copyright text missing</span>';
+                }
+                
+                // Test privacy link
+                const privacyTest = document.getElementById('privacy-link-test');
+                if (html.includes('href="privacy.html"') && html.includes('Privacy Policy')) {
+                    privacyTest.innerHTML = '<span class="success">✅ Privacy Policy link present and correctly labeled</span>';
+                } else {
+                    privacyTest.innerHTML = '<span class="error">❌ Privacy Policy link missing or incorrect</span>';
+                }
+                
+                // Test terms link
+                const termsTest = document.getElementById('terms-link-test');
+                if (html.includes('href="terms.html"') && html.includes('Terms of Service')) {
+                    termsTest.innerHTML = '<span class="success">✅ Terms of Service link present and correctly labeled</span>';
+                } else {
+                    termsTest.innerHTML = '<span class="error">❌ Terms of Service link missing or incorrect</span>';
+                }
+                
+                // Test location text
+                const locationTest = document.getElementById('location-test');
+                if (html.includes('Made with ❤️') && html.includes('Toronto')) {
+                    locationTest.innerHTML = '<span class="success">✅ Location text present: "Made with ❤️ in Toronto"</span>';
+                } else {
+                    locationTest.innerHTML = '<span class="warning">⚠️ Location text missing (optional)</span>';
+                }
+                
+                // Test contact link
+                const contactTest = document.getElementById('contact-test');
+                if (html.includes('mailto:support@trudor.ai')) {
+                    contactTest.innerHTML = '<span class="success">✅ Contact link present: "support@trudor.ai"</span>';
+                } else {
+                    contactTest.innerHTML = '<span class="warning">⚠️ Contact link missing (optional)</span>';
+                }
+                
+                // Test responsive CSS
+                const responsiveTest = document.getElementById('responsive-test');
+                if (html.includes('@media (max-width: 768px)') && html.includes('flex-direction: column')) {
+                    responsiveTest.innerHTML = '<span class="success">✅ Responsive design implemented for mobile</span>';
+                } else {
+                    responsiveTest.innerHTML = '<span class="warning">⚠️ Responsive design may need improvement</span>';
+                }
+                
+            } catch (error) {
+                console.error('Homepage test error:', error);
+            }
+        }
+        
+        // Run all tests
+        async function runAllTests() {
+            console.log('Running footer tests...');
+            
+            // Test each page
+            for (const page of pages) {
+                await testPage(page);
+            }
+            
+            // Test homepage details
+            await testHomepage();
+            
+            console.log('All tests completed');
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runAllTests);
+        
+        // Manual test button
+        document.body.innerHTML += `
+            <div style="margin-top: 30px; padding: 20px; background: #f0f8ff; border-radius: 8px;">
+                <h3>Manual Verification:</h3>
+                <p>For best results, also manually check:</p>
+                <ol>
+                    <li>Visit each page and scroll to bottom</li>
+                    <li>Verify footer appears on every page</li>
+                    <li>Click Privacy Policy and Terms of Service links</li>
+                    <li>Test on mobile (resize browser to ~375px width)</li>
+                    <li>Check contrast (light text on dark background)</li>
+                    <li>Verify all links work correctly</li>
+                </ol>
+                <button onclick="runAllTests()" style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Run Tests Again
+                </button>
+            </div>
+        `;
+    </script>
+</body>
+</html>

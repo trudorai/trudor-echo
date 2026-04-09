@@ -220,14 +220,38 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Trudor Echo</a>
-                <div class="nav-links">
-                    <a href="how.html">How It Works</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="examples.html">Examples</a>
-                    <a href="faq.html">FAQ</a>
+                <a href="index.html" class="logo">
+                    Trudor Echo
+                </a>
+                
+                <!-- Hamburger menu for mobile -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                <a href="index.html" class="cta-button">Get Started</a>
+                
+                <nav>
+                    <div class="nav-links" id="navLinks">
+                        <a href="index.html" class="active">Home</a>
+                        <a href="how.html">How It Works</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="examples.html">Examples</a>
+                        <a href="#">Blog</a>
+                        <a href="faq.html">FAQ</a>
+                        
+                        <div class="auth-buttons">
+                            <a href="#login" class="login-btn">Log In</a>
+                            <a href="#upload" class="signup-btn">Sign Up</a>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Desktop auth buttons -->
+                <div class="auth-buttons desktop-auth">
+                    <a href="#login" class="login-btn">Log In</a>
+                    <a href="#upload" class="signup-btn">Sign Up</a>
+                </div>
             </div>
         </div>
     </header>
