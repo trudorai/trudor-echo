@@ -1844,10 +1844,33 @@
                 });
             }
             
-            // Set sample content for demo
+            // Set sample content for demo (clears on focus)
             const contentInput = document.getElementById('contentInput');
             if (contentInput) {
-                contentInput.value = `The Future of AI in Content Creation\n\nArtificial intelligence is transforming how we create and distribute content. In 2024, we're seeing AI move from simple text generation to full-scale content strategy and repurposing.\n\nKey trends:\n1. Personalization at scale - AI can now tailor content for different platforms and audiences automatically\n2. Multi-format repurposing - One piece of content can become videos, blogs, social posts, and newsletters\n3. Brand voice consistency - AI learns your unique tone and applies it across all outputs\n4. Efficiency gains - What used to take hours now takes minutes\n\nThe most successful creators aren't those who work hardest, but those who work smartest with the right tools.`;
+                // Set a short, relevant example about content repurposing
+                contentInput.value = 'Example: Paste your blog post, video transcript, or article here to repurpose for 8+ platforms.';
+                
+                // Style it as placeholder text
+                contentInput.style.color = '#999';
+                contentInput.style.fontStyle = 'italic';
+                
+                // Clear on focus
+                contentInput.addEventListener('focus', function() {
+                    if (this.value === 'Example: Paste your blog post, video transcript, or article here to repurpose for 8+ platforms.') {
+                        this.value = '';
+                        this.style.color = '';
+                        this.style.fontStyle = '';
+                    }
+                });
+                
+                // Restore example if empty on blur
+                contentInput.addEventListener('blur', function() {
+                    if (this.value.trim() === '') {
+                        this.value = 'Example: Paste your blog post, video transcript, or article here to repurpose for 8+ platforms.';
+                        this.style.color = '#999';
+                        this.style.fontStyle = 'italic';
+                    }
+                });
             }
             
             // Hamburger menu toggle
