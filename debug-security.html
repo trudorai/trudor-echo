@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Debug - Trudor Echo</title>
+    <style>
+        body { font-family: monospace; padding: 20px; max-width: 1000px; margin: 0 auto; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .good { color: green; }
+        .bad { color: red; }
+        .warning { color: orange; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 5px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔒 Security Debug - trudor.ai</h1>
+    
+    <div class="section">
+        <h2>Current URL Analysis</h2>
+        <div id="url-info">Loading...</div>
+    </div>
+    
+    <div class="section">
+        <h2>Security Headers Check</h2>
+        <div id="headers-info">Loading...</div>
+    </div>
+    
+    <div class="section">
+        <h2>Mixed Content Scan</h2>
+        <div id="mixed-content">Loading...</div>
+    </div>
+    
+    <div class="section">
+        <h2>SSL Certificate Check</h2>
+        <div id="ssl-info">Loading...</div>
+    </div>
+    
+    <div class="section">
+        <h2>Common Issues</h2>
+        <ul>
+            <li><strong>Mixed Content</strong>: HTTP resources on HTTPS page</li>
+            <li><strong>Missing HSTS</strong>: No Strict-Transport-Security header</li>
+            <li><strong>Invalid Certificate</strong>: Self-signed or expired</li>
+            <li><strong>Insecure Forms</strong>: Forms submitting to HTTP</li>
+            <li><strong>JavaScript Issues</strong>: Scripts loading over HTTP</li>
+        </ul>
+    </div>
+    
+    <script>
+        // Current URL analysis
+        const urlInfo = document.getElementById('url-info');
+        urlInfo.innerHTML = `
+            <p><strong>Protocol:</strong> <span class="${window.location.protocol === 'https:' ? 'good' : 'bad'}">${window.location.protocol}</span></p>
+            <p><strong>Hostname:</strong> ${window.location.hostname}</p>
+            <p><strong>Full URL:</strong> ${window.location.href}</p>
+            <p><strong>Secure Context:</strong> <span class="${window.isSecureContext ? 'good' : 'bad'}">${window.isSecureContext ? 'Yes ✅' : 'No ❌'}</span></p>
+        `;
+        
+        // Check for mixed content
+        const mixedContentDiv = document.getElementById('mixed-content');
+        
+        function checkMixedContent() {
+            const httpResources = [];
+            
+            // Check all external resources
+            const scripts = document.getElementsByTagName('script');
+            const links = document.getElementsByTagName('link');
+            const imgs = document.getElementsByTagName('img');
+            const iframes = document.getElementsByTagName('iframe');
+            
+            // Check scripts
+            Array.from(scripts).forEach(script => {
+                if (script.src && script.src.startsWith('http:')) {
+                    httpResources.push(`Script: ${script.src}`);
+                }
+            });
+            
+            // Check stylesheets
+            Array.from(links).forEach(link => {
+                if (link.href && link.href.startsWith('http:')) {
+                    httpResources.push(`Stylesheet: ${link.href}`);
+                }
+            });
+            
+            // Check images
+            Array.from(imgs).forEach(img => {
+                if (img.src && img.src.startsWith('http:')) {
+                    httpResources.push(`Image: ${img.src}`);
+                }
+            });
+            
+            // Check iframes
+            Array.from(iframes).forEach(iframe => {
+                if (iframe.src && iframe.src.startsWith('http:')) {
+                    httpResources.push(`Iframe: ${iframe.src}`);
+                }
+            });
+            
+            if (httpResources.length === 0) {
+                mixedContentDiv.innerHTML = '<p class="good">✅ No mixed content detected (all resources use HTTPS)</p>';
+            } else {
+                mixedContentDiv.innerHTML = `
+                    <p class="bad">❌ Mixed content detected (${httpResources.length} HTTP resources):</p>
+                    <ul>
+                        ${httpResources.map(res => `<li>${res}</li>`).join('')}
+                    </ul>
+                `;
+            }
+        }
+        
+        // Fetch security headers
+        async function checkSecurityHeaders() {
+            const headersDiv = document.getElementById('headers-info');
+            
+            try {
+                const response = await fetch(window.location.href);
+                const headers = response.headers;
+                
+                const importantHeaders = [
+                    'strict-transport-security',
+                    'content-security-policy', 
+                    'x-frame-options',
+                    'x-content-type-options',
+                    'referrer-policy'
+                ];
+                
+                let headersHtml = '<table style="width: 100%; border-collapse: collapse;">';
+                headersHtml += '<tr><th>Header</th><th>Value</th><th>Status</th></tr>';
+                
+                importantHeaders.forEach(header => {
+                    const value = headers.get(header);
+                    const hasHeader = value !== null;
+                    const status = hasHeader ? 'good' : 'bad';
+                    const statusText = hasHeader ? '✅' : '❌';
+                    
+                    headersHtml += `
+                        <tr>
+                            <td><strong>${header}</strong></td>
+                            <td><code>${value || '(missing)'}</code></td>
+                            <td class="${status}">${statusText}</td>
+                        </tr>
+                    `;
+                });
+                
+                headersHtml += '</table>';
+                headersDiv.innerHTML = headersHtml;
+                
+            } catch (error) {
+                headersDiv.innerHTML = `<p class="bad">❌ Error fetching headers: ${error.message}</p>`;
+            }
+        }
+        
+        // Check SSL certificate
+        async function checkSSL() {
+            const sslDiv = document.getElementById('ssl-info');
+            
+            try {
+                // Try to get certificate info (limited by browser security)
+                const response = await fetch(window.location.origin, { mode: 'no-cors' });
+                
+                // Check if we're on HTTPS
+                if (window.location.protocol === 'https:') {
+                    sslDiv.innerHTML = `
+                        <p class="good">✅ Using HTTPS protocol</p>
+                        <p><strong>Note:</strong> Full certificate details require server-side checking.</p>
+                        <p>Check certificate manually:</p>
+                        <ul>
+                            <li>Click the lock icon in browser address bar</li>
+                            <li>Select "Connection is secure"</li>
+                            <li>Click "Certificate is valid"</li>
+                        </ul>
+                    `;
+                } else {
+                    sslDiv.innerHTML = '<p class="bad">❌ Not using HTTPS protocol</p>';
+                }
+                
+            } catch (error) {
+                sslDiv.innerHTML = `<p>SSL check error: ${error.message}</p>`;
+            }
+        }
+        
+        // Run all checks
+        document.addEventListener('DOMContentLoaded', () => {
+            checkMixedContent();
+            checkSecurityHeaders();
+            checkSSL();
+            
+            // Add manual test instructions
+            document.body.innerHTML += `
+                <div class="section">
+                    <h2>Manual Tests to Run</h2>
+                    <ol>
+                        <li><strong>Browser Console</strong>: Open DevTools → Console, look for mixed content warnings</li>
+                        <li><strong>Network Tab</strong>: Open DevTools → Network, reload page, check all resources use HTTPS</li>
+                        <li><strong>Security Tab</strong>: In Chrome: DevTools → Security (if available)</li>
+                        <li><strong>Address Bar</strong>: Click lock icon → Connection is secure</li>
+                        <li><strong>External Tools</strong>:
+                            <ul>
+                                <li><a href="https://www.ssllabs.com/ssltest/analyze.html?d=trudor.ai" target="_blank">SSL Labs Test</a></li>
+                                <li><a href="https://securityheaders.com/?q=trudor.ai&followRedirects=on" target="_blank">Security Headers Test</a></li>
+                                <li><a href="https://hstspreload.org/?domain=trudor.ai" target="_blank">HSTS Preload Check</a></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="section">
+                    <h2>Quick Fixes</h2>
+                    <p>If site shows "Not Secure":</p>
+                    <ol>
+                        <li><strong>Force HTTPS redirect</strong>: Ensure all traffic goes to https://</li>
+                        <li><strong>Fix mixed content</strong>: Update all HTTP URLs to HTTPS</li>
+                        <li><strong>Add HSTS header</strong>: Strict-Transport-Security: max-age=31536000; includeSubDomains</li>
+                        <li><strong>Check forms</strong>: Ensure forms submit to HTTPS endpoints</li>
+                        <li><strong>Verify CDNs</strong>: All external resources must use HTTPS</li>
+                    </ol>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
