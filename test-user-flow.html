@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Flow Test - Anonymous Visitor</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .step { margin: 30px 0; padding: 25px; border-radius: 10px; border-left: 5px solid #667eea; background: #f8f9fa; }
+        .task { background: white; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #e9ecef; }
+        .time { font-size: 0.9rem; color: #666; margin-left: 10px; }
+        .success { color: #28a745; }
+        .fail { color: #dc3545; }
+        .checklist { margin: 10px 0 20px 20px; }
+        .checklist li { margin: 8px 0; }
+        button { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .timer { font-weight: bold; color: #667eea; }
+    </style>
+</head>
+<body>
+    <h1>🔄 User Flow Test - Anonymous Visitor</h1>
+    <p>Test if someone can easily understand the product, see value, find legal info, and navigate without frustration.</p>
+    
+    <div class="step">
+        <h2>Step 1: First Impression (10 seconds)</h2>
+        <p class="time">⏱️ Goal: Understand product in under 10 seconds</p>
+        
+        <div class="task">
+            <h3>Task: Visit Homepage</h3>
+            <p><a href="index.html" target="_blank">Open homepage in new tab</a></p>
+            <p>Quickly scan the page. Can you tell:</p>
+            <ul class="checklist">
+                <li>✅ What the product does?</li>
+                <li>✅ Who it's for?</li>
+                <li>✅ The main benefit?</li>
+                <li>✅ How to get started?</li>
+            </ul>
+            
+            <div id="step1-result">
+                <p>Did you understand the product in 10 seconds?</p>
+                <button onclick="recordResult(1, true)">✅ Yes, Clear</button>
+                <button onclick="recordResult(1, false)">❌ No, Confusing</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step">
+        <h2>Step 2: See Value (30 seconds)</h2>
+        <p class="time">⏱️ Goal: See clear value proposition</p>
+        
+        <div class="task">
+            <h3>Task: Explore Value Propositions</h3>
+            <p>Look for:</p>
+            <ul class="checklist">
+                <li>✅ Specific benefits (save time, increase output)</li>
+                <li>✅ Social proof (testimonials, metrics)</li>
+                <li>✅ Visual demonstrations</li>
+                <li>✅ Clear "How It Works"</li>
+            </ul>
+            
+            <div id="step2-result">
+                <p>Is the value clear and compelling?</p>
+                <button onclick="recordResult(2, true)">✅ Yes, Clear Value</button>
+                <button onclick="recordResult(2, false)">❌ No, Vague</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step">
+        <h2>Step 3: Try Demo (1 minute)</h2>
+        <p class="time">⏱️ Goal: Try free demo without friction</p>
+        
+        <div class="task">
+            <h3>Task: Use the Free Demo</h3>
+            <p>Scroll to upload section and:</p>
+            <ol class="checklist">
+                <li>Find the demo content (pre-filled)</li>
+                <li>Select some platforms</li>
+                <li>Click "Generate Free Demo"</li>
+                <li>See AI outputs</li>
+            </ol>
+            
+            <div id="step3-result">
+                <p>Was the demo easy to try?</p>
+                <button onclick="recordResult(3, true)">✅ Yes, Smooth</button>
+                <button onclick="recordResult(3, false)">❌ No, Issues</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step">
+        <h2>Step 4: Find Pricing (30 seconds)</h2>
+        <p class="time">⏱️ Goal: Find pricing within 2 clicks</p>
+        
+        <div class="task">
+            <h3>Task: Locate Pricing Information</h3>
+            <p>Starting from homepage:</p>
+            <ol class="checklist">
+                <li>Find pricing link in navigation</li>
+                <li>Click to pricing page</li>
+                <li>Understand plan differences</li>
+                <li>See clear pricing (Free, Pro, Business)</li>
+            </ol>
+            
+            <div id="step4-result">
+                <p>Was pricing easy to find and understand?</p>
+                <button onclick="recordResult(4, true)">✅ Yes, Clear</button>
+                <button onclick="recordResult(4, false)">❌ No, Hidden</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step">
+        <h2>Step 5: Legal Info (30 seconds)</h2>
+        <p class="time">⏱️ Goal: Find legal pages easily</p>
+        
+        <div class="task">
+            <h3>Task: Access Legal Information</h3>
+            <p>Find and open:</p>
+            <ul class="checklist">
+                <li>✅ Privacy Policy</li>
+                <li>✅ Terms of Service</li>
+                <li>✅ Contact information</li>
+            </ul>
+            
+            <div id="step5-result">
+                <p>Were legal pages accessible?</p>
+                <button onclick="recordResult(5, true)">✅ Yes, Easy</button>
+                <button onclick="recordResult(5, false)">❌ No, Hard</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step">
+        <h2>Step 6: Trust & Security (30 seconds)</h2>
+        <p class="time">⏱️ Goal: Feel confident about security</p>
+        
+        <div class="task">
+            <h3>Task: Identify Trust Signals</h3>
+            <p>Look for:</p>
+            <ul class="checklist">
+                <li>✅ Security mentions near upload</li>
+                <li>✅ Data privacy assurances</li>
+                <li>✅ Contact/support options</li>
+                <li>✅ Professional design</li>
+            </ul>
+            
+            <div id="step6-result">
+                <p>Do you feel the site is trustworthy?</p>
+                <button onclick="recordResult(6, true)">✅ Yes, Trustworthy</button>
+                <button onclick="recordResult(6, false)">❌ No, Concerns</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step">
+        <h2>Test Results</h2>
+        <div id="results">
+            <p>Complete the steps above to see results.</p>
+        </div>
+        
+        <div id="summary" style="margin-top: 20px; padding: 20px; background: white; border-radius: 8px; border: 1px solid #e9ecef;">
+            <h3>Overall Assessment</h3>
+            <p id="overall-score">Score: 0/6</p>
+            <p id="recommendations">Complete all steps for recommendations.</p>
+        </div>
+        
+        <button onclick="resetTest()" style="background: #6c757d;">Reset Test</button>
+        <button onclick="exportResults()" style="background: #28a745;">Export Results</button>
+    </div>
+    
+    <script>
+        const testResults = Array(6).fill(null);
+        const startTime = Date.now();
+        
+        function recordResult(step, success) {
+            testResults[step - 1] = success;
+            updateResults();
+            
+            // Visual feedback
+            const button = event.target;
+            button.style.background = success ? '#28a745' : '#dc3545';
+            button.disabled = true;
+            
+            // Move to next step if available
+            if (step < 6) {
+                document.getElementById(`step${step + 1}-result`).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function updateResults() {
+            const completed = testResults.filter(r => r !== null).length;
+            const passed = testResults.filter(r => r === true).length;
+            const total = testResults.length;
+            
+            // Update results display
+            let resultsHtml = `<h3>Progress: ${completed}/${total} steps completed</h3>`;
+            resultsHtml += `<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0;">`;
+            
+            testResults.forEach((result, index) => {
+                const stepNum = index + 1;
+                let status = '⏳';
+                let color = '#6c757d';
+                
+                if (result === true) {
+                    status = '✅';
+                    color = '#28a745';
+                } else if (result === false) {
+                    status = '❌';
+                    color = '#dc3545';
+                }
+                
+                resultsHtml += `
+                    <div style="text-align: center; padding: 10px; background: ${color}; color: white; border-radius: 5px;">
+                        <strong>Step ${stepNum}</strong><br>${status}
+                    </div>
+                `;
+            });
+            
+            resultsHtml += `</div>`;
+            
+            document.getElementById('results').innerHTML = resultsHtml;
+            
+            // Update summary
+            if (completed === total) {
+                const elapsed = Math.round((Date.now() - startTime) / 1000);
+                const score = `${passed}/${total}`;
+                
+                let assessment = '';
+                if (passed === total) {
+                    assessment = 'Excellent! The user flow is smooth and intuitive.';
+                } else if (passed >= total * 0.7) {
+                    assessment = 'Good. Most users will have a positive experience.';
+                } else if (passed >= total * 0.5) {
+                    assessment = 'Fair. Some users may experience frustration.';
+                } else {
+                    assessment = 'Needs improvement. Significant usability issues.';
+                }
+                
+                document.getElementById('overall-score').innerHTML = `
+                    <strong>Score:</strong> ${score} passed<br>
+                    <strong>Time:</strong> ${elapsed} seconds<br>
+                    <strong>Assessment:</strong> ${assessment}
+                `;
+                
+                // Generate recommendations
+                let recommendations = '<strong>Recommendations:</strong><ul>';
+                testResults.forEach((result, index) => {
+                    if (result === false) {
+                        const steps = [
+                            'Improve homepage clarity and value proposition',
+                            'Make benefits more obvious and compelling',
+                            'Simplify the demo flow and reduce friction',
+                            'Make pricing more accessible and clear',
+                            'Improve legal page accessibility',
+                            'Add more trust signals and security assurances'
+                        ];
+                        recommendations += `<li>${steps[index]}</li>`;
+                    }
+                });
+                recommendations += '</ul>';
+                
+                document.getElementById('recommendations').innerHTML = recommendations;
+            }
+        }
+        
+        function resetTest() {
+            testResults.fill(null);
+            updateResults();
+            
+            // Reset buttons
+            document.querySelectorAll('button[onclick^="recordResult"]').forEach(button => {
+                button.style.background = '#667eea';
+                button.disabled = false;
+            });
+            
+            // Reset timer
+            startTime = Date.now();
+        }
+        
+        function exportResults() {
+            const results = {
+                timestamp: new Date().toISOString(),
+                steps: testResults.map((result, index) => ({
+                    step: index + 1,
+                    passed: result
+                })),
+                score: `${testResults.filter(r => r === true).length}/${testResults.length}`,
+                timeElapsed: Math.round((Date.now() - startTime) / 1000)
+            };
+            
+            const dataStr = JSON.stringify(results, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `user-flow-test-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', updateResults);
+    </script>
+</body>
+</html>

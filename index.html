@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://js.stripe.com/v3/"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
         body { background: #f5f5f5; color: #333; }
         
         .container {
@@ -86,7 +86,7 @@
             background: transparent;
             color: #667eea;
             border: 2px solid #667eea;
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
@@ -188,7 +188,41 @@
                 width: 100%;
                 text-align: center;
             }
-        }
+        
+            /* Mobile spacing improvements */
+            @media (max-width: 768px) {
+                .container {
+                    padding: 0 15px !important;
+                }
+                
+                .upload-box {
+                    padding: 20px !important;
+                }
+                
+                .testimonial-card {
+                    margin: 10px 0 !important;
+                }
+                
+                .footer-links {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                h1 {
+                    font-size: 1.75rem !important;
+                }
+                
+                h2 {
+                    font-size: 1.5rem !important;
+                }
+                
+                .btn-large {
+                    padding: 12px 20px !important;
+                    font-size: 1rem !important;
+                }
+            }}
         
         /* Desktop only */
         @media (min-width: 769px) {
@@ -583,7 +617,7 @@
                         <a href="how.html">How It Works</a>
                         <a href="pricing.html">Pricing</a>
                         <a href="examples.html">Examples</a>
-                        <a href="#">Blog</a>
+                        <a href="examples.html">Examples</a>
                         <a href="faq.html">FAQ</a>
                         
                         <div class="auth-buttons">
@@ -610,10 +644,10 @@
                 Upload any content—blog posts, videos, podcasts—and watch AI create optimized versions for TikTok, LinkedIn, Instagram, YouTube, Twitter, newsletters, and 8+ other platforms.
             </p>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="#upload" class="cta-button" style="background: white; color: #667eea; padding: 15px 40px; font-size: 1.1rem;">
+                <a href="#upload" class="cta-button" style="background: white; color: #667eea; padding: 12px 30px; font-size: 1.1rem;">
                     <i class="fas fa-play-circle"></i> Try Free Demo
                 </a>
-                <a href="#how-it-works" class="cta-button" style="background: transparent; border: 2px solid white; color: white; padding: 15px 40px; font-size: 1.1rem;">
+                <a href="#how-it-works" class="cta-button" style="background: transparent; border: 2px solid white; color: white; padding: 12px 30px; font-size: 1.1rem;">
                     <i class="fas fa-info-circle"></i> See How It Works
                 </a>
             </div>
@@ -753,7 +787,7 @@
             </div>
             
             <div style="text-align: center; margin-top: 60px;">
-                <a href="#upload" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">
+                <a href="#upload" class="cta-button" style="padding: 12px 30px; font-size: 1.1rem;">
                     <i class="fas fa-play-circle"></i> Try It Yourself
                 </a>
             </div>
@@ -863,21 +897,42 @@
                                 <i class="fas fa-newspaper"></i> Newsletter
                             </label>
                         </div>
+                    
+                <!-- Security & Privacy -->
+                <div style="margin: 25px 0; padding: 20px; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #28a745;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <i class="fas fa-shield-alt" style="color: #28a745; font-size: 1.2rem;"></i>
+                        <h4 style="margin: 0;">Secure & Private Processing</h4>
                     </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                        <span style="display: inline-flex; align-items: center; gap: 6px; background: #f0f7ff; color: #0066cc; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #d0e3ff;">
+                            <i class="fas fa-lock"></i> Encrypted in transit
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 6px; background: #f0f7ff; color: #0066cc; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #d0e3ff;">
+                            <i class="fas fa-user-shield"></i> GDPR compliant
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 6px; background: #f0f7ff; color: #0066cc; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #d0e3ff;">
+                            <i class="fas fa-trash-alt"></i> Auto-delete after 7 days
+                        </span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        Your content is processed securely by AI. We never store payment information and automatically delete uploaded files after processing.
+                    </p>
+                </div></div>
                     
                     <div style="margin-top: 40px; padding: 25px; background: #f8f9fa; border-radius: 12px; text-align: center;">
                         <h3 style="margin-bottom: 15px; color: #333;">Ready to Transform Your Content?</h3>
                         <p style="color: #666; margin-bottom: 20px;">Try our free demo to see AI repurposing in action.</p>
                         
                         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                            <button id="generateButton" type="button" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem; min-width: 200px;">
+                            <button id="generateButton" type="button" class="cta-button" style="padding: 12px 30px; font-size: 1.1rem; min-width: 200px;">
                                 <i class="fas fa-magic"></i> Generate Free Demo
                                 <span id="processing" style="display: none; margin-left: 10px;">
                                     <i class="fas fa-spinner fa-spin"></i> Processing...
                                 </span>
                             </button>
                             
-                            <button class="cta-button" onclick="showPricing()" style="padding: 15px 40px; font-size: 1.1rem; min-width: 200px; background: transparent; border: 2px solid #667eea; color: #667eea;">
+                            <button class="cta-button" onclick="showPricing()" style="padding: 12px 30px; font-size: 1.1rem; min-width: 200px; background: transparent; border: 2px solid #667eea; color: #667eea;">
                                 <i class="fas fa-crown"></i> See Premium Plans
                             </button>
                         </div>
@@ -1092,7 +1147,7 @@
             </div>
             
             <div style="text-align: center; margin-top: 50px;">
-                <button class="cta-button" onclick="showAccountCreation()" style="padding: 15px 40px; font-size: 1.1rem;">
+                <button class="cta-button" onclick="showAccountCreation()" style="padding: 12px 30px; font-size: 1.1rem;">
                     <i class="fas fa-arrow-right"></i> Continue with <span id="selectedPlanName">Pro</span>
                 </button>
                 <button onclick="showUpload()" style="background: transparent; border: 2px solid #667eea; color: #667eea; padding:                    12px 30px; border-radius: 8px; margin-left: 15px; cursor: pointer;">
