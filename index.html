@@ -520,6 +520,36 @@
                 padding: 40px 0 20px;
             }
         }
+        
+        /* Testimonial hover effects */
+        .testimonial-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1) !important;
+        }
+        
+        /* How It Works section styling */
+        .how-it-works-step {
+            transition: transform 0.3s;
+        }
+        
+        .how-it-works-step:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Visual demo cards */
+        .visual-demo-card {
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .visual-demo-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -575,9 +605,44 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>AI-Powered Content Repurposing</h1>
-            <p>Turn one piece of content into 8+ platform-ready versions in minutes. No confusing options, just results.</p>
-            <a href="#upload" class="cta-button" style="background: white; color: #667eea;">Start Free</a>
+            <h1 style="font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px;">AI-Powered Content Repurposing<br><span style="color: #667eea;">That Actually Works</span></h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; line-height: 1.6;">
+                Upload any content—blog posts, videos, podcasts—and watch AI create optimized versions for TikTok, LinkedIn, Instagram, YouTube, Twitter, newsletters, and 8+ other platforms.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#upload" class="cta-button" style="background: white; color: #667eea; padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fas fa-play-circle"></i> Try Free Demo
+                </a>
+                <a href="#how-it-works" class="cta-button" style="background: transparent; border: 2px solid white; color: white; padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fas fa-info-circle"></i> See How It Works
+                </a>
+            </div>
+            
+            <!-- Hero Visual -->
+            <div style="margin-top: 60px; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                    <div>
+                        <div style="font-size: 2.5rem; color: white; margin-bottom: 10px;">⏱️</div>
+                        <h3 style="color: white; margin: 0;">Save 80% Time</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin: 5px 0 0 0;">8 hours → 45 minutes</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; color: white; margin-bottom: 10px;">🚀</div>
+                        <h3 style="color: white; margin: 0;">8+ Platforms</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin: 5px 0 0 0;">One upload, everywhere</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; color: white; margin-bottom: 10px;">🎯</div>
+                        <h3 style="color: white; margin: 0;">AI-Optimized</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin: 5px 0 0 0;">Platform-specific formatting</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; color: white; margin-bottom: 10px;">💼</div>
+                        <h3 style="color: white; margin: 0;">500+ Teams</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin: 5px 0 0 0;">Trusted by professionals</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -624,6 +689,77 @@
         </div>
     </section>
     
+    <!-- How It Works -->
+    <section id="how-it-works" style="padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="color: #333; margin-bottom: 15px;">How Trudor Echo Works</h2>
+                <p style="color: #666; max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+                    Three simple steps from upload to multi-platform content
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div class="how-it-works-step" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: white; font-size: 2rem;">
+                        1
+                    </div>
+                    <h3 style="color: #333; margin-bottom: 15px;">Upload Your Content</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Drag & drop files or paste text. We support blogs, videos, podcasts, transcripts, and more.
+                    </p>
+                    <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 10px; border: 1px solid #e9ecef;">
+                        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                            <span style="background: #f0f7ff; color: #0066cc; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📄 PDF/DOCX</span>
+                            <span style="background: #f0f7ff; color: #0066cc; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">🎥 MP4/MOV</span>
+                            <span style="background: #f0f7ff; color: #0066cc; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">🎧 MP3/WAV</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="how-it-works-step" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: white; font-size: 2rem;">
+                        2
+                    </div>
+                    <h3 style="color: #333; margin-bottom: 15px;">AI Analysis & Repurposing</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Our AI understands your content, extracts key points, and adapts it for each platform's unique requirements.
+                    </p>
+                    <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 10px; border: 1px solid #e9ecef;">
+                        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                            <span style="background: #f0fff4; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">🤖 Smart Analysis</span>
+                            <span style="background: #f0fff4; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">🎯 Platform Optimization</span>
+                            <span style="background: #f0fff4; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">✨ Brand Voice</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="how-it-works-step" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ff6b6b, #ff8e53); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: white; font-size: 2rem;">
+                        3
+                    </div>
+                    <h3 style="color: #333; margin-bottom: 15px;">Multi-Platform Output</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Get ready-to-publish content optimized for each platform's format, tone, and best practices.
+                    </p>
+                    <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 10px; border: 1px solid #e9ecef;">
+                        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                            <span style="background: #fff3e0; color: #ef6c00; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📱 TikTok/Reels</span>
+                            <span style="background: #fff3e0; color: #ef6c00; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">💼 LinkedIn</span>
+                            <span style="background: #fff3e0; color: #ef6c00; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📧 Newsletter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="#upload" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fas fa-play-circle"></i> Try It Yourself
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <!-- Simple Upload Section -->
     <section id="upload" class="upload-section">
         <div class="container">
@@ -632,7 +768,34 @@
                     <i class="fas fa-cloud-upload-alt"></i>
                 </div>
                 <h2>Upload Your Content</h2>
-                <p>Drag and drop any file or paste text. We'll handle the rest.</p>
+                <p style="color: #666; margin-bottom: 30px;">Drag and drop any file or paste text. Watch as AI transforms it into platform-optimized content.</p>
+                
+                <!-- Visual Demo -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0;">
+                    <div class="visual-demo-card" style="text-align: center; padding: 20px; border-radius: 12px;">
+                        <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-file-alt" style="font-size: 3rem; color: #667eea;"></i>
+                        </div>
+                        <h4 style="margin: 10px 0 5px 0;">1. Upload Content</h4>
+                        <p style="color: #666; font-size: 0.9rem;">Blog posts, videos, podcasts, transcripts</p>
+                    </div>
+                    
+                    <div class="visual-demo-card" style="text-align: center; padding: 20px; border-radius: 12px;">
+                        <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-robot" style="font-size: 3rem; color: #764ba2;"></i>
+                        </div>
+                        <h4 style="margin: 10px 0 5px 0;">2. AI Repurposing</h4>
+                        <p style="color: #666; font-size: 0.9rem;">Smart analysis & platform optimization</p>
+                    </div>
+                    
+                    <div class="visual-demo-card" style="text-align: center; padding: 20px; border-radius: 12px;">
+                        <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-share-alt" style="font-size: 3rem; color: #28a745;"></i>
+                        </div>
+                        <h4 style="margin: 10px 0 5px 0;">3. Multi-Platform Output</h4>
+                        <p style="color: #666; font-size: 0.9rem;">Ready-to-publish content for 8+ platforms</p>
+                    </div>
+                </div>
                 
                 <div class="file-input-wrapper">
                     <i class="fas fa-file-alt" style="font-size: 1.5rem; color: #667eea;"></i>
@@ -702,16 +865,25 @@
                         </div>
                     </div>
                     
-                    <button id="generateButton" type="button" class="cta-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem; width: 100%;">
-                        <i class="fas fa-magic"></i> Generate AI Content
-                        <span id="processing" style="display: none; margin-left: 10px;">
-                            <i class="fas fa-spinner fa-spin"></i> Processing...
-                        </span>
-                    </button>
-                    
-                    <button class="cta-button" onclick="showPricing()" style="margin-top: 15px; padding: 15px 40px; font-size: 1.1rem; width: 100%; background: #666;">
-                        <i class="fas fa-arrow-right"></i> Skip to Pricing
-                    </button>
+                    <div style="margin-top: 40px; padding: 25px; background: #f8f9fa; border-radius: 12px; text-align: center;">
+                        <h3 style="margin-bottom: 15px; color: #333;">Ready to Transform Your Content?</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Try our free demo to see AI repurposing in action.</p>
+                        
+                        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                            <button id="generateButton" type="button" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem; min-width: 200px;">
+                                <i class="fas fa-magic"></i> Generate Free Demo
+                                <span id="processing" style="display: none; margin-left: 10px;">
+                                    <i class="fas fa-spinner fa-spin"></i> Processing...
+                                </span>
+                            </button>
+                            
+                            <button class="cta-button" onclick="showPricing()" style="padding: 15px 40px; font-size: 1.1rem; min-width: 200px; background: transparent; border: 2px solid #667eea; color: #667eea;">
+                                <i class="fas fa-crown"></i> See Premium Plans
+                            </button>
+                        </div>
+                        
+                        <p style="margin-top: 15px; color: #888; font-size: 0.9rem;">Free demo includes 3 platform outputs. No credit card required.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -761,74 +933,91 @@
                 <p style="color: #666; max-width: 700px; margin: 0 auto;">Join 500+ content teams, marketers, and creators who save hours every week with Trudor Echo.</p>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px;">
                 <!-- Testimonial 1 -->
-                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                <div class="testimonial-card" style="background: white; border-radius: 16px; padding: 35px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
+                    <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 20px; font-size: 1.2rem;">
                             JD
                         </div>
-                        <div>
-                            <h4 style="margin: 0; color: #333;">John Davis</h4>
-                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">Content Director @ TechStartup</p>
-                        </div>
-                        <div style="margin-left: auto; color: #ffc107; font-size: 1.2rem;">
-                            ★★★★★
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #333; font-size: 1.1rem;">John Davis</h4>
+                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">Content Director @ TechStartup Inc.</p>
+                            <div style="display: flex; align-items: center; margin-top: 5px;">
+                                <div style="color: #ffc107; font-size: 1rem;">★★★★★</div>
+                                <span style="margin-left: 10px; font-size: 0.85rem; color: #888;">Verified Customer</span>
+                            </div>
                         </div>
                     </div>
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-                        "Trudor Echo cut our content creation time from 8 hours to 45 minutes. We now repurpose every webinar into 12+ social posts automatically."
+                    <p style="color: #555; line-height: 1.7; margin-bottom: 25px; font-size: 1.05rem; font-style: italic;">
+                        "Trudor Echo transformed our content workflow. What used to take our team 8 hours now takes 45 minutes. We automatically repurpose every webinar into 12+ platform-specific posts."
                     </p>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">⏱️ Saved 7+ hours/week</span>
-                        <span style="background: #e3f2fd; color: #1565c0; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📈 300% more engagement</span>
+                        <span style="background: #f0f7ff; color: #0066cc; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #d0e3ff;">⏱️ Saved 7+ hours/week</span>
+                        <span style="background: #f0f9ff; color: #0088cc; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #c2e7ff;">📈 300% more engagement</span>
+                        <span style="background: #f5f0ff; color: #7b61ff; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #e6dfff;">🚀 12 platforms automated</span>
                     </div>
                 </div>
                 
                 <!-- Testimonial 2 -->
-                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                <div class="testimonial-card" style="background: white; border-radius: 16px; padding: 35px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
+                    <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 20px; font-size: 1.2rem;">
                             SC
                         </div>
-                        <div>
-                            <h4 style="margin: 0; color: #333;">Sarah Chen</h4>
-                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">CEO @ GrowthLab Agency</p>
-                        </div>
-                        <div style="margin-left: auto; color: #ffc107; font-size: 1.2rem;">
-                            ★★★★★
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #333; font-size: 1.1rem;">Sarah Chen</h4>
+                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">CEO @ GrowthLab Marketing Agency</p>
+                            <div style="display: flex; align-items: center; margin-top: 5px;">
+                                <div style="color: #ffc107; font-size: 1rem;">★★★★★</div>
+                                <span style="margin-left: 10px; font-size: 0.85rem; color: #888;">12+ clients served</span>
+                            </div>
                         </div>
                     </div>
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-                        "We serve 12 clients with Trudor Echo. What used to be our biggest bottleneck is now our competitive advantage. The consistency across platforms is incredible."
+                    <p style="color: #555; line-height: 1.7; margin-bottom: 25px; font-size: 1.05rem; font-style: italic;">
+                        "We manage content for 12 clients with Trudor Echo. What was once our biggest bottleneck is now our competitive edge. The brand consistency across platforms is remarkable."
                     </p>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">💰 $2,000/month saved</span>
-                        <span style="background: #f3e5f5; color: #7b1fa2; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">🎯 98% brand consistency</span>
+                        <span style="background: #f0fff4; color: #2e7d32; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #c8e6c9;">💰 $2,000+/month saved</span>
+                        <span style="background: #f3e5f5; color: #7b1fa2; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #e1bee7;">🎯 98% brand consistency</span>
+                        <span style="background: #fff3e0; color: #ef6c00; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #ffcc80;">📊 40% faster delivery</span>
                     </div>
                 </div>
                 
                 <!-- Testimonial 3 -->
-                <div style="background: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #ff6b6b, #ff8e53); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                <div class="testimonial-card" style="background: white; border-radius: 16px; padding: 35px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
+                    <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #ff6b6b, #ff8e53); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 20px; font-size: 1.2rem;">
                             MR
                         </div>
-                        <div>
-                            <h4 style="margin: 0; color: #333;">Marcus Rodriguez</h4>
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #333; font-size: 1.1rem;">Marcus Rodriguez</h4>
                             <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">Solo Creator @ TechWithMarcus</p>
-                        </div>
-                        <div style="margin-left: auto; color: #ffc107; font-size: 1.2rem;">
-                            ★★★★★
+                            <div style="display: flex; align-items: center; margin-top: 5px;">
+                                <div style="color: #ffc107; font-size: 1rem;">★★★★★</div>
+                                <span style="margin-left: 10px; font-size: 0.85rem; color: #888;">50K+ followers</span>
+                            </div>
                         </div>
                     </div>
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-                        "As a solo creator, time is everything. Trudor Echo lets me focus on creating great content instead of spending hours reformatting for different platforms."
+                    <p style="color: #555; line-height: 1.7; margin-bottom: 25px; font-size: 1.05rem; font-style: italic;">
+                        "As a solo creator, every minute counts. Trudor Echo lets me focus on creating amazing content instead of wasting hours reformatting. My output has increased 5x without sacrificing quality."
                     </p>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">⚡ 5x more content output</span>
-                        <span style="background: #fff3e0; color: #ef6c00; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📱 Consistent across 8 platforms</span>
+                        <span style="background: #e8f5e9; color: #2e7d32; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #c8e6c9;">⚡ 5x more content</span>
+                        <span style="background: #e3f2fd; color: #1565c0; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #bbdefb;">📱 8 platforms automated</span>
+                        <span style="background: #fff8e1; color: #ff8f00; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #ffecb3;">🎯 Perfect for solo creators</span>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div style="text-align: center; margin: 40px 0;">
+                <p style="color: #666; margin-bottom: 20px; font-size: 0.95rem;">Trusted by content teams at:</p>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; opacity: 0.7;">
+                    <div style="font-weight: bold; color: #333;">TechStartup Inc.</div>
+                    <div style="font-weight: bold; color: #333;">GrowthLab Agency</div>
+                    <div style="font-weight: bold; color: #333;">ContentCreators Co.</div>
+                    <div style="font-weight: bold; color: #333;">DigitalFirst Media</div>
                 </div>
             </div>
             
