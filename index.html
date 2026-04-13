@@ -629,16 +629,16 @@
                         <a href="faq.html">FAQ</a>
                         
                         <div class="auth-buttons">
-                            <a href="#login" class="login-btn">Log In</a>
-                            <a href="#upload" class="signup-btn">Sign Up</a>
+                            <a href="javascript:void(0)" class="login-btn" onclick="showLoginModal()">Log In</a>
+                            <a href="#upload" class="signup-btn">Get Started</a>
                         </div>
                     </div>
                 </nav>
                 
                 <!-- Desktop auth buttons -->
                 <div class="auth-buttons desktop-auth">
-                    <a href="#login" class="login-btn">Log In</a>
-                    <a href="#upload" class="signup-btn">Sign Up</a>
+                    <a href="javascript:void(0)" class="login-btn" onclick="showLoginModal()">Log In</a>
+                    <a href="#upload" class="signup-btn">Get Started</a>
                 </div>
             </div>
         </div>
@@ -1917,6 +1917,34 @@
         });
         
         console.log('Trudor Echo loaded successfully.');
+        // Login Modal
+        function showLoginModal() {
+            alert('Login functionality coming soon! For now, use the "Get Started" button to try the demo.');
+            // In the future, this will open a proper login modal
+            // document.getElementById('loginModal').style.display = 'block';
+        }
+        
+        // Social login functions (placeholder)
+        function signInWithGoogle() {
+            alert('Google login coming soon!');
+        }
+        
+        function signInWithGitHub() {
+            alert('GitHub login coming soon!');
+        }
+        
+        function signInWithEmail() {
+            alert('Email login coming soon!');
+        }
     </script>
+    
+    <!-- Login Modal (hidden for now) -->
+    <div id="loginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 12px; width: 90%; max-width: 400px;">
+            <h2 style="margin-bottom: 20px;">Log In</h2>
+            <p style="margin-bottom: 25px; color: #666;">Login functionality coming soon!</p>
+            <button onclick="document.getElementById('loginModal').style.display = 'none'" style="padding: 12px 25px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; width: 100%;">Close</button>
+        </div>
+    </div>
 </body>
 </html>
