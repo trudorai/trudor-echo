@@ -1774,7 +1774,10 @@
         }
         
         function signInWithEmail() {
-            document.getElementById('signupForm').style.display = 'block';
+            // Show email login form, hide social buttons
+            document.getElementById('emailLoginForm').style.display = 'block';
+            document.getElementById('socialLoginButtons').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'none';
         }
         
         // Form submission
@@ -1797,6 +1800,24 @@
             
             alert(`Account created for ${email}. Redirecting to payment...`);
             showPayment();
+        });
+        
+        // Login form submission
+        document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+            
+            // Simulate login success
+            alert(`Logged in as ${email}! Redirecting to dashboard...`);
+            // In a real app, you would redirect to dashboard
+            // window.location.href = '/dashboard.html';
         });
         
         // Payment completion
