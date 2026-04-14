@@ -630,7 +630,7 @@
                         
                         <div class="auth-buttons">
                             <a href="javascript:void(0)" class="login-btn" onclick="showLoginModal()">Log In</a>
-                            <a href="#upload" class="signup-btn">Get Started</a>
+                            <a href="#upload" class="signup-btn">Sign Up</a>
                         </div>
                     </div>
                 </nav>
@@ -638,7 +638,7 @@
                 <!-- Desktop auth buttons -->
                 <div class="auth-buttons desktop-auth">
                     <a href="javascript:void(0)" class="login-btn" onclick="showLoginModal()">Log In</a>
-                    <a href="#upload" class="signup-btn">Get Started</a>
+                    <a href="#upload" class="signup-btn">Sign Up</a>
                 </div>
             </div>
         </div>
@@ -1189,8 +1189,39 @@
                     </button>
                 </div>
                 
-                <div class="divider">
-                    <span>Or sign up with email</span>
+                <div id="socialLoginButtons">
+                    <div class="divider">
+                        <span style="cursor: pointer; color: #667eea;" onclick="signInWithEmail()">Or sign up with email</span>
+                    </div>
+                </div>
+                
+                <!-- Email Login Form (hidden by default) -->
+                <div id="emailLoginForm" style="display: none;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Sign in with Email</h3>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; margin-top: 30px;">
+                            <button type="button" class="cta-button" style="background: #666; flex: 1;" onclick="document.getElementById('emailLoginForm').style.display='none';document.getElementById('socialLoginButtons').style.display='block';">
+                                Back
+                            </button>
+                            <button type="submit" class="cta-button" style="flex: 2;">
+                                Log In
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <p style="text-align: center; margin-top: 20px; color: #666;">
+                        <a href="#" style="color: #667eea;">Forgot password?</a>
+                    </p>
                 </div>
                 
                 <form id="signupForm">
@@ -1917,24 +1948,39 @@
         });
         
         console.log('Trudor Echo loaded successfully.');
-        // Login Modal
+        // Login - scroll to account creation section
         function showLoginModal() {
-            alert('Login functionality coming soon! For now, use the "Get Started" button to try the demo.');
-            // In the future, this will open a proper login modal
-            // document.getElementById('loginModal').style.display = 'block';
+            // Scroll to the account creation section which has login options
+            document.getElementById('account-creation').scrollIntoView({ behavior: 'smooth' });
+            
+            // Optional: Highlight the section or show a message
+            const accountSection = document.getElementById('account-creation');
+            accountSection.style.transition = 'all 0.3s';
+            accountSection.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.3)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                accountSection.style.boxShadow = '';
+            }, 2000);
         }
         
-        // Social login functions (placeholder)
+        // Social login functions
         function signInWithGoogle() {
-            alert('Google login coming soon!');
+            // For now, simulate successful login and proceed to payment
+            alert('Google login successful! Redirecting to payment...');
+            showPayment();
         }
         
         function signInWithGitHub() {
-            alert('GitHub login coming soon!');
+            // For now, simulate successful login and proceed to payment
+            alert('GitHub login successful! Redirecting to payment...');
+            showPayment();
         }
         
         function signInWithEmail() {
-            alert('Email login coming soon!');
+            // Show email login form
+            document.getElementById('emailLoginForm').style.display = 'block';
+            document.getElementById('socialLoginButtons').style.display = 'none';
         }
     </script>
     
