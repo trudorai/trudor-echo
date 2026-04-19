@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login Fix</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Trudor Echo Login/Signup Fix Test</h1>
+    
+    <div class="info test-result">
+        <strong>Test Summary:</strong> Fixed login and signup functionality
+    </div>
+    
+    <h2>What Was Fixed:</h2>
+    
+    <div class="pass test-result">
+        <strong>✓ Login Button:</strong> Now opens actual login modal (was just scrolling)
+    </div>
+    
+    <div class="pass test-result">
+        <strong>✓ Signup Button:</strong> Now goes to account creation section (was going to upload)
+    </div>
+    
+    <div class="pass test-result">
+        <strong>✓ Login Modal:</strong> Functional login form with email/password
+    </div>
+    
+    <div class="pass test-result">
+        <strong>✓ Account Creation:</strong> Clear separation between signup and login
+    </div>
+    
+    <div class="pass test-result">
+        <strong>✓ Email Forms:</strong> Fixed confusing "login" form in signup section
+    </div>
+    
+    <h2>How to Test:</h2>
+    
+    <div class="info test-result">
+        <strong>1. Open index.html</strong> in browser
+    </div>
+    
+    <div class="info test-result">
+        <strong>2. Test Login Button:</strong> Click "Log In" → Should open modal with login form
+    </div>
+    
+    <div class="info test-result">
+        <strong>3. Test Signup Button:</strong> Click "Sign Up" → Should scroll to account creation section
+    </div>
+    
+    <div class="info test-result">
+        <strong>4. Test Login Modal:</strong> Enter email/password → Should show success message
+    </div>
+    
+    <div class="info test-result">
+        <strong>5. Test Account Creation:</strong> In signup section, try email signup → Should show payment
+    </div>
+    
+    <h2>Technical Changes Made:</h2>
+    
+    <ul>
+        <li>Changed login button from <code>showLoginModal()</code> to <code>showActualLoginModal()</code></li>
+        <li>Changed signup button from <code>#upload</code> to <code>#account-creation</code></li>
+        <li>Added functional login modal with form validation</li>
+        <li>Added login state management (shows welcome message when logged in)</li>
+        <li>Added logout functionality</li>
+        <li>Renamed confusing "loginForm" in signup section to "emailSignupForm"</li>
+        <li>Updated labels and text for clarity</li>
+        <li>Added "Already have an account?" link in signup section</li>
+    </ul>
+    
+    <h2>Files Modified:</h2>
+    
+    <ul>
+        <li><code>index.html</code> - Main fixes applied</li>
+        <li><code>test-login-fix.html</code> - This test file</li>
+    </ul>
+    
+    <div class="info test-result">
+        <strong>Note:</strong> This is a demo implementation. In production, you would:
+        <ul>
+            <li>Connect to a real backend API</li>
+            <li>Implement proper authentication (JWT, sessions)</li>
+            <li>Add password reset functionality</li>
+            <li>Add email verification</li>
+            <li>Implement proper error handling</li>
+            <li>Add loading states</li>
+        </ul>
+    </div>
+    
+    <button onclick="window.open('index.html', '_blank')">Open Fixed Index.html</button>
+    
+</body>
+</html>

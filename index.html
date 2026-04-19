@@ -629,16 +629,16 @@
                         <a href="faq.html">FAQ</a>
                         
                         <div class="auth-buttons">
-                            <a href="javascript:void(0)" class="login-btn" onclick="showLoginModal()">Log In</a>
-                            <a href="#upload" class="signup-btn">Sign Up</a>
+                            <a href="javascript:void(0)" class="login-btn" onclick="showActualLoginModal()">Log In</a>
+                            <a href="#account-creation" class="signup-btn">Sign Up</a>
                         </div>
                     </div>
                 </nav>
                 
                 <!-- Desktop auth buttons -->
                 <div class="auth-buttons desktop-auth">
-                    <a href="javascript:void(0)" class="login-btn" onclick="showLoginModal()">Log In</a>
-                    <a href="#upload" class="signup-btn">Sign Up</a>
+                    <a href="javascript:void(0)" class="login-btn" onclick="showActualLoginModal()">Log In</a>
+                    <a href="#account-creation" class="signup-btn">Sign Up</a>
                 </div>
             </div>
         </div>
@@ -1169,9 +1169,12 @@
     <section id="account-creation" class="account-section">
         <div class="container">
             <div class="account-box">
-                <h2 style="text-align: center; margin-bottom: 30px;">Create Your Account</h2>
+                <h2 style="text-align: center; margin-bottom: 30px;">Sign Up for Trudor Echo</h2>
                 <p style="text-align: center; color: #666; margin-bottom: 30px;">
-                    Choose how you want to sign up for <span id="accountPlanName">Pro</span>
+                    Create your account to get started with <span id="accountPlanName">Pro</span>
+                </p>
+                <p style="text-align: center; margin-bottom: 20px;">
+                    <a href="javascript:void(0)" onclick="showActualLoginModal()" style="color: #667eea; text-decoration: none;">Already have an account? Log in here</a>
                 </p>
                 
                 <div class="auth-options">
@@ -1195,10 +1198,10 @@
                     </div>
                 </div>
                 
-                <!-- Email Login Form (hidden by default) -->
+                <!-- Email Signup Form (hidden by default) -->
                 <div id="emailLoginForm" style="display: none;">
-                    <h3 style="text-align: center; margin-bottom: 20px;">Sign in with Email</h3>
-                    <form id="loginForm">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Sign Up with Email</h3>
+                    <form id="emailSignupForm">
                         <div class="form-group">
                             <label for="loginEmail">Email Address</label>
                             <input type="email" id="loginEmail" required>
@@ -1214,7 +1217,7 @@
                                 Back
                             </button>
                             <button type="submit" class="cta-button" style="flex: 2;">
-                                Log In
+                                Create Account
                             </button>
                         </div>
                     </form>
@@ -1802,8 +1805,8 @@
             showPayment();
         });
         
-        // Login form submission
-        document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+        // Email signup form submission
+        document.getElementById('emailSignupForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const email = document.getElementById('loginEmail').value;
@@ -1814,10 +1817,14 @@
                 return;
             }
             
-            // Simulate login success
-            alert(`Logged in as ${email}! Redirecting to dashboard...`);
-            // In a real app, you would redirect to dashboard
-            // window.location.href = '/dashboard.html';
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters.');
+                return;
+            }
+            
+            // Simulate account creation
+            alert(`Account created for ${email}! Redirecting to payment...`);
+            showPayment();
         });
         
         // Payment completion
@@ -2003,14 +2010,87 @@
             document.getElementById('emailLoginForm').style.display = 'block';
             document.getElementById('socialLoginButtons').style.display = 'none';
         }
+        
+        // Actual login modal function
+        function showActualLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+        
+        // Handle login form submission
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('modalLoginEmail').value;
+            const password = document.getElementById('modalLoginPassword').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+            
+            // For demo purposes - simulate successful login
+            alert(`Login successful! Welcome back, ${email}.`);
+            document.getElementById('loginModal').style.display = 'none';
+            
+            // Update UI to show logged in state
+            updateLoginState(email);
+        }
+        
+        function updateLoginState(email) {
+            // Update header to show logged in state
+            const authButtons = document.querySelector('.auth-buttons');
+            if (authButtons) {
+                authButtons.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span style="color: #667eea; font-weight: 500;">Welcome, ${email.split('@')[0]}</span>
+                        <button class="signup-btn" onclick="logout()" style="padding: 10px 20px;">Log Out</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function logout() {
+            // Reset to original auth buttons
+            const authButtons = document.querySelector('.auth-buttons');
+            if (authButtons) {
+                authButtons.innerHTML = `
+                    <a href="javascript:void(0)" class="login-btn" onclick="showActualLoginModal()">Log In</a>
+                    <a href="#account-creation" class="signup-btn">Sign Up</a>
+                `;
+            }
+            alert('Logged out successfully.');
+        }
     </script>
     
-    <!-- Login Modal (hidden for now) -->
+    <!-- Actual Login Modal -->
     <div id="loginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 12px; width: 90%; max-width: 400px;">
-            <h2 style="margin-bottom: 20px;">Log In</h2>
-            <p style="margin-bottom: 25px; color: #666;">Login functionality coming soon!</p>
-            <button onclick="document.getElementById('loginModal').style.display = 'none'" style="padding: 12px 25px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; width: 100%;">Close</button>
+            <h2 style="margin-bottom: 20px; text-align: center;">Log In to Trudor Echo</h2>
+            
+            <form id="modalLoginForm" onsubmit="handleLoginSubmit(event)">
+                <div style="margin-bottom: 20px;">
+                    <label for="modalLoginEmail" style="display: block; margin-bottom: 5px; font-weight: 500;">Email Address</label>
+                    <input type="email" id="modalLoginEmail" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label for="modalLoginPassword" style="display: block; margin-bottom: 5px; font-weight: 500;">Password</label>
+                    <input type="password" id="modalLoginPassword" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="display: flex; gap: 15px;">
+                    <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" style="padding: 12px 25px; background: #666; color: white; border: none; border-radius: 8px; cursor: pointer; flex: 1;">
+                        Cancel
+                    </button>
+                    <button type="submit" style="padding: 12px 25px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; flex: 2;">
+                        Log In
+                    </button>
+                </div>
+            </form>
+            
+            <p style="text-align: center; margin-top: 20px; color: #666;">
+                <a href="#account-creation" onclick="document.getElementById('loginModal').style.display = 'none'" style="color: #667eea;">Don't have an account? Sign up</a>
+            </p>
         </div>
     </div>
 </body>
