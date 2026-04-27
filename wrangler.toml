@@ -1,4 +1,4 @@
-name = "trudor-echo-api"
+name = "trudor-echo"
 main = "worker/index.js"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
