@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const outputContent = document.getElementById('outputContent');
     const contentInput = document.querySelector('.content-input');
     
-    // Sample content for demo
+    // ─── API Endpoint ─────────────────────────────────────────────────────────
+    // The Cloudflare Worker proxies to DeepSeek. The API key NEVER leaves the server.
+    const API_URL = 'https://trudor-echo-api.trudorcap.workers.dev';
+    
+    // ─── Sample content ───────────────────────────────────────────────────────
     const sampleContent = `The Future of AI in Content Creation
 
 Artificial intelligence is transforming how we create and distribute content. In 2024, we're seeing AI move from simple text generation to full-scale content strategy and repurposing.
@@ -19,10 +23,21 @@ Key trends:
 
 The most successful creators aren't those who work hardest, but those who work smartest with the right tools.`;
 
-    // Set sample content
     contentInput.value = sampleContent;
     
-    // Echo button click handler
+    // ─── Platform configuration ───────────────────────────────────────────────
+    const platformMeta = {
+        tiktok:     { name: 'TikTok/Reels',      icon: 'fab fa-tiktok',      format: 'script' },
+        youtube:    { name: 'YouTube Shorts',     icon: 'fab fa-youtube',     format: 'script' },
+        linkedin:   { name: 'LinkedIn',           icon: 'fab fa-linkedin',    format: 'post'   },
+        instagram:  { name: 'Instagram',          icon: 'fab fa-instagram',   format: 'post'   },
+        twitter:    { name: 'X (Twitter)',        icon: 'fab fa-twitter',     format: 'thread' },
+        newsletter: { name: 'Newsletter',         icon: 'fas fa-newspaper',   format: 'email'  },
+        email:      { name: 'Email Sequence',     icon: 'fas fa-envelope',    format: 'email'  },
+        threads:    { name: 'Threads/Carousel',   icon: 'fas fa-comments',    format: 'post'   }
+    };
+    
+    // ─── Echo button click handler ────────────────────────────────────────────
     echoButton.addEventListener('click', async function() {
         const content = contentInput.value.trim();
         
@@ -48,84 +63,163 @@ The most successful creators aren't those who work hardest, but those who work s
             return;
         }
         
+        let outputs = null;
+        let usedFallback = false;
+        
+        // ── Attempt 1: Cloudflare Worker (proxies to DeepSeek) ──
         try {
-            // Call real AI API
-            const apiUrl = 'https://trudor-echo-api.trudorcap.workers.dev'; // Cloudflare Worker URL
-            
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    content: content,
-                    platforms: selectedPlatforms
-                })
-            });
-            
-            if (!response.ok) {
-                throw new Error(`API error: ${response.status}`);
-            }
-            
-            const outputs = await response.json();
-            
-            // Display outputs
-            displayOutputs(outputs);
-            
-        } catch (error) {
-            console.error('Error:', error);
-            // Fallback to simulation if API fails
-            alert('AI service temporarily unavailable. Showing demo version.');
-            const outputs = generateOutputs(content, selectedPlatforms);
-            displayOutputs(outputs);
-        } finally {
-            // Hide processing, show output
-            echoButton.disabled = false;
-            processingSpan.style.display = 'none';
-            outputDiv.style.display = 'block';
-            
-            // Scroll to output
-            outputDiv.scrollIntoView({ behavior: 'smooth' });
+            outputs = await callWorker(content, selectedPlatforms);
+            console.log('✅ API responded successfully');
+        } catch (err) {
+            console.warn('⚠️ API call failed:', err.message);
+            usedFallback = true;
+            outputs = generateOutputs(content, selectedPlatforms);
         }
+        
+        // Display outputs
+        displayOutputs(outputs, usedFallback);
+        
+        // Reset UI
+        echoButton.disabled = false;
+        processingSpan.style.display = 'none';
+        outputDiv.style.display = 'block';
+        outputDiv.scrollIntoView({ behavior: 'smooth' });
     });
     
-    // Generate platform-specific outputs
-    function generateOutputs(content, platforms) {
-        const outputs = {};
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  API CALLER
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    async function callWorker(content, platforms) {
+        // Build the system prompt client-side and send it to the Worker.
+        // The Worker holds the DeepSeek API key securely in its environment variables.
+        const systemPrompt = buildSystemPrompt(platforms);
         
-        platforms.forEach(platform => {
-            switch(platform) {
-                case 'tiktok':
-                    outputs.tiktok = generateTikTokScript(content);
-                    break;
-                case 'youtube':
-                    outputs.youtube = generateYouTubeShorts(content);
-                    break;
-                case 'linkedin':
-                    outputs.linkedin = generateLinkedInPost(content);
-                    break;
-                case 'instagram':
-                    outputs.instagram = generateInstagramPost(content);
-                    break;
-                case 'twitter':
-                    outputs.twitter = generateTwitterThread(content);
-                    break;
-                case 'newsletter':
-                    outputs.newsletter = generateNewsletterSummary(content);
-                    break;
-                case 'email':
-                    outputs.email = generateEmailSequence(content);
-                    break;
-                case 'threads':
-                    outputs.threads = generateThreadsCarousel(content);
-                    break;
-            }
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content,
+                platforms,
+                systemPrompt  // The Worker forwards this to DeepSeek as the system message
+            })
         });
         
+        if (!response.ok) {
+            const errText = await response.text().catch(() => '');
+            throw new Error(`API HTTP ${response.status}: ${errText}`);
+        }
+        
+        const data = await response.json();
+        
+        // The Worker returns { outputs: { platform: "content", ... } }
+        // or it can return the raw DeepSeek reply — we handle both
+        if (data.outputs && typeof data.outputs === 'object') {
+            return data.outputs;
+        }
+        
+        // If the Worker returned the raw AI text, try to parse it
+        if (data.reply) {
+            const parsed = parseAIOutput(data.reply, platforms);
+            if (parsed) return parsed;
+        }
+        
+        throw new Error('Worker returned unexpected format');
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  SYSTEM PROMPT (sent to Worker, which forwards to DeepSeek)
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function buildSystemPrompt(platforms) {
+        const platformDescriptions = {
+            tiktok:     'TikTok or Instagram Reels (60-second script with hook, body, CTA; fast-paced, trend-aware, emoji-rich)',
+            youtube:    'YouTube Shorts (under-60-second script with strong hook in first 3 seconds, visual cues, CTA)',
+            linkedin:   'LinkedIn (professional, thought-leadership post with headline, insight, bullet points, and engagement prompt; use #hashtags)',
+            instagram:  'Instagram (carousel-style caption with hook, swipe-through narrative, and image prompts for each slide; use #hashtags)',
+            twitter:    'X / Twitter thread (numbered 1/N format, punchy takes, each tweet self-contained but sequential, ends with CTA + hashtags)',
+            newsletter: 'Email newsletter (subject line, greeting, body with subheadings, key takeaways, P.S.; warm professional tone)',
+            email:      '3-email sequence: (1) problem awareness, (2) solution deep-dive, (3) CTA/offer; numbered clearly with subjects)',
+            threads:    'Threads / Instagram Carousel (slide-by-slide narrative with titles; each slide has headline + 2-3 bullet points; ends with CTA + hashtags)'
+        };
+        
+        const platformList = platforms
+            .map(p => `  - ${p}: ${platformDescriptions[p] || 'social media post'}`)
+            .join('\n');
+        
+        return `You are Trudor Echo, an expert AI content repurposing assistant. Your ONLY job is to transform a single piece of content into ready-to-post platform-specific versions.
+
+## RULES (strict — follow every one):
+
+1. **Preserve the original brand voice.** Read the input content carefully — internalize its tone, vocabulary, sentence rhythm, and personality. Every output must sound like it came from the same source, only adapted for the platform.
+
+2. **Adapt, don't copy-paste.** Understand the core message and re-express it naturally for each platform's format, audience, and culture. A LinkedIn post should not read like a TikTok script.
+
+3. **No filler.** Every word must earn its place. Be punchy and specific. Cut fluff.
+
+4. **Platform-native formatting.** Use emojis where the platform expects them (TikTok, Instagram, Twitter), keep it professional for LinkedIn and newsletters. Use proper markdown/structure for each format.
+
+5. **Output format — CRITICAL:** Return ONLY a JSON object (no markdown fences, no extra commentary). Keys are the platform IDs, values are the generated content.
+
+Requested platforms:
+${platformList}
+
+IMPORTANT: Return ONLY valid JSON. No markdown code fences. No extra text. Just the JSON object.`;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  PARSE AI OUTPUT (for raw DeepSeek replies from Worker)
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function parseAIOutput(reply, platforms) {
+        try {
+            let cleaned = reply.trim();
+            if (cleaned.startsWith('```json')) cleaned = cleaned.slice(7);
+            else if (cleaned.startsWith('```')) cleaned = cleaned.slice(3);
+            if (cleaned.endsWith('```')) cleaned = cleaned.slice(0, -3);
+            cleaned = cleaned.trim();
+            
+            const parsed = JSON.parse(cleaned);
+            
+            const outputs = {};
+            platforms.forEach(p => {
+                if (parsed[p] && typeof parsed[p] === 'string' && parsed[p].trim().length > 10) {
+                    outputs[p] = parsed[p].trim();
+                }
+            });
+            
+            if (Object.keys(outputs).length > 0) {
+                return outputs;
+            }
+        } catch (e) {
+            console.warn('JSON parse failed:', e.message);
+        }
+        return null;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  SIMULATION FALLBACK
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function generateOutputs(content, platforms) {
+        const outputs = {};
+        platforms.forEach(platform => {
+            switch(platform) {
+                case 'tiktok':     outputs.tiktok     = generateTikTokScript(content);     break;
+                case 'youtube':    outputs.youtube    = generateYouTubeShorts(content);    break;
+                case 'linkedin':   outputs.linkedin   = generateLinkedInPost(content);     break;
+                case 'instagram':  outputs.instagram  = generateInstagramPost(content);    break;
+                case 'twitter':    outputs.twitter    = generateTwitterThread(content);     break;
+                case 'newsletter': outputs.newsletter = generateNewsletterSummary(content); break;
+                case 'email':      outputs.email      = generateEmailSequence(content);     break;
+                case 'threads':    outputs.threads    = generateThreadsCarousel(content);   break;
+            }
+        });
         return outputs;
     }
     
-    // Platform-specific generators
+    // ─── Platform-specific generators ─────────────────────────────────────────
+    
     function generateTikTokScript(content) {
         return `🎬 TIKTOK/REELS SCRIPT (60 seconds)
 
@@ -529,41 +623,33 @@ They work smarter with AI as their co-pilot.
 #ContentCreation #AI #DigitalMarketing #SocialMediaStrategy #ContentRepurposing`;
     }
     
-    // Display outputs in a nice format
-    function displayOutputs(outputs) {
-        let html = '<div class="output-grid">';
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  DISPLAY OUTPUTS
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function displayOutputs(outputs, usedFallback) {
+        let html = '';
+        
+        // Show fallback notice if needed
+        if (usedFallback) {
+            html += '<div class="notice notice-warning" style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-bottom:20px;color:#856404;font-size:0.9rem;">';
+            html += '<strong>⚡ Demo Mode</strong> — Our AI backend is warming up. Showing simulated repurposing output. <a href="https://trudor.ai/echo-demo" style="color:#856404;text-decoration:underline;">Sign up for API access</a>.';
+            html += '</div>';
+        }
+        
+        html += '<div class="output-grid">';
         
         for (const [platform, content] of Object.entries(outputs)) {
-            const platformNames = {
-                tiktok: 'TikTok/Reels',
-                youtube: 'YouTube Shorts',
-                linkedin: 'LinkedIn',
-                instagram: 'Instagram',
-                twitter: 'X (Twitter)',
-                newsletter: 'Newsletter',
-                email: 'Email Sequence',
-                threads: 'Threads/Carousel'
-            };
-            
-            const icons = {
-                tiktok: 'fab fa-tiktok',
-                youtube: 'fab fa-youtube',
-                linkedin: 'fab fa-linkedin',
-                instagram: 'fab fa-instagram',
-                twitter: 'fab fa-twitter',
-                newsletter: 'fas fa-newspaper',
-                email: 'fas fa-envelope',
-                threads: 'fas fa-comments'
-            };
+            const meta = platformMeta[platform] || { name: platform, icon: 'fas fa-share-alt' };
             
             html += `
                 <div class="output-card">
                     <div class="output-header">
-                        <i class="${icons[platform]}"></i>
-                        <h4>${platformNames[platform]}</h4>
+                        <i class="${meta.icon}"></i>
+                        <h4>${meta.name}</h4>
                     </div>
                     <div class="output-content">
-                        <pre>${content}</pre>
+                        <pre>${escapeHtml(content)}</pre>
                     </div>
                     <button class="copy-button" onclick="copyToClipboard(this)">
                         <i class="fas fa-copy"></i> Copy
@@ -574,10 +660,10 @@ They work smarter with AI as their co-pilot.
         
         html += '</div>';
         
-        // Add CSS for output if not already added
-        if (!document.querySelector('#output-styles')) {
+        // Inject styles (idempotent)
+        if (!document.querySelector('#echo-output-styles')) {
             const style = document.createElement('style');
-            style.id = 'output-styles';
+            style.id = 'echo-output-styles';
             style.textContent = `
                 .output-grid {
                     display: grid;
@@ -591,7 +677,7 @@ They work smarter with AI as their co-pilot.
                     border-radius: 12px;
                     padding: 20px;
                     border: 1px solid var(--gray-light);
-                    transition: transform 0.3s;
+                    transition: transform 0.3s, box-shadow 0.3s;
                 }
                 
                 .output-card:hover {
@@ -666,7 +752,10 @@ They work smarter with AI as their co-pilot.
         outputContent.innerHTML = html;
     }
     
-    // Copy to clipboard function
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  UTILITIES
+    // ═══════════════════════════════════════════════════════════════════════════
+    
     window.copyToClipboard = function(button) {
         const content = button.parentElement.querySelector('pre').textContent;
         navigator.clipboard.writeText(content)
@@ -674,7 +763,6 @@ They work smarter with AI as their co-pilot.
                 const originalText = button.innerHTML;
                 button.innerHTML = '<i class="fas fa-check"></i> Copied!';
                 button.classList.add('copied');
-                
                 setTimeout(() => {
                     button.innerHTML = originalText;
                     button.classList.remove('copied');
@@ -686,7 +774,6 @@ They work smarter with AI as their co-pilot.
             });
     };
     
-    // Helper function to escape HTML
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
