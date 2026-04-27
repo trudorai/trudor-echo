@@ -72,3 +72,4 @@ temp/
 
 # Test outputs
 test-results/.wrangler/
+.wrangler/
