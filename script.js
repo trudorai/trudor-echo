@@ -147,6 +147,8 @@ The most successful creators aren't those who work hardest, but those who work s
             .map(p => `  - ${p}: ${platformDescriptions[p] || 'social media post'}`)
             .join('\n');
         
+        const keysList = platforms.map(p => `"${p}"`).join(', ');
+        
         return `You are Trudor Echo, an expert AI content repurposing assistant. Your ONLY job is to transform a single piece of content into ready-to-post platform-specific versions.
 
 ## RULES (strict — follow every one):
@@ -159,12 +161,14 @@ The most successful creators aren't those who work hardest, but those who work s
 
 4. **Platform-native formatting.** Use emojis where the platform expects them (TikTok, Instagram, Twitter), keep it professional for LinkedIn and newsletters. Use proper markdown/structure for each format.
 
-5. **Output format — CRITICAL:** Return ONLY a JSON object (no markdown fences, no extra commentary). Keys are the platform IDs, values are the generated content.
+5. **CRITICAL: Generate content for EVERY requested platform.** Do not skip any. Each one must have substantive, complete content.
+
+6. Return ONLY a JSON object with EXACTLY these keys: ${keysList}. Each key's value must be the complete platform-adapted content.
 
 Requested platforms:
 ${platformList}
 
-IMPORTANT: Return ONLY valid JSON. No markdown code fences. No extra text. Just the JSON object.`;
+IMPORTANT: Return ONLY valid JSON with ALL platform keys. No markdown code fences. No extra text. Just the JSON object.`;
     }
     
     // ═══════════════════════════════════════════════════════════════════════════

@@ -5,10 +5,10 @@
  * and NEVER appears in this source code or the browser.
  * 
  * Architecture:
- *   Browser → this Worker → DeepSeek API → this Worker → Browser
+ *   Browser -> this Worker -> DeepSeek API -> this Worker -> Browser
  */
 
-// Allowed origins for CORS — lock down in production
+// Allowed origins for CORS -- lock down in production
 const ALLOWED_ORIGINS = [
   'https://trudor.ai',
   'https://www.trudor.ai',
@@ -20,12 +20,12 @@ const ALLOWED_ORIGINS = [
 
 export default {
   async fetch(request, env) {
-    // ─── CORS preflight ────────────────────────────────────────────────
+    // CORS preflight
     if (request.method === 'OPTIONS') {
       return handleCORS(request);
     }
 
-    // ─── Only accept POST ──────────────────────────────────────────────
+    // Only accept POST
     if (request.method !== 'POST') {
       return new Response(JSON.stringify({ error: 'Method not allowed' }), {
         status: 405,
@@ -37,7 +37,7 @@ export default {
       const body = await request.json();
       const { content, platforms, systemPrompt } = body;
 
-      // ─── Validation ──────────────────────────────────────────────────
+      // Validation
       if (!content || typeof content !== 'string' || content.trim().length < 50) {
         return jsonResponse({ error: 'Content must be at least 50 characters' }, 400, request);
       }
@@ -45,7 +45,7 @@ export default {
         return jsonResponse({ error: 'Select at least one platform' }, 400, request);
       }
 
-      // ─── Call DeepSeek ───────────────────────────────────────────────
+      // Call DeepSeek
       const deepseekResult = await callDeepSeek(content, platforms, systemPrompt, env);
 
       return jsonResponse(deepseekResult, 200, request);
@@ -79,17 +79,17 @@ async function callDeepSeek(content, platforms, systemPrompt, env) {
       model: 'deepseek-chat',
       messages: [
         { role: 'system', content: systemPrompt || getDefaultSystemPrompt(platforms) },
-        { role: 'user', content: `Content to repurpose:\n\n${content}` },
+        { role: 'user', content: 'Content to repurpose:\n\n' + content },
       ],
       temperature: 0.7,
-      max_tokens: 6000,
+      max_tokens: 8192,
       stream: false,
     }),
   });
 
   if (!response.ok) {
     const errBody = await response.text().catch(() => '');
-    throw new Error(`DeepSeek HTTP ${response.status}: ${errBody}`);
+    throw new Error('DeepSeek HTTP ' + response.status + ': ' + errBody);
   }
 
   const data = await response.json();
@@ -106,7 +106,7 @@ async function callDeepSeek(content, platforms, systemPrompt, env) {
   }
 
   // If JSON parsing failed, return the raw reply for frontend to handle
-  return { reply, source: 'ai_raw' };
+  return { reply: reply, source: 'ai_raw' };
 }
 
 /**
@@ -123,14 +123,14 @@ function parseJSONOutput(reply, platforms) {
     const parsed = JSON.parse(cleaned);
 
     const outputs = {};
-    platforms.forEach(p => {
+    platforms.forEach(function(p) {
       if (parsed[p] && typeof parsed[p] === 'string' && parsed[p].trim().length > 10) {
         outputs[p] = parsed[p].trim();
       }
     });
 
     return Object.keys(outputs).length > 0 ? outputs : null;
-  } catch {
+  } catch (e) {
     return null;
   }
 }
@@ -139,7 +139,7 @@ function parseJSONOutput(reply, platforms) {
  * Default system prompt if frontend doesn't send one
  */
 function getDefaultSystemPrompt(platforms) {
-  const descs = {
+  var descs = {
     tiktok: 'TikTok or Instagram Reels (60-second script with hook, body, CTA; fast-paced, emoji-rich)',
     youtube: 'YouTube Shorts (under-60-second script, strong hook in first 3 seconds, visual cues, CTA)',
     linkedin: 'LinkedIn (professional thought-leadership post with headline, insight, bullet points, engagement prompt; use #hashtags)',
@@ -150,18 +150,13 @@ function getDefaultSystemPrompt(platforms) {
     threads: 'Threads / Carousel (slide-by-slide narrative with titles, each slide has headline + 2-3 bullet points, ends with CTA)',
   };
 
-  return `You are Trudor Echo, an AI content repurposing assistant. Transform content into platform-ready posts.
+  var platformList = platforms.map(function(p) {
+    return '  - ' + p + ': ' + (descs[p] || 'social post');
+  }).join('\n');
 
-Rules:
-1. Preserve the original brand voice — tone, vocabulary, rhythm
-2. Adapt for each platform's format and culture, don't copy-paste
-3. No filler, be punchy and specific
-4. Use platform-native formatting and emojis where appropriate
-5. Return ONLY a JSON object (keys = platform IDs, values = content). No markdown fences, no extra text.
+  var keysList = platforms.map(function(p) { return '"' + p + '"'; }).join(', ');
 
-Platforms:\n${platforms.map(p => `  - ${p}: ${descs[p] || 'social post'}`).join('\n')}
-
-Return ONLY valid JSON. No explanation.`;
+  return 'You are Trudor Echo, an AI content repurposing assistant. Transform content into platform-ready posts.\n\nCRITICAL: Generate content for EVERY requested platform listed below. Do not skip any.\n\nRules:\n1. Preserve the original brand voice - tone, vocabulary, rhythm\n2. Adapt for each platform\'s format and culture, don\'t copy-paste\n3. No filler, be punchy and specific\n4. Use platform-native formatting and emojis where appropriate\n5. Return ONLY a JSON object with EXACTLY these keys: ' + keysList + '. Each key must have a substantive, complete value.\n6. No markdown fences, no extra text. Just the JSON object.\n\nPlatform descriptions:\n' + platformList + '\n\nReturn ONLY valid JSON with ALL platform keys. No explanation.';
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -169,8 +164,8 @@ Return ONLY valid JSON. No explanation.`;
 // ═══════════════════════════════════════════════════════════════════
 
 function corsHeaders(request) {
-  const origin = request.headers.get('Origin') || '';
-  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  var origin = request.headers.get('Origin') || '';
+  var allowed = ALLOWED_ORIGINS.indexOf(origin) !== -1 ? origin : ALLOWED_ORIGINS[0];
   return {
     'Access-Control-Allow-Origin': allowed,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -185,10 +180,12 @@ function handleCORS(request) {
 
 function jsonResponse(data, status, request) {
   return new Response(JSON.stringify(data), {
-    status,
+    status: status,
     headers: {
       'Content-Type': 'application/json',
-      ...corsHeaders(request),
+      'Access-Control-Allow-Origin': corsHeaders(request)['Access-Control-Allow-Origin'],
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
     },
   });
 }
